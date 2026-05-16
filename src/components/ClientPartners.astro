@@ -1,0 +1,83 @@
+﻿---
+// Client Partners — exact Figma match
+const clients = [
+  { name: 'Honda Power Sports', logo: '/images/clients/honda-power-sports.png' },
+  { name: 'Hughes Aircraft', logo: '/images/clients/hughes-aircraft.png' },
+  { name: 'Toyota', logo: '/images/clients/toyota.png' },
+  { name: 'Honda Financial Services', logo: '/images/clients/honda-financial-services.png' },
+  { name: 'Lexus Financial Services', logo: '/images/clients/lexus-financial-services.png' },
+  { name: 'Honda', logo: '/images/clients/honda.png' },
+  { name: 'Pixel506', logo: '/images/clients/pixel506.png' },
+  { name: 'Honda Power Equipment', logo: '/images/clients/honda-power-equipment.png' },
+  { name: 'Spohn Design', logo: '/images/clients/spohn-design.png' },
+  { name: 'HondaJet', logo: '/images/clients/hondajet.png' },
+  { name: '9th Wonder', logo: '/images/clients/9th-wonder.png' },
+  { name: '10 Pearls Studio', logo: '/images/clients/10-pearls-studio.png' },
+  { name: 'Acura', logo: '/images/clients/acura.png' },
+  { name: 'Acura Financial Services', logo: '/images/clients/acura-financial-services.png' },
+  { name: 'ADP', logo: '/images/clients/adp.png' },
+  { name: 'CSC', logo: '/images/clients/csc.png' },
+  { name: 'Dailey', logo: '/images/clients/dailey.png' },
+  { name: 'Honda Marine', logo: '/images/clients/honda-marine.png' },
+  { name: 'HRC Honda Racing', logo: '/images/clients/hrc-honda-racing.png' },
+  { name: 'Gravity', logo: '/images/clients/gravity.png' },
+  { name: 'Honda Engines', logo: '/images/clients/honda-engines.png' },
+];
+---
+
+<section id="clients" class="w-full py-[80px] bg-white overflow-hidden">
+  <div class="section-container mb-10">
+    <!-- Section Header — CENTERED, small-caps -->
+    <div class="text-center mb-10">
+      <h2
+        class="font-montserrat font-bold leading-tight mb-4"
+        style="font-size: 40px; color: #4E5854; font-variant: small-caps;"
+      >Client Partners</h2>
+      <!-- Ornament Divider -->
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="h-px w-[100px]" style="background-color: #4E5854; opacity: 0.45;"></div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="9" y="0" width="9" height="9" transform="rotate(45 9 0)" fill="#4E5854" opacity="0.8"/></svg>
+        <div class="h-px w-[100px]" style="background-color: #4E5854; opacity: 0.45;"></div>
+      </div>
+      <h3 class="font-montserrat text-[20px] font-semibold leading-[28px]" style="color: #2A2A2A;">Trusted by Fortune 500 companies for over 20 years</h3>
+    </div>
+  </div>
+
+  <!-- Logo Marquee -->
+  <div class="relative overflow-hidden py-8" style="border-top: 1px solid rgba(78,88,84,0.15); border-bottom: 1px solid rgba(78,88,84,0.15);">
+    <div class="marquee-track">
+      {clients.map(client => (
+        <div class="flex-shrink-0 mx-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+          <img src={client.logo} alt={client.name} class="h-[55px] w-auto object-contain" />
+        </div>
+      ))}
+      {clients.map(client => (
+        <div class="flex-shrink-0 mx-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+          <img src={client.logo} alt={client.name} class="h-[55px] w-auto object-contain" />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="section-container mt-12">
+    <!-- Stats: single line with extending lines and bullet separators -->
+    <div class="flex items-center justify-center gap-0 mb-12">
+      <div class="flex-1 h-px" style="background-color: rgba(78,88,84,0.2);"></div>
+      <div class="flex items-center gap-4 px-6">
+        <span class="font-montserrat text-[14px] font-semibold tracking-wide" style="color: #4E5854;">Strategy Architected</span>
+        <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background-color: #887660;"></span>
+        <span class="font-montserrat text-[14px] font-semibold tracking-wide" style="color: #4E5854;">Integrity Represented</span>
+        <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background-color: #887660;"></span>
+        <span class="font-montserrat text-[14px] font-semibold tracking-wide" style="color: #4E5854;">Success, Delivered</span>
+      </div>
+      <div class="flex-1 h-px" style="background-color: rgba(78,88,84,0.2);"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <a href="#contact" class="inline-flex items-center justify-center font-montserrat text-[13px] font-semibold tracking-[0.12em] uppercase text-white px-10 py-[14px] transition-all duration-300 hover:opacity-90" style="background-color: #683547; letter-spacing: 0.12em;">
+        Initiate a Consultation
+      </a>
+    </div>
+  </div>
+</section>

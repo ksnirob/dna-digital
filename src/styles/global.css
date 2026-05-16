@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Merriweather:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-montserrat text-dna-dark overflow-x-hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .section-heading {
+    @apply font-montserrat text-[40px] font-bold leading-[47.2px] tracking-normal;
+  }
+
+  .section-subheading {
+    @apply font-montserrat text-[24px] font-semibold leading-[28.8px];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center font-montserrat text-[16px] font-semibold tracking-widest uppercase text-white bg-dna-gold px-8 py-[14px] hover:bg-dna-gold-dark transition-colors duration-300 cursor-pointer;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center font-montserrat text-[16px] font-semibold tracking-widest uppercase text-dna-gold-light border border-dna-gold-light px-8 py-[14px] hover:bg-dna-gold hover:border-dna-gold hover:text-white transition-all duration-300 cursor-pointer;
+  }
+
+  .ornament-divider {
+    @apply flex items-center gap-4 my-4;
+  }
+
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    @apply flex-1 h-px bg-dna-dark opacity-30;
+  }
+
+  .section-container {
+    @apply max-w-[1280px] mx-auto px-8;
+  }
+}
+
+/* Marquee animation for client logos */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Card hover effects */
+.practice-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.practice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+/* Tab styles */
+.tab-item {
+  @apply relative cursor-pointer py-4 px-6 font-montserrat text-sm font-semibold text-dna-dark border-b border-dna-dark/20 transition-all duration-300;
+}
+
+.tab-item.active {
+  @apply text-dna-dark bg-white border-l-4 border-l-dna-gold border-b-transparent;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}

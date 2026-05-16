@@ -1,0 +1,117 @@
+﻿---
+// Our Difference section — bg white
+const differences = [
+  {
+    id: 'large-firm',
+    icon: '/images/icons/icon-large-firm.png',
+    title: 'Large Firm Failures, Real World Rescues',
+    titleColor: '#6A747D',
+    cardBg: '#F0F2F4',
+    dropCap: 'W',
+    intro: 'e have a proven track record of stepping in to rescue projects where large consulting firms have failed.',
+    body: "Our approach is conservative, pragmatic, and grounded in decades of real systems experience and common sense. We're here to do the job right, not meet billing quotas or chase the latest tech trends so developers can pad their résumés. Our goal is to succeed where others have failed.",
+  },
+  {
+    id: 'enterprise',
+    icon: '/images/icons/icon-enterprise.png',
+    title: 'Enterprise Expertise, Boutique Agility',
+    titleColor: '#887660',
+    cardBg: '#F5F1EA',
+    dropCap: 'Y',
+    intro: 'ou get the same senior‑level architectural and systems expertise found in the largest consulting firms,',
+    body: 'but with the agility, focus, and hands‑on leadership only a boutique consultancy can provide. Our deep systems expertise allows us to identify risks early, eliminate hidden failure points, and avoid the costly mistakes common in over‑engineered consulting engagements. Our goal is to exceed your expectations.',
+  },
+  {
+    id: 'entrepreneurial',
+    icon: '/images/icons/icon-entrepreneurial.png',
+    title: 'Entrepreneurial Mindset, Applied Discipline',
+    titleColor: '#86845E',
+    cardBg: '#F5F5ED',
+    dropCap: 'Y',
+    intro: 'ou get consistent, senior‑level leadership from start to finish. No layers. No red tape.',
+    body: "No inflated teams. Just deep experience applied directly to your most important initiatives. We manage projects as if we're spending our own money and build systems as if our business depends on them. Unlike large organizations, you'll experience no churn. No handoffs. No disappearing act. Our goal is to be your long-term partner.",
+  },
+];
+---
+
+<section id="our-difference" class="w-full py-[100px] bg-white">
+  <div class="section-container">
+    <!-- Section Header -->
+    <div class="text-center mb-14">
+      <h2 class="font-montserrat font-bold leading-tight text-black mb-4" style="font-size: 40px; font-variant: small-caps;">Our Difference</h2>
+
+      <!-- Ornament Divider (centered) -->
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="9" y="0" width="9" height="9" transform="rotate(45 9 0)" fill="#766B58" opacity="0.85"/></svg>
+        <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
+      </div>
+
+      <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px] text-black mb-6">Where Strategy Meets Technical Precision</h3>
+      <p class="font-merriweather text-[18px] font-normal leading-[30.6px] max-w-[760px] mx-auto" style="color: #2A2A2A;">
+        We align technology, people, and processes so transformation is no longer a gamble but a guaranteed outcome
+      </p>
+    </div>
+
+    <!-- Difference Cards -->
+    <div class="difference-cards grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+      {differences.map((diff, i) => (
+        <article
+          class="difference-card flex flex-col rounded-sm overflow-hidden hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-lg"
+          style={`background-color: ${diff.cardBg};`}
+        >
+          <!-- Icon -->
+          <div class="p-8 pb-4 flex justify-center">
+            <div class="w-[80px] h-[80px] rounded-full flex items-center justify-center overflow-hidden" style="background-color: #766B58;">
+              <img src={diff.icon} alt={diff.title} class="w-[48px] h-[48px] object-contain invert brightness-0 filter" />
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-8 pt-4 flex-1 flex flex-col">
+            <h3
+              class="font-montserrat text-[24px] font-semibold leading-[28.8px] text-center mb-6"
+              style={`color: ${diff.titleColor};`}
+            >
+              {diff.title}
+            </h3>
+            <p class="font-merriweather text-[16px] font-normal leading-[27.2px] text-black flex-1">
+              <span class="text-[28px] font-bold float-left mr-1 leading-[24px] mt-1" style={`color: ${diff.titleColor};`}>{diff.dropCap}</span>{diff.intro} {diff.body}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA Row -->
+    <div class="text-center">
+      <p class="font-merriweather text-[20px] font-medium leading-[28px] mb-6" style="color: #060505;">Ready to solve your digital challenges?</p>
+      <a href="#contact" class="inline-flex items-center justify-center font-montserrat text-[13px] font-semibold tracking-[0.12em] uppercase text-white px-10 py-[14px] transition-all duration-300 hover:opacity-90" style="background-color: #683547; letter-spacing: 0.12em;">
+        Start the Conversation
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.fromTo(
+    '.difference-card',
+    { opacity: 0, y: 60 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.difference-cards',
+        start: 'top 75%',
+      }
+    }
+  );
+</script>

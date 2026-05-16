@@ -1,0 +1,238 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const sections = [
+  {
+    num: '1.',
+    title: 'INTRODUCTION',
+    content: {
+      type: 'dropcap',
+      dropcap: 'D',
+      text: 'NA Digital Consultancy (\u201cwe,\u201d \u201cus,\u201d or \u201cour\u201d), a DBA of Dna Web Solutions, Inc., is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or engage our professional services. We operate with a military-grade commitment to accountability; we do exactly what we say we\u2019ll do, especially regarding the security of your data.',
+    },
+  },
+  {
+    num: '2.',
+    title: 'INFORMATION WE COLLECT',
+    content: {
+      type: 'bullets',
+      intro: 'We collect information that allows us to deliver high-performance consulting and technical solutions. This falls into two categories:',
+      bullets: [
+        { label: 'Voluntary Information:', text: ' This includes names, email addresses, and project details provided via our \u201cStart the Conversation\u201d contact forms or consultation bookings.' },
+        { label: 'Technical Data:', text: ' We automatically collect IP addresses, browser types, and usage patterns via cookies to optimize the performance of our \u201carchitectural plates\u201d and digital experience.' },
+      ],
+    },
+  },
+  {
+    num: '3.',
+    title: 'HOW WE USE YOUR DATA',
+    content: {
+      type: 'bullets',
+      intro: 'Your data is the blueprint for our engagement. We use it strictly to:',
+      bullets: [
+        { label: '', text: 'Facilitate strategic AI roadmapping and technology leadership.' },
+        { label: '', text: 'Develop and deploy custom software, mobile apps, and CRM intelligence.' },
+        { label: '', text: 'Communicate project milestones and delivery enablement.' },
+        { label: '', text: 'Ensure the security and resilience of our digital infrastructure.' },
+      ],
+    },
+  },
+  {
+    num: '4.',
+    title: 'DATA SHARING & THIRD PARTIES',
+    content: {
+      type: 'paragraph',
+      text: 'We do not measure success by the size of our database, and we certainly do not sell it. Data is only shared with third-party partners (such as AWS for cloud hosting or GoHighLevel for CRM management) when essential to execute the mission you have hired us to perform. All partners are vetted for proactive risk anticipation and high-performance integrity.',
+    },
+  },
+  {
+    num: '5.',
+    title: 'YOUR DATA RIGHTS',
+    content: {
+      type: 'leftborder',
+      text: 'YOU HAVE THE RIGHT TO ACCESS: You have the right to request a copy of the personal data we hold about you. You may also request that we correct, delete, or restrict the processing of your information at any time.',
+      boldLabel: 'YOUR RIGHT TO ACCESS:',
+    },
+  },
+  {
+    num: '6.',
+    title: 'COOKIES & TRACKING',
+    content: {
+      type: 'paragraph',
+      text: 'We use functional and analytical cookies to ensure our website\u2019s glassmorphism and motion effects perform at peak efficiency. You can manage these at any time via our Cookie Preferences dashboard.',
+    },
+  },
+  {
+    num: '7.',
+    title: 'DATA SECURITY',
+    content: {
+      type: 'paragraph',
+      text: 'Integrity is our operating system. We implement industry-standard technical and organizational measures\u2014including hardware cold storage for digital assets when applicable\u2014to protect your information from unauthorized access or structural failure.',
+    },
+  },
+  {
+    num: '8.',
+    title: 'CONTACT US',
+    content: {
+      type: 'contact',
+      intro: 'If you have questions regarding this policy or our data practices, please contact us at:',
+      details: [
+        { text: 'Dna Digital Consultancy', bold: true },
+        { text: 'Signal Hill, California', bold: false },
+        { text: 'Email: privacypolicy@dnadigitalconsultancy.com', bold: false },
+      ],
+    },
+  },
+];
+---
+
+<Layout
+  title="Privacy Policy | DNA Digital Consultancy"
+  description="Privacy Policy for DNA Digital Consultancy — how we collect, use, and protect your data."
+>
+  <Nav />
+  <main>
+
+    <!-- HERO -->
+    <section
+      class="relative w-full overflow-hidden flex items-center justify-center"
+      style="height: 440px; background-color: #060505;"
+    >
+      <!-- Background image -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/images/hero-bg.jpg"
+          alt=""
+          class="w-full h-full object-cover object-center"
+          style="filter: brightness(0.45) saturate(0.6) contrast(1.1);"
+        />
+        <div
+          class="absolute inset-0"
+          style="background: linear-gradient(to bottom, rgba(6,5,5,0.60) 0%, rgba(6,5,5,0.55) 100%);"
+        ></div>
+      </div>
+
+      <!-- Hero Text -->
+      <div class="relative z-10 text-center px-8">
+        <h1
+          class="font-montserrat font-semibold text-white mb-4"
+          style="font-size: 72px; line-height: 1.2; letter-spacing: -0.04em;"
+        >
+          PRIVACY POLICY
+        </h1>
+        <p
+          class="font-merriweather font-medium"
+          style="font-size: 20px; line-height: 36px; color: #91836C;"
+        >
+          Last Updated: October 15, 2025
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT BODY -->
+    <section class="w-full bg-white py-[144px]">
+      <div class="section-container">
+        <div class="mx-auto" style="max-width: 900px;">
+          <div class="flex flex-col" style="gap: 96px;">
+
+            {sections.map((section) => (
+              <div>
+                <!-- Section Heading Row -->
+                <div
+                  class="flex items-center gap-1 pb-3 mb-4"
+                  style="border-bottom: 1px solid #E2DED6;"
+                >
+                  <span
+                    class="font-montserrat font-semibold"
+                    style="font-size: 28px; line-height: 47.2px; color: #2A2A2A; font-variant: small-caps;"
+                  >
+                    {section.num}
+                  </span>
+                  <span
+                    class="font-montserrat font-semibold ml-1"
+                    style="font-size: 28px; line-height: 47.2px; color: #2A2A2A; font-variant: small-caps;"
+                  >
+                    {section.title}
+                  </span>
+                </div>
+
+                <!-- Section Body -->
+                {section.content.type === 'dropcap' && (
+                  <div class="font-merriweather text-[18px] leading-[30.6px] overflow-hidden" style="color: rgba(42,42,42,0.88);">
+                    <span
+                      class="float-left font-normal mr-2"
+                      style="font-family: Merriweather, serif; font-size: 60px; color: #91836C; line-height: 1.0; margin-top: 4px;"
+                    >
+                      {section.content.dropcap}
+                    </span>
+                    {section.content.text}
+                  </div>
+                )}
+
+                {section.content.type === 'paragraph' && (
+                  <p class="font-merriweather text-[18px] leading-[30.6px]" style="color: rgba(42,42,42,0.88);">
+                    {section.content.text}
+                  </p>
+                )}
+
+                {section.content.type === 'bullets' && (
+                  <div>
+                    {section.content.intro && (
+                      <p class="font-merriweather text-[18px] leading-[30.6px] mb-4" style="color: rgba(42,42,42,0.88);">
+                        {section.content.intro}
+                      </p>
+                    )}
+                    <ul class="space-y-3">
+                      {section.content.bullets.map((bullet) => (
+                        <li class="flex items-start gap-4">
+                          <!-- Bullet diamond -->
+                          <span
+                            class="flex-shrink-0 mt-[11px]"
+                            style="width: 8px; height: 8px; background-color: #9E927D; display: inline-block;"
+                          ></span>
+                          <p class="font-merriweather text-[18px] leading-[30.6px]" style="color: rgba(42,42,42,0.88);">
+                            {bullet.label && <strong class="font-semibold">{bullet.label}</strong>}
+                            {bullet.text}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {section.content.type === 'leftborder' && (
+                  <div class="pl-7" style="border-left: 4px solid #91836C;">
+                    <p class="font-merriweather italic text-[18px] leading-[30.6px]" style="color: rgba(42,42,42,0.88);">
+                      <strong class="font-bold not-italic">YOUR RIGHT TO ACCESS:</strong>
+                      {' '}You have the right to request a copy of the personal data we hold about you. You may also request that we correct, delete, or restrict the processing of your information at any time.
+                    </p>
+                  </div>
+                )}
+
+                {section.content.type === 'contact' && (
+                  <div>
+                    <p class="font-merriweather text-[18px] leading-[30.6px] mb-4" style="color: rgba(42,42,42,0.88);">
+                      {section.content.intro}
+                    </p>
+                    <div class="font-merriweather text-[18px] leading-[30.6px]" style="color: rgba(42,42,42,0.88);">
+                      {section.content.details.map((d) => (
+                        <p class={d.bold ? 'font-bold' : ''}>{d.text}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+              </div>
+            ))}
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>

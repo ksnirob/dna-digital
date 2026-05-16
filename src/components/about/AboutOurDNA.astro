@@ -1,0 +1,145 @@
+---
+// About Our DNA — two-column layout on bg #CDC6BC
+
+const doctrineItems = [
+  {
+    title: 'Precision',
+    subtitle: 'Performance through Technical Minimalism',
+    dropCap: 'W',
+    body: 'e maximize performance through technical minimalism, removing anything that does not serve the system\'s purpose.',
+    icon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="2" fill="#91836C"/><line x1="12" y1="32" x2="52" y2="32" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="20" y1="24" x2="20" y2="40" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="44" y1="24" x2="44" y2="40" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="32" y1="20" x2="32" y2="44" stroke="white" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 3"/></svg>`,
+  },
+  {
+    title: 'Perspective',
+    subtitle: 'Solving for the Whole Building',
+    dropCap: 'W',
+    body: 'e solve for the "whole building," ensuring SaaS, CRM, and AI initiatives integrate into the organization\'s structural DNA rather than becoming isolated projects.',
+    icon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="2" fill="#91836C"/><circle cx="32" cy="32" r="10" stroke="white" stroke-width="3"/><circle cx="32" cy="32" r="3" fill="white"/><path d="M12 32 Q 22 20 32 32 Q 42 44 52 32" stroke="white" stroke-width="2" fill="none"/></svg>`,
+  },
+  {
+    title: 'Accountability',
+    subtitle: 'Partner Seniority and Roadmap Ownership',
+    dropCap: 'W',
+    body: 'e execute with the seniority of a partner, taking full ownership of the technical roadmap and the outcomes it must produce.',
+    icon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="2" fill="#91836C"/><circle cx="32" cy="22" r="8" stroke="white" stroke-width="3"/><path d="M14 50 C14 38 50 38 50 50" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg>`,
+  },
+  {
+    title: 'Form Follows Function',
+    subtitle: 'Rigor in Architectural and ENG Engagement',
+    dropCap: 'A',
+    body: ' discipline that shapes every engagement, every architectural decision, and every line of reasoning, ensuring systems are built to endure.',
+    icon: `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="2" fill="#91836C"/><circle cx="32" cy="32" r="12" stroke="white" stroke-width="3" fill="none"/><circle cx="32" cy="32" r="4" fill="white"/><line x1="32" y1="12" x2="32" y2="18" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="32" y1="46" x2="32" y2="52" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="12" y1="32" x2="18" y2="32" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="46" y1="32" x2="52" y2="32" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>`,
+  },
+];
+---
+
+<section id="about-dna" class="w-full py-[100px]" style="background-color: #CDC6BC;">
+  <div class="section-container">
+
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2
+        class="font-montserrat font-bold mb-0"
+        style="font-size: 40px; color: #2A2A2A; font-variant: small-caps; letter-spacing: 0.04em;"
+      >
+        Our Dna
+      </h2>
+      <!-- Diamond Ornament -->
+      <div class="flex items-center justify-center gap-3 my-5">
+        <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="9" y="0" width="9" height="9" transform="rotate(45 9 0)" fill="#766B58" opacity="0.85"/>
+        </svg>
+        <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
+      </div>
+      <h3
+        class="font-montserrat font-semibold"
+        style="font-size: 24px; line-height: 1.3; color: #2A2A2A;"
+      >
+        The Firm's Internal Operating System
+      </h3>
+    </div>
+
+    <!-- Two-Column Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-start">
+
+      <!-- LEFT: Operational Doctrine -->
+      <div>
+        <h3
+          class="font-merriweather font-bold mb-8"
+          style="font-size: 52px; line-height: 1.1; color: #060505;"
+        >
+          OPERATIONAL<br />DOCTRINE
+        </h3>
+        <div class="pl-7" style="border-left: 8px solid #060505;">
+          <p
+            class="font-merriweather text-[18px] leading-[28px] mb-6 overflow-hidden"
+            style="color: #2A2A2A;"
+          >
+            <span
+              class="float-left font-normal mr-3"
+              style="font-family: Merriweather, serif; font-size: 80px; color: #91836C; line-height: 0.88; margin-top: 8px;"
+            >E</span>very consultancy claims principles. We operate by doctrine. Our work is governed by a strict Form Follows Function framework—a discipline that shapes every engagement, every architectural decision, and every line of reasoning.
+          </p>
+          <p
+            class="font-merriweather text-[18px] leading-[28px] mb-6 clear-both"
+            style="color: #2A2A2A;"
+          >
+            This doctrine is not an abstract philosophy; it serves as the operational engine behind every solution we deliver. Rather than measuring success by billable hours or team size, we define our value by the resilience and performance of the systems we build, providing not just advisory services, but the senior engineering muscle and executive leadership required to move a roadmap from concept to production.
+          </p>
+          <p
+            class="font-merriweather text-[18px] leading-[28px]"
+            style="color: #2A2A2A;"
+          >
+            We don't just provide advice; we provide the senior engineering muscle and executive-level leadership required to move a roadmap from concept to production.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT: 4 Doctrine Items -->
+      <div class="flex flex-col gap-0">
+        {doctrineItems.map((item, i) => (
+          <div
+            class="pt-6 pb-6"
+            style={i < doctrineItems.length - 1 ? 'border-bottom: 1px solid rgba(90,80,68,0.35);' : ''}
+          >
+            <!-- Icon + Heading row -->
+            <div class="flex items-start gap-4 mb-3">
+              <div class="w-14 h-14 flex-shrink-0" set:html={item.icon} />
+              <div>
+                <h4
+                  class="font-montserrat font-semibold"
+                  style="font-size: 22px; line-height: 1.2; color: #060505; font-variant: small-caps; letter-spacing: 0.04em;"
+                >
+                  {item.title}
+                </h4>
+                <p
+                  class="font-merriweather font-semibold"
+                  style="font-size: 15px; line-height: 1.4; color: #2A2A2A; opacity: 0.8;"
+                >
+                  {item.subtitle}
+                </p>
+              </div>
+            </div>
+            <!-- Drop-cap body -->
+            <div class="pl-5" style="border-left: 6px solid #91836C;">
+              <p
+                class="font-merriweather text-[14px] leading-[22px] overflow-hidden"
+                style="color: #2A2A2A;"
+              >
+                <span
+                  class="float-left font-semibold mr-2"
+                  style="font-family: Merriweather, serif; font-size: 46px; color: #75695B; line-height: 0.88; margin-top: 4px;"
+                >
+                  {item.dropCap}
+                </span>
+                {item.body}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

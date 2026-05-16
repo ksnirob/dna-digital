@@ -1,0 +1,60 @@
+﻿---
+// Practice Directory section - images ARE the complete card designs
+const row1 = [
+  { num: '01', title: 'AI Strategy & Transformation', img: '/images/practices/ai-strategy.png' },
+  { num: '02', title: 'Technology Leadership & Governance', img: '/images/practices/tech-leadership.png' },
+  { num: '03', title: 'AI-Powered Growth & Experience', img: '/images/practices/ai-growth.png' },
+];
+const row2 = [
+  { num: '04', title: 'Solution & Product Engineering', img: '/images/practices/solution-engineering.png' },
+  { num: '05', title: 'Enterprise Digital & Technology Transformation', img: '/images/practices/enterprise-digital.png' },
+  { num: '06', title: 'AI Micro-Agents & CRM Intelligence', img: '/images/practices/ai-micro-agents.png' },
+  { num: '07', title: 'Digital Execution & Delivery Enablement', img: '/images/practices/digital-execution.png' },
+];
+---
+
+<section id="practices" class="w-full py-[100px]" style="background-color: #F5F1EA;">
+  <div class="section-container">
+    <div class="text-center mb-14">
+      <h2 class="font-montserrat font-bold leading-tight mb-4" style="font-size: 40px; color: #2A2A2A; font-variant: small-caps;">Practice Directory</h2>
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="h-px w-[100px]" style="background-color: #766B58; opacity: 0.7;"></div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="9" y="0" width="9" height="9" transform="rotate(45 9 0)" fill="#766B58" opacity="0.85"/></svg>
+        <div class="h-px w-[100px]" style="background-color: #766B58; opacity: 0.7;"></div>
+      </div>
+      <h3 class="font-montserrat text-[22px] font-semibold leading-[28px] mb-5" style="color: #2A2A2A;">Our Expertise at a Glance</h3>
+      <p class="font-merriweather text-[17px] font-normal leading-[29px] max-w-[860px] mx-auto" style="color: #2A2A2A;">Our practice areas form a complete end-to-end capability system that give our clients a comprehensive partner equipped to guide the entire lifecycle of modern digital work.</p>
+    </div>
+
+    <!-- Row 1: 3 cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      {row1.map((p) => (
+        <article class="practice-card overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+          <img src={p.img} alt={p.title} class="w-full h-auto block" loading="lazy" />
+        </article>
+      ))}
+    </div>
+
+    <!-- Row 2: 4 cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+      {row2.map((p) => (
+        <article class="practice-card overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+          <img src={p.img} alt={p.title} class="w-full h-auto block" loading="lazy" />
+        </article>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <p class="font-merriweather text-[18px] font-normal leading-[28px]" style="color: #2A2A2A;">
+        Not sure where to start? Our <a href="#expertise" class="font-semibold underline" style="color: #683547;">AI Concierge</a> can help you.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.fromTo('.practice-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: '#practices', start: 'top 80%' } });
+</script>

@@ -1,0 +1,84 @@
+﻿---
+// Nav component — transparent over hero, white on scroll
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-[112px] flex items-center transition-all duration-500" style="background: transparent;">
+  <div class="section-container w-full flex items-center justify-between">
+    <!-- Logo Block -->
+    <a href="/" class="flex-shrink-0">
+      <img src="/images/logo.svg" alt="DNA Digital Consultancy" class="h-[80px] w-auto" />
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden lg:flex items-center gap-8">
+      <a href="/" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300" style="border-bottom: 2px solid rgba(255,255,255,0.7); padding-bottom: 2px;">Home</a>
+      <a href="#practices" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-1">
+        Practices
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+      </a>
+      <a href="#products" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-1">
+        Products
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+      </a>
+      <a href="/about" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300">
+        About
+      </a>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="#contact" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 font-montserrat text-[12px] font-semibold tracking-widest uppercase text-white transition-all duration-300 hover:bg-white/10 flex-shrink-0" style="border: 1px solid rgba(224,201,163,0.6); letter-spacing: 0.12em;">
+      Start a Conversation
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button id="mobile-menu-btn" class="lg:hidden text-white p-2" aria-label="Open menu">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden fixed top-[112px] left-0 right-0 bg-dna-footer z-50 py-8 px-8 flex-col gap-6 shadow-2xl">
+    <a href="/" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">Home</a>
+    <a href="#practices" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">Practices</a>
+    <a href="#products" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">Products</a>
+    <a href="/about" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">About</a>
+    <a href="#contact" class="btn-primary w-full text-center mt-4">Start a Conversation</a>
+  </div>
+</nav>
+
+<script>
+  // Scroll behavior: transparent → white bg
+  const nav = document.getElementById('main-nav') as HTMLElement;
+  const mobileBtn = document.getElementById('mobile-menu-btn') as HTMLButtonElement;
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
+
+  function updateNav() {
+    if (window.scrollY > 80) {
+      nav.style.background = 'rgba(93, 87, 73, 0.97)';
+      nav.style.backdropFilter = 'blur(10px)';
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.backdropFilter = 'none';
+      nav.style.boxShadow = 'none';
+    }
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  mobileBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  });
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    });
+  });
+</script>

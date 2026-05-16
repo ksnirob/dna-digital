@@ -1,0 +1,105 @@
+﻿---
+// Our Philosophy — exact Figma 2-column layout
+// Left: big quote + body text with drop-cap
+// Right: "THE THREE PILLARS" + 3 items stacked vertically (each with icon, title, drop-cap body)
+---
+
+<section id="philosophy" class="w-full py-[100px]" style="background-color: #CDC6BC;">
+  <div class="section-container">
+    <!-- Section Header — centered -->
+    <div class="text-center mb-12">
+      <h2 class="font-montserrat font-bold leading-tight mb-4" style="font-size: 40px; color: #2A2A2A; font-variant: small-caps;">Our Philosophy</h2>
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="h-px w-[100px]" style="background-color: #6B5E4A; opacity: 0.55;"></div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="9" y="0" width="9" height="9" transform="rotate(45 9 0)" fill="#6B5E4A" opacity="0.85"/></svg>
+        <div class="h-px w-[100px]" style="background-color: #6B5E4A; opacity: 0.55;"></div>
+      </div>
+      <h3 class="font-montserrat text-[22px] font-semibold leading-[28px]" style="color: #2A2A2A;">Defining the Principles That Guide Every Solution</h3>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="flex flex-col lg:flex-row gap-16 items-start mb-14">
+      <!-- Left Column: Big Quote + Body Text -->
+      <div class="lg:w-[44%] flex-shrink-0 philosophy-quote">
+        <h2 class="font-montserrat font-bold leading-[1.15] mb-8" style="font-size: clamp(30px, 3.2vw, 46px); color: #060505;">
+          Built on Integrity.<br />Engineered for<br />Outcomes.
+        </h2>
+        <!-- Body text with left border accent and drop-cap -->
+        <div class="pl-6 philosophy-body" style="border-left: 3px solid #6B5E4A;">
+          <p class="font-merriweather text-[15px] font-normal leading-[26px]" style="color: #000000;">
+            <span class="text-[36px] font-bold leading-[28px] float-left mr-2 mt-0.5" style="color: #2A2A2A; font-family: 'Merriweather', serif;">A</span>
+            Legacy of Accountability. Dna Digital Consultancy was founded on a simple, uncompromising principle; we do exactly what we say we'll do. In an industry often clouded by hype and over-promises, we operate with a conservative, pragmatic lens and a military-grade commitment to the mission. We don't measure our success by billable hours or the size of the team, but by the resilience and performance of the solutions we deliver. We view every engagement as a mission-critical deployment, stripping away the ambiguity that often plagues digital transformation. By operating through a conservative, pragmatic lens and a military-grade commitment to the objective, we ensure that architectural integrity and strategic clarity are never sacrificed for convenience.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Three Pillars -->
+      <div class="flex-1 philosophy-pillars">
+        <h4 class="font-montserrat text-[11px] font-bold tracking-[0.18em] uppercase mb-8" style="color: #2A2A2A; letter-spacing: 0.18em;">The Three Pillars of Our Philosophy.</h4>
+        
+        <!-- Pillar 1 -->
+        <div class="flex items-start gap-5 pb-7 mb-7" style="border-bottom: 1px solid rgba(107,94,74,0.3);">
+          <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center" style="background-color: rgba(107,94,74,0.15); border: 1px solid rgba(107,94,74,0.3);">
+            <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="#6B5E4A" stroke-width="1.5">
+              <rect x="4" y="4" width="24" height="24" rx="2"/><path d="M10 16l4 4 8-8"/>
+            </svg>
+          </div>
+          <div>
+            <h5 class="font-montserrat text-[15px] font-bold leading-[20px] mb-3" style="color: #2A2A2A;">Radical Candor over Billable Hours</h5>
+            <p class="font-merriweather text-[13px] font-normal leading-[22px]" style="color: #3A3A3A;">
+              <span class="text-[26px] font-bold leading-[18px] float-left mr-1.5 mt-0.5" style="color: #2A2A2A; font-family: 'Merriweather', serif;">W</span>
+              e speak with clarity, not convenience. Our seniority and experience give us the freedom to prioritize your long-term stability over short-term project economics. If a path is high-risk, wasteful, or misaligned with your objectives, we flag it immediately—even when it's not in our financial interest.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="flex items-start gap-5 pb-7 mb-7" style="border-bottom: 1px solid rgba(107,94,74,0.3);">
+          <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center" style="background-color: rgba(107,94,74,0.15); border: 1px solid rgba(107,94,74,0.3);">
+            <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="#6B5E4A" stroke-width="1.5">
+              <circle cx="16" cy="16" r="12"/><path d="M16 8v8l5 3"/>
+            </svg>
+          </div>
+          <div>
+            <h5 class="font-montserrat text-[15px] font-bold leading-[20px] mb-3" style="color: #2A2A2A;">Proactive Risk Anticipation</h5>
+            <p class="font-merriweather text-[13px] font-normal leading-[22px]" style="color: #3A3A3A;">
+              <span class="text-[26px] font-bold leading-[18px] float-left mr-1.5 mt-0.5" style="color: #2A2A2A; font-family: 'Merriweather', serif;">E</span>
+              xperience has taught us where complexity hides. With thirty years of navigating the evolution of enterprise technology, we have the pattern recognition to see structural risks before they become problems. We don't just engineer risk out of the blueprint; we provide the proactive oversight required to anticipate issues as a project evolves.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="flex items-start gap-5">
+          <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center" style="background-color: rgba(107,94,74,0.15); border: 1px solid rgba(107,94,74,0.3);">
+            <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" stroke="#6B5E4A" stroke-width="1.5">
+              <path d="M16 4l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>
+            </svg>
+          </div>
+          <div>
+            <h5 class="font-montserrat text-[15px] font-bold leading-[20px] mb-3" style="color: #2A2A2A;">High-Performance Integrity</h5>
+            <p class="font-merriweather text-[13px] font-normal leading-[22px]" style="color: #3A3A3A;">
+              <span class="text-[26px] font-bold leading-[18px] float-left mr-1.5 mt-0.5" style="color: #2A2A2A; font-family: 'Merriweather', serif;">I</span>
+              ntegrity isn't just a value; it's our operating system. Forged in the rigor of our founder's Military service and sharpened through decades of executive-level delivery, we bring a high-performer culture to every engagement. We don't just follow directions; we manage the mission.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <a href="#expertise" class="inline-flex items-center justify-center font-montserrat text-[13px] font-semibold tracking-[0.12em] uppercase text-white px-10 py-[14px] transition-all duration-300 hover:opacity-90" style="background-color: #683547; letter-spacing: 0.12em;">
+        Explore Our Expertise
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.fromTo('.philosophy-quote', { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.philosophy-quote', start: 'top 80%' } });
+  gsap.fromTo('.philosophy-pillars', { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.philosophy-pillars', start: 'top 80%' } });
+</script>
