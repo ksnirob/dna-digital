@@ -66,14 +66,9 @@
   animation-play-state: paused;
 }
 
-/* Card hover effects */
+/* Card styles */
 .practice-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.practice-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  will-change: transform, box-shadow;
 }
 
 /* Tab styles */
