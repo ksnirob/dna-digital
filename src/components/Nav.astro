@@ -2,7 +2,7 @@
 // Nav component — transparent over hero, white on scroll
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-[112px] flex items-center transition-all duration-500" style="background: transparent;">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-[112px] flex items-center transition-all duration-500" style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
   <div class="section-container w-full flex items-center justify-between">
     <!-- Logo Block -->
     <a href="/" class="flex-shrink-0">
@@ -11,22 +11,22 @@
 
     <!-- Desktop Nav Links -->
     <div class="hidden lg:flex items-center gap-8">
-      <a href="/" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300" style="border-bottom: 2px solid rgba(255,255,255,0.7); padding-bottom: 2px;">Home</a>
-      <a href="#practices" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-1">
+      <a href="/" class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300" style="border-bottom: 2px solid rgba(255,255,255,0.7); padding-bottom: 2px;">Home</a>
+      <a href="#practices" class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-1">
         Practices
         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
       </a>
-      <a href="#products" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-1">
+      <a href="#products" class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-1">
         Products
         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
       </a>
-      <a href="/about" class="nav-link font-montserrat text-[13px] font-semibold tracking-widest uppercase text-white hover:text-dna-gold-light transition-colors duration-300">
+      <a href="/about" class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300">
         About
       </a>
     </div>
 
     <!-- CTA Button -->
-    <a href="#contact" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 font-montserrat text-[12px] font-semibold tracking-widest uppercase text-white transition-all duration-300 hover:bg-white/10 flex-shrink-0" style="border: 1px solid rgba(224,201,163,0.6); letter-spacing: 0.12em;">
+    <a href="#contact" class="hidden lg:inline-flex items-center justify-center px-5 py-[11px] font-montserrat text-[14px] font-bold uppercase transition-all duration-300 hover:bg-white/20 flex-shrink-0" style="background: rgba(245,245,245,0.10); color: #E0C9A3; letter-spacing: 0.005em; border-radius: 6px;">
       Start a Conversation
     </a>
 
@@ -56,12 +56,14 @@
 
   function updateNav() {
     if (window.scrollY > 80) {
-      nav.style.background = 'rgba(93, 87, 73, 0.97)';
-      nav.style.backdropFilter = 'blur(10px)';
-      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+      nav.style.background = 'rgba(6,5,5,0.96)';
+      nav.style.backdropFilter = 'blur(12px)';
+      (nav.style as any)['-webkit-backdrop-filter'] = 'blur(12px)';
+      nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.4)';
     } else {
-      nav.style.background = 'transparent';
-      nav.style.backdropFilter = 'none';
+      nav.style.background = 'rgba(255,255,255,0.10)';
+      nav.style.backdropFilter = 'blur(12px)';
+      (nav.style as any)['-webkit-backdrop-filter'] = 'blur(12px)';
       nav.style.boxShadow = 'none';
     }
   }
