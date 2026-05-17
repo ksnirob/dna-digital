@@ -2,11 +2,12 @@
 // Nav component — transparent over hero, white on scroll
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-[112px] flex items-center transition-all duration-500" style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-[72px] md:h-[112px] flex items-center transition-all duration-500" style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
   <div class="section-container w-full flex items-center justify-between">
     <!-- Logo Block -->
-    <a href="/" class="flex-shrink-0">
-      <img src="/images/logo.svg" alt="DNA Digital Consultancy" class="h-[80px] w-auto" />
+    <a href="/" class="flex-shrink-0 flex flex-col items-start">
+      <img src="/images/logo.svg" alt="DNA Digital Consultancy" class="h-[38px] md:h-[80px] w-auto" />
+      <span class="font-montserrat font-semibold leading-[1] hidden md:block" style="font-size: 6.4px; color: #CDDCCE;">Strategy. Execution. Transformation.</span>
     </a>
 
     <!-- Desktop Nav Links -->
@@ -39,12 +40,12 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden fixed top-[112px] left-0 right-0 bg-dna-footer z-50 py-8 px-8 flex-col gap-6 shadow-2xl">
-    <a href="/" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">Home</a>
-    <a href="#practices" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">Practices</a>
-    <a href="#products" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">Products</a>
-    <a href="/about" class="font-montserrat text-[16px] font-semibold text-white hover:text-dna-gold-light transition-colors">About</a>
-    <a href="#contact" class="btn-primary w-full text-center mt-4">Start a Conversation</a>
+  <div id="mobile-menu" class="hidden fixed top-[72px] left-0 right-0 z-50 py-8 px-5 flex-col gap-5 shadow-2xl" style="background: #F4F3F2; max-height: calc(100vh - 72px); overflow-y: auto;">
+    <a href="/" class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors">Home</a>
+    <a href="#practices" class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors">Practices</a>
+    <a href="#products" class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors">Products</a>
+    <a href="/about" class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors">About</a>
+    <a href="#contact" class="w-full text-center mt-2 font-montserrat text-[14px] font-semibold uppercase text-white py-4 rounded-[6px]" style="background: #756A57; letter-spacing: 0.02em;">Start a Conversation</a>
   </div>
 </nav>
 

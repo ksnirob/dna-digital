@@ -50,6 +50,24 @@
   }
 }
 
+@media (max-width: 768px) {
+  .section-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .section-heading {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+
+  .section-subheading {
+    font-size: 18px !important;
+    line-height: 28px !important;
+  }
+
+}
+
 /* Marquee animation for client logos */
 @keyframes marquee {
   0% { transform: translateX(0); }
@@ -57,13 +75,28 @@
 }
 
 .marquee-track {
-  animation: marquee 30s linear infinite;
+  animation: marquee 55s linear infinite;
   display: flex;
   width: max-content;
 }
 
 .marquee-track:hover {
   animation-play-state: paused;
+}
+
+.client-logo-mark {
+  display: block;
+  width: 156px;
+  height: 52px;
+  background-color: #C1B7A9;
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 
 /* Card styles */

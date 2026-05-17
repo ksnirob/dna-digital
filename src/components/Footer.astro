@@ -2,14 +2,14 @@
 // Footer section — bg #5D5749
 
 const practiceLinks = [
-  { label: 'Overview', href: '#practices' },
-  { label: 'AI Strategy & Transformation', href: '#expertise' },
-  { label: 'Technology Leadership & Governance', href: '#expertise' },
-  { label: 'AI Opportunity Review & ROI Analysis', href: '#expertise' },
-  { label: 'Solution & Product Engineering', href: '#expertise' },
-  { label: 'Enterprise Digital & Technology Transformation', href: '#expertise' },
-  { label: 'AI Micro-Agents & CRM Intelligence', href: '#expertise' },
-  { label: 'Digital Execution & Delivery Enablement', href: '#expertise' },
+  { label: 'Overview', href: '#practices', tabId: null },
+  { label: 'AI Strategy & Transformation', href: '#expertise', tabId: 'ai-strategy' },
+  { label: 'Technology Leadership & Governance', href: '#expertise', tabId: 'tech-leadership' },
+  { label: 'AI Opportunity Review & ROI Analysis', href: '#expertise', tabId: 'ai-strategy' },
+  { label: 'Solution & Product Engineering', href: '#expertise', tabId: 'solution-engineering' },
+  { label: 'Enterprise Digital & Technology Transformation', href: '#expertise', tabId: 'enterprise-digital' },
+  { label: 'AI Micro-Agents & CRM Intelligence', href: '#expertise', tabId: 'ai-micro-agents' },
+  { label: 'Digital Execution & Delivery Enablement', href: '#expertise', tabId: 'digital-execution' },
 ];
 
 const productLinks = [
@@ -41,46 +41,71 @@ const socialIcons = [
 ];
 ---
 
-<footer id="footer" class="w-full" style="background-color: #5D5749; position: relative;">
-  <!-- Texture overlay -->
-  <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,...'); background-size: 200px;"></div>
+<footer id="footer" class="w-full" style="background-color: #5D5749; position: relative; overflow: hidden;">
+  <!-- Texture overlay (Figma noise treatment) -->
+  <svg aria-hidden="true" class="absolute inset-0 w-full h-full" viewBox="0 0 1440 887" preserveAspectRatio="none" style="pointer-events: none; z-index: 0;">
+    <defs>
+      <filter id="footer-noise-filter" x="0" y="0" width="1440" height="887" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" stitchTiles="stitch" numOctaves="3" result="noise" seed="9811"/>
+        <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise"/>
+        <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+          <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/>
+        </feComponentTransfer>
+        <feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped"/>
+        <feFlood flood-color="rgba(0, 0, 0, 0.16)" result="color1Flood"/>
+        <feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1"/>
+        <feMerge>
+          <feMergeNode in="shape"/>
+          <feMergeNode in="color1"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <rect width="1440" height="886.51" fill="#5D5749" filter="url(#footer-noise-filter)"/>
+  </svg>
 
   <div class="section-container relative z-10 pt-[80px] pb-[30px]">
     <!-- Top Section -->
     <div class="flex flex-col lg:flex-row gap-12 mb-16">
       <!-- Left: Logo + tagline + big text -->
-      <div class="lg:w-[292px] flex-shrink-0">
-        <img src="/images/logo.svg" alt="DNA Digital Consultancy" class="h-[160px] w-auto mb-2" />
+      <div class="lg:w-[292px] flex-shrink-0 flex items-start">
+        <img src="/images/logo.svg" alt="DNA Digital Consultancy" class="h-[138px] w-auto mb-2" />
       </div>
 
       <!-- Right: Big tagline + description -->
       <div class="flex-1 pt-2">
         <h2
           class="font-montserrat font-bold leading-[1.15] mb-4"
-          style="font-size: clamp(28px, 3vw, 44px); color: #E0C9A3; font-variant: small-caps;"
+          style="font-size: clamp(26px, 2.8vw, 42px); color: #E8D8BC; font-variant: small-caps;"
         >
           Strategy. Execution. Transformation.
         </h2>
-        <p class="font-merriweather text-[18px] font-semibold leading-[28px]" style="color: #E0C9A3;">
+        <p class="font-merriweather text-[17px] font-semibold leading-[28px]" style="color: rgba(244,243,242,0.9);">
           Engineering resilience into the Digital DNA of enterprise systems for over 30 years.
         </p>
       </div>
     </div>
 
     <!-- Nav Links Row -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16 border-t pt-12" style="border-color: rgba(224,201,163,0.2);">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 mb-16 border-t pt-12" style="border-color: rgba(224,201,163,0.2);">
       <!-- Home -->
       <div>
-        <h4 class="font-montserrat text-[14px] font-bold tracking-wider uppercase mb-4" style="color: #E0C9A3; font-variant: small-caps;">Home</h4>
+        <h4 class="font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-4" style="color: #F5F1EA; font-variant: small-caps;">Home</h4>
       </div>
 
       <!-- Practices -->
       <div>
-        <h4 class="font-montserrat text-[14px] font-bold tracking-wider uppercase mb-6" style="color: #E0C9A3; font-variant: small-caps;">Practices</h4>
+        <h4 class="font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-3 md:mb-6" style="color: #F5F1EA; font-variant: small-caps;">Practices</h4>
         <ul class="space-y-3">
           {practiceLinks.map(link => (
             <li>
-              <a href={link.href} class="font-montserrat text-[13px] font-normal leading-[19.6px] transition-colors duration-300 hover:text-dna-gold-light" style="color: rgba(224,201,163,0.75);">
+              <a
+                href={link.href}
+                data-expertise-tab={link.tabId || null}
+                class="footer-practice-link font-merriweather text-[14px] md:text-[12px] font-normal leading-[24px] md:leading-[18px] transition-colors duration-300 hover:text-dna-gold-light"
+                style="color: rgba(244,243,242,0.84);"
+              >
                 {link.label}
               </a>
             </li>
@@ -90,11 +115,11 @@ const socialIcons = [
 
       <!-- Products -->
       <div>
-        <h4 class="font-montserrat text-[14px] font-bold tracking-wider uppercase mb-6" style="color: #E0C9A3; font-variant: small-caps;">Products</h4>
+        <h4 class="font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-3 md:mb-6" style="color: #F5F1EA; font-variant: small-caps;">Products</h4>
         <ul class="space-y-3">
           {productLinks.map(link => (
             <li>
-              <a href={link.href} class="font-montserrat text-[13px] font-normal leading-[19.6px] transition-colors duration-300 hover:text-dna-gold-light" style="color: rgba(224,201,163,0.75);">
+              <a href={link.href} class="font-merriweather text-[14px] md:text-[12px] font-normal leading-[24px] md:leading-[18px] transition-colors duration-300 hover:text-dna-gold-light" style="color: rgba(244,243,242,0.84);">
                 {link.label}
               </a>
             </li>
@@ -104,22 +129,19 @@ const socialIcons = [
 
       <!-- About -->
       <div>
-        <h4 class="font-montserrat text-[14px] font-bold tracking-wider uppercase mb-6" style="color: #E0C9A3; font-variant: small-caps;">About</h4>
+        <h4 class="font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-3 md:mb-6" style="color: #F5F1EA; font-variant: small-caps;">About</h4>
 
-        <!-- HQ Box -->
-        <div class="border p-4 mb-6" style="border-color: rgba(224,201,163,0.3);">
-          <p class="font-montserrat text-[12px] font-bold uppercase tracking-wider mb-2" style="color: #E0C9A3; font-variant: small-caps;">Headquarters</p>
-          <p class="font-merriweather text-[14px]" style="color: rgba(224,201,163,0.75);">Signal Hill, California</p>
-        </div>
+        <!-- Headquarters + Connect in one box -->
+        <div class="border p-5" style="border-color: rgba(145,131,108,0.85); border-radius: 8px; background: rgba(93,87,73,0.22);">
+          <p class="font-montserrat text-[16px] font-bold uppercase tracking-wider mb-2" style="color: #91836C; font-variant: small-caps;">Headquarters</p>
+          <p class="font-merriweather text-[14px] mb-8" style="color: rgba(244,243,242,0.88);">Signal Hill, California</p>
 
-        <!-- Connect Box -->
-        <div class="border p-4" style="border-color: rgba(224,201,163,0.3);">
-          <p class="font-montserrat text-[12px] font-bold uppercase tracking-wider mb-3" style="color: #E0C9A3; font-variant: small-caps;">Connect</p>
-          <a href="mailto:hello@Dnadigital.com" class="flex items-center gap-2 mb-4 hover:text-dna-gold-light transition-colors" style="color: rgba(224,201,163,0.75);">
+          <p class="font-montserrat text-[16px] font-bold uppercase tracking-wider mb-3" style="color: #91836C; font-variant: small-caps;">Connect</p>
+          <a href="mailto:hello@Dnadigital.com" class="flex items-center gap-2 mb-4 hover:text-dna-gold-light transition-colors" style="color: rgba(244,243,242,0.88);">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/>
             </svg>
-            <span class="font-montserrat text-[13px]">hello@Dnadigital.com</span>
+            <span class="font-montserrat text-[12px]">hello@Dnadigital.com</span>
           </a>
           <!-- Social Icons -->
           <div class="flex items-center gap-3">
@@ -128,7 +150,7 @@ const socialIcons = [
                 href={social.href}
                 aria-label={social.label}
                 class="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 hover:border-dna-gold-light hover:text-dna-gold-light"
-                style="border-color: rgba(224,201,163,0.4); color: rgba(224,201,163,0.75);"
+                style="border-color: rgba(232,216,188,0.45); color: rgba(244,243,242,0.86);"
                 set:html={social.icon}
               />
             ))}
@@ -138,11 +160,11 @@ const socialIcons = [
     </div>
 
     <!-- Bottom Bar -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-5 border-t" style="border-color: rgba(224,201,163,0.15);">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4 pt-5 border-t" style="border-color: rgba(224,201,163,0.35);">
       <p class="font-montserrat text-[12px] font-normal leading-[19.6px]" style="color: rgba(244,243,242,0.7);">
         &copy; 2026 Dna Digital Consultancy. All rights reserved.
       </p>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 md:gap-3">
         <a href="/privacy-policy" class="font-montserrat text-[12px] font-normal leading-[19.6px] hover:text-white transition-colors" style="color: rgba(244,243,242,0.7);">Privacy Policy</a>
         <span style="color: rgba(244,243,242,0.4);">|</span>
         <a href="/terms-and-conditions" class="font-montserrat text-[12px] font-normal leading-[19.6px] hover:text-white transition-colors" style="color: rgba(244,243,242,0.7);">Terms &amp; Conditions</a>
@@ -152,3 +174,22 @@ const socialIcons = [
     </div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('.footer-practice-link[data-expertise-tab]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const tabId = link.dataset.expertiseTab;
+      if (!tabId) return;
+      e.preventDefault();
+      const section = document.getElementById('expertise');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Wait for scroll to complete, then show correct tab
+      setTimeout(() => {
+        const fn = (window as any).showExpertiseTab;
+        if (fn) fn(tabId);
+      }, 700);
+    });
+  });
+</script>

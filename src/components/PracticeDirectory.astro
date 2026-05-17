@@ -6,7 +6,7 @@ const cards = [
     description:
       'We help organizations understand where AI fits, what’s possible, and how to move forward with clarity and confidence, and that means we help:',
     headerColor: '#818A79',
-    icon: 'strategy',
+    iconSrc: '/images/practices/icons/icon-1.svg',
   },
   {
     num: '02',
@@ -14,7 +14,7 @@ const cards = [
     description:
       'We provide the senior-level oversight, judgment, and governance needed to ensure technology and AI initiatives are safe, feasible, and aligned with organizational goals, which means we help:',
     headerColor: '#887660',
-    icon: 'leadership',
+    iconSrc: '/images/practices/icons/icon-2.svg',
   },
   {
     num: '03',
@@ -22,7 +22,7 @@ const cards = [
     description:
       'We help brands scale content, engagement, and growth using intelligent systems that amplify creativity and accelerate performance. To deliver on that, we help:',
     headerColor: '#75867E',
-    icon: 'growth',
+    iconSrc: '/images/practices/icons/icon-3.svg',
   },
   {
     num: '04',
@@ -30,7 +30,7 @@ const cards = [
     description:
       'We design and build modern digital products and AI-enabled applications that are scalable, secure, and ready for real-world use. To make that possible, we help:',
     headerColor: '#6A747D',
-    icon: 'solution',
+    iconSrc: '/images/practices/icons/icon-4.svg',
   },
   {
     num: '05',
@@ -38,7 +38,7 @@ const cards = [
     description:
       'We modernize legacy systems, implement enterprise platforms, and guide organizations through complex technology transitions. To support that evolution, we help:',
     headerColor: '#86845E',
-    icon: 'enterprise',
+    iconSrc: '/images/practices/icons/icon-5.svg',
   },
   {
     num: '06',
@@ -46,7 +46,7 @@ const cards = [
     description:
       'We deploy intelligent agents and CRM-powered automation that enhance customer engagement, streamline operations, and scale personalized experiences. To deliver on that, we help:',
     headerColor: '#828A7B',
-    icon: 'agents',
+    iconSrc: '/images/practices/icons/icon-6.svg',
   },
   {
     num: '07',
@@ -54,7 +54,7 @@ const cards = [
     description:
       'We provide the architecture, engineering capacity, and delivery leadership needed to execute digital and AI initiatives with speed and quality. To ensure that happens, we help:',
     headerColor: '#968C80',
-    icon: 'delivery',
+    iconSrc: '/images/practices/icons/icon-7.svg',
   },
 ];
 
@@ -85,39 +85,14 @@ const row2 = cards.slice(3);
       <p class="font-merriweather text-[18px] font-normal leading-[30.6px] max-w-[860px] mx-auto" style="color: #2A2A2A;">Our practice areas form a complete end-to-end capability system that give our clients a comprehensive partner equipped to guide the entire lifecycle of modern digital work.</p>
     </div>
 
+    <div class="practice-desktop-content">
     <!-- Row 1: 3 cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <div class="mx-auto grid max-w-[904px] grid-cols-1 gap-8 mb-8 md:grid-cols-3">
       {row1.map((card) => (
         <article class="practice-card flex h-full min-h-[296px] flex-col overflow-hidden rounded-t-[8px] bg-white shadow-[0_6px_12px_-2px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.15)]">
           <div class="flex h-16 items-center justify-between px-4" style={`background-color: ${card.headerColor};`}>
-            <div class="flex h-10 w-10 items-center justify-center text-white/95">
-              {card.icon === 'strategy' && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <path opacity="0.4" d="M17.1326 17.1622H8.29287C8.42662 16.7855 8.49942 16.38 8.49942 15.9574V14.7622H17.1326C20.3609 14.7622 22.9778 17.3792 22.9778 20.6075C22.9778 23.8359 20.3609 26.4529 17.1326 26.4529H9.54942C7.64664 26.4529 6.1041 27.9954 6.1041 29.898C6.1041 31.801 7.64662 33.3434 9.54942 33.3434H24.8783C25.1813 33.8377 25.4914 34.2777 25.7809 34.6569C26.0893 35.0609 26.3961 35.4247 26.6834 35.7434H9.54942C6.32114 35.7434 3.7041 33.1264 3.7041 29.898C3.7041 26.6697 6.32114 24.0529 9.54942 24.0529H17.1326C19.0353 24.0529 20.5778 22.5102 20.5778 20.6075C20.5778 18.7047 19.0354 17.1622 17.1326 17.1622Z" fill="white"/>
-                  <path d="M4.89922 3.74365C5.45587 3.74365 5.92397 4.12265 6.0596 4.63667H11.5199C12.8402 4.63667 13.9106 5.70702 13.9106 7.02737V10.1855C13.9106 11.5059 12.8402 12.5762 11.5199 12.5762H6.09922V15.9576C6.09922 16.6204 5.56195 17.1577 4.89922 17.1577C4.23649 17.1577 3.69922 16.6204 3.69922 15.9576V4.94365C3.69922 4.2809 4.23649 3.74365 4.89922 3.74365ZM6.09922 10.1762H11.5106V7.03667H6.09922V10.1762Z" fill="white"/>
-                  <path d="M30.6048 25.9976C31.4002 25.9976 32.0455 26.6431 32.0455 27.4382C32.0452 28.2334 31.4 28.8774 30.6048 28.8774H30.5923C29.7977 28.8771 29.1537 28.2332 29.1533 27.4382C29.1533 26.6432 29.7975 25.9981 30.5923 25.9976H30.6048Z" fill="white"/>
-                  <path d="M30.5934 22.3306C33.4135 22.3309 35.6995 24.6179 35.6995 27.4384C35.6994 29.7921 34.5475 31.8246 33.5074 33.1947C32.977 33.8932 32.4477 34.4562 32.051 34.8447C31.8527 35.0391 31.6854 35.1916 31.5652 35.2977C31.505 35.3509 31.4564 35.3932 31.4214 35.4227L31.3589 35.4744C30.9192 35.8311 30.29 35.8314 29.8494 35.4761L29.787 35.4244C29.752 35.3951 29.7034 35.3537 29.6432 35.3011C29.5224 35.1947 29.3527 35.0411 29.1527 34.8462C28.7542 34.4579 28.223 33.8961 27.69 33.1977C26.6447 31.8281 25.4855 29.7941 25.4854 27.4384C25.4854 24.6177 27.7727 22.3306 30.5934 22.3306ZM30.5934 24.7306C29.098 24.7306 27.8854 25.9432 27.8854 27.4384C27.8855 29.0262 28.6849 30.5451 29.5979 31.7416C29.9494 32.2021 30.3029 32.5936 30.6012 32.8994C30.8972 32.5939 31.2479 32.2024 31.5964 31.7431C32.5042 30.5472 33.2994 29.0279 33.2995 27.4384C33.2995 25.9436 32.0882 24.7309 30.5934 24.7306Z" fill="white"/>
-                </svg>
-              )}
-              {card.icon === 'leadership' && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2366 6.4C16.7228 6.4 14.6852 8.43772 14.6852 10.9513C14.6852 13.465 16.7228 15.5027 19.2366 15.5027C21.7501 15.5027 23.7879 13.465 23.7879 10.9513C23.7879 8.43772 21.7501 6.4 19.2366 6.4ZM12.2852 10.9513C12.2852 7.11223 15.3974 4 19.2366 4C23.0756 4 26.1879 7.11223 26.1879 10.9513C26.1879 14.7905 23.0756 17.9027 19.2366 17.9027C15.3974 17.9027 12.2852 14.7905 12.2852 10.9513Z" fill="white"/>
-                  <path d="M14.216 20.3027C9.67898 20.4201 6.03711 24.1346 6.03711 28.6999V29.4999C6.03711 31.4882 7.64888 33.0999 9.63711 33.0999H14.551C13.9555 32.4327 13.6363 31.5756 13.637 30.6999H9.63711C8.97436 30.6999 8.43711 30.1626 8.43711 29.4999V28.6999C8.43711 25.4902 10.9574 22.8692 14.127 22.7077C13.962 22.1819 13.9177 21.6176 14.008 21.0577C14.0501 20.7966 14.1204 20.5437 14.216 20.3027Z" fill="white"/>
-                  <path d="M24.3483 22.7079C24.5133 22.1819 24.5577 21.6176 24.4672 21.0577C24.4252 20.7966 24.3548 20.5437 24.2593 20.3027C28.7962 20.4202 32.4378 24.1347 32.4378 28.6999V29.4999C32.4378 31.4882 30.8262 33.0999 28.8378 33.0999H23.9238C24.5193 32.4327 24.8385 31.5756 24.838 30.6999H28.8378C29.5007 30.6999 30.0378 30.1626 30.0378 29.4999V28.6999C30.0378 25.4902 27.5178 22.8694 24.3483 22.7079Z" fill="white"/>
-                  <path d="M19.7656 19.7286C19.4321 19.5651 19.0418 19.5651 18.7084 19.7286L17.0333 20.5502C16.7333 20.6974 16.5083 20.9629 16.4123 21.2831C16.3164 21.6032 16.3583 21.9489 16.5279 22.2367L17.7253 24.2691L16.0783 30.3881C15.9695 30.7924 16.0795 31.2242 16.3683 31.5274L18.3683 33.6272C18.5946 33.8651 18.9088 33.9996 19.2373 33.9996C19.5656 33.9996 19.8796 33.8651 20.1059 33.6272L22.1059 31.5274C22.3948 31.2242 22.5048 30.7924 22.396 30.3881L20.7491 24.2686L21.9459 22.2367C22.1156 21.9489 22.1576 21.6032 22.0616 21.2831C21.9656 20.9629 21.7406 20.6974 21.4406 20.5502L19.7656 19.7286Z" fill="white"/>
-                </svg>
-              )}
-              {card.icon === 'growth' && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <g opacity="0.4">
-                    <path d="M4.58252 9.1665C5.27287 9.1665 5.83252 9.72615 5.83252 10.4165V30.4165C5.83252 31.1068 6.39217 31.6665 7.08252 31.6665H35.4159C36.1062 31.6665 36.6659 32.2262 36.6659 32.9165C36.6659 33.6068 36.1062 34.1665 35.4159 34.1665H7.08252C5.01145 34.1665 3.33252 32.4875 3.33252 30.4165V10.4165C3.33252 9.72615 3.89217 9.1665 4.58252 9.1665Z" fill="#91836C"/>
-                    <path d="M11.6659 18.7954C13.5068 18.7954 14.9992 20.2879 14.9992 22.1287V27.9166C14.9992 28.6069 14.4395 29.1666 13.7492 29.1666H9.58252C8.89217 29.1666 8.33252 28.6069 8.33252 27.9166V22.1287C8.33252 20.2879 9.8249 18.7954 11.6659 18.7954ZM11.6659 21.2954C11.2056 21.2954 10.8325 21.6686 10.8325 22.1287V26.6666H12.4992V22.1287C12.4992 21.6686 12.1261 21.2954 11.6659 21.2954Z" fill="white"/>
-                    <path d="M20.8328 9.1665C21.1303 9.1665 21.4178 9.20895 21.6922 9.28207C21.2333 9.83767 20.9293 10.5259 20.8523 11.2824L20.8328 11.6665C20.3727 11.6665 19.9995 12.0396 19.9995 12.4998V26.6665H21.6662V14.0217C22.2713 14.7703 23.1582 15.279 24.1662 15.3905V27.9165C24.1662 28.6068 23.6065 29.1665 22.9162 29.1665H18.7495C18.0592 29.1665 17.4995 28.6068 17.4995 27.9165V12.4998C17.4995 10.6589 18.9918 9.1665 20.8328 9.1665Z" fill="white"/>
-                    <path d="M33.3332 27.9169C33.3332 28.6072 32.7735 29.1669 32.0832 29.1669H27.9165C27.2262 29.1669 26.6665 28.6072 26.6665 27.9169V18.7974C27.1662 19.7674 28.0753 20.488 29.1665 20.7359V26.6669H30.8332V20.7359C31.9243 20.488 32.8335 19.7674 33.3332 18.7974V27.9169Z" fill="white"/>
-                  </g>
-                  <path d="M29.9997 5C30.69 5 31.2497 5.55965 31.2497 6.25C31.2497 8.55118 33.1152 10.4167 35.4163 10.4167C36.1067 10.4167 36.6663 10.9763 36.6663 11.6667C36.6663 12.357 36.1067 12.9167 35.4163 12.9167C33.1152 12.9167 31.2497 14.7821 31.2497 17.0833C31.2497 17.7737 30.69 18.3333 29.9997 18.3333C29.3093 18.3333 28.7497 17.7737 28.7497 17.0833C28.7497 14.7821 26.8842 12.9167 24.583 12.9167C23.8927 12.9167 23.333 12.357 23.333 11.6667C23.333 10.9763 23.8927 10.4167 24.583 10.4167C26.8842 10.4167 28.7497 8.55118 28.7497 6.25C28.7497 5.55965 29.3093 5 29.9997 5Z" fill="white"/>
-                </svg>
-              )}
+            <div class="flex h-10 w-10 items-center justify-center">
+              <img src={card.iconSrc} alt="" class="h-10 w-10 object-contain" loading="lazy" aria-hidden="true" />
             </div>
             <span class="font-montserrat text-[16px] font-bold leading-6 text-white">{card.num}</span>
           </div>
@@ -130,39 +105,12 @@ const row2 = cards.slice(3);
     </div>
 
     <!-- Row 2: 4 cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-14">
+    <div class="mx-auto grid max-w-[1216px] grid-cols-1 gap-8 mb-14 sm:grid-cols-2 lg:grid-cols-4">
       {row2.map((card) => (
         <article class="practice-card flex h-full min-h-[296px] flex-col overflow-hidden rounded-t-[8px] bg-white shadow-[0_6px_12px_-2px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.15)]">
           <div class="flex h-16 items-center justify-between px-4" style={`background-color: ${card.headerColor};`}>
-            <div class="flex h-10 w-10 items-center justify-center text-white/95">
-              {card.icon === 'solution' && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.265 7.94045C10.9026 6.80694 12.1021 6.10547 13.4026 6.10547H26.5955C27.896 6.10547 29.0953 6.80694 29.7332 7.94045L33.5367 14.702C33.8398 15.2409 33.999 15.8487 33.999 16.467V19.231C33.2648 18.6796 32.4593 18.218 31.599 17.8623V17.0385H27.7815C27.6545 17.0341 27.527 17.032 27.399 17.032C27.271 17.032 27.1435 17.0341 27.0165 17.0385H8.39902V30.5041C8.39902 31.1668 8.93627 31.7041 9.59902 31.7041H17.0268C17.329 32.5575 17.7333 33.3625 18.2253 34.1041H9.59902C7.61079 34.1041 5.99902 32.4923 5.99902 30.5041V16.467C5.99902 15.8487 6.15826 15.2409 6.46139 14.702L10.265 7.94045ZM18.799 14.6384V8.50547H13.4026C12.9691 8.50547 12.5693 8.7393 12.3567 9.11714L9.25082 14.6384H18.799ZM30.7472 14.6384H21.199V8.50547H26.5955C27.029 8.50547 27.4288 8.7393 27.6412 9.11714L30.7472 14.6384Z" fill="white"/>
-                  <path d="M24.8492 23.1804C25.3179 23.6489 25.3182 24.4085 24.8497 24.8774L21.6974 28.0317L24.8497 31.1864C25.3182 31.655 25.3179 32.4147 24.849 32.8832C24.3802 33.3517 23.6205 33.3514 23.152 32.8825L19.152 28.8799C18.6837 28.4112 18.6837 27.6519 19.152 27.1834L23.152 23.1809C23.6205 22.712 24.3804 22.7119 24.8492 23.1804Z" fill="white"/>
-                  <path d="M29.9513 23.1804C29.4826 23.6489 29.4823 24.4085 29.9508 24.8774L33.1031 28.0317L29.9508 31.1864C29.4823 31.655 29.4826 32.4147 29.9515 32.8832C30.4203 33.3517 31.18 33.3514 31.6485 32.8825L35.6485 28.8799C36.1168 28.4112 36.1168 27.6519 35.6485 27.1834L31.6485 23.1809C31.18 22.712 30.4201 22.7119 29.9513 23.1804Z" fill="white"/>
-                </svg>
-              )}
-              {card.icon === 'enterprise' && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <path d="M4.58301 14.0498C3.89266 14.0498 3.33301 14.6094 3.33301 15.2998V21.9665C3.33301 22.6568 3.89266 23.2165 4.58301 23.2165C6.65407 23.2165 8.33301 24.8953 8.33301 26.9665V31.2512C8.33301 31.9415 8.89266 32.5012 9.58301 32.5012H14.9997C15.69 32.5012 16.2497 31.9415 16.2497 31.2512V26.9665C16.2497 24.8953 17.9287 23.2165 19.9997 23.2165C22.0707 23.2165 23.7497 24.8953 23.7497 26.9665V31.2512C23.7497 31.9415 24.3093 32.5012 24.9997 32.5012H30.4163C31.1067 32.5012 31.6663 31.9415 31.6663 31.2512V26.9665C31.6663 24.8953 33.3453 23.2165 35.4163 23.2165C36.1067 23.2165 36.6663 22.6568 36.6663 21.9665V15.2998C36.6663 14.6094 36.1067 14.0498 35.4163 14.0498H4.58301ZM5.83301 16.5498H34.1663V20.8415C31.3135 21.4207 29.1663 23.9428 29.1663 26.9665V30.0012H26.2497V26.9665C26.2497 23.5147 23.4515 20.7165 19.9997 20.7165C16.5479 20.7165 13.7497 23.5147 13.7497 26.9665V30.0012H10.833V26.9665C10.833 23.9428 8.68581 21.4207 5.83301 20.8415V16.5498Z" fill="white"/>
-                  <path opacity="0.4" d="M4.58301 7.5C3.89266 7.5 3.33301 8.05965 3.33301 8.75C3.33301 9.44035 3.89266 10 4.58301 10H7.49967V14.0495H9.99967V10H14.9997V14.0495H17.4997V10H22.4997V14.0495H24.9997V10H29.9997V14.0495H32.4997V10H35.4163C36.1067 10 36.6663 9.44035 36.6663 8.75C36.6663 8.05965 36.1067 7.5 35.4163 7.5H4.58301Z" fill="white"/>
-                </svg>
-              )}
-              {card.icon === 'agents' && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <path d="M24.5837 32.9163C24.5837 32.226 24.024 31.6663 23.3337 31.6663H16.667C15.9766 31.6663 15.417 32.226 15.417 32.9163C15.417 33.6067 15.9766 34.1663 16.667 34.1663H23.3337C24.024 34.1663 24.5837 33.6067 24.5837 32.9163ZM19.4013 14.2021C19.8368 13.9636 20.381 14.0029 20.78 14.321L26.6735 19.0232C26.9705 19.2603 27.1438 19.6195 27.1438 19.9997C27.1438 20.3798 26.9705 20.739 26.6735 20.9762L20.78 25.6783C20.381 25.9965 19.8368 26.0357 19.4013 25.7972L19.2207 25.6783L13.3288 20.9762C13.0317 20.739 12.8584 20.3798 12.8584 19.9997C12.8584 19.6195 13.0317 19.2603 13.3288 19.0232L19.2207 14.321L19.4013 14.2021ZM16.112 19.9997L20.0003 23.1003L23.8887 19.9997L20.0003 16.8975L16.112 19.9997ZM25.0003 3.33301L25.1288 3.33952C25.7588 3.40389 26.2503 3.93606 26.2503 4.58301V9.58301C26.2503 10.2734 25.6907 10.833 25.0003 10.833H15.0003C14.31 10.833 13.7503 10.2734 13.7503 9.58301V4.58301L13.7568 4.45442C13.8212 3.82447 14.3534 3.33301 15.0003 3.33301H25.0003ZM16.2503 8.33301H23.7503V5.83301H16.2503V8.33301ZM27.0837 32.9163C27.0837 34.9873 25.4047 36.6663 23.3337 36.6663H16.667C14.5959 36.6663 12.917 34.9873 12.917 32.9163C12.917 30.8453 14.5959 29.1663 16.667 29.1663H23.3337C25.4047 29.1663 27.0837 30.8453 27.0837 32.9163Z" fill="white"/>
-                  <g opacity="0.4">
-                    <path d="M13.3284 19.0233C13.0313 19.2604 12.8581 19.6196 12.8581 19.9998C12.8581 20.3799 13.0313 20.7391 13.3284 20.9763L13.6719 21.2498H11.25C10.5596 21.2498 10 21.8094 10 22.4998V30.4164C10 31.1068 10.5596 31.6664 11.25 31.6664H13.1348C12.9962 32.0578 12.9167 32.4776 12.9167 32.9164C12.9167 33.3553 12.9962 33.7751 13.1348 34.1664H11.25C9.17893 34.1664 7.5 32.4874 7.5 30.4164V22.4998C7.5 20.4288 9.17893 18.7498 11.25 18.7498H13.6719L13.3284 19.0233Z" fill="white"/>
-                    <path d="M28.75 5.83276C30.821 5.83276 32.5 7.5117 32.5 9.58276V17.4994C32.5 19.5704 30.821 21.2494 28.75 21.2494H26.3298L26.6732 20.9759C26.9702 20.7388 27.1435 20.3796 27.1435 19.9994C27.1435 19.6193 26.9702 19.2601 26.6732 19.0229L26.3298 18.7494H28.75C29.4403 18.7494 30 18.1898 30 17.4994V9.58276C30 8.89241 29.4403 8.33276 28.75 8.33276H26.25V5.83276H28.75Z" fill="white"/>
-                  </g>
-                </svg>
-              )}
-              {card.icon === 'delivery' && (
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                  <path d="M20.9877 16.6823L15.2538 22.4163C14.7852 22.885 14.7852 23.6448 15.2538 24.1133C15.7224 24.5818 16.4822 24.5818 16.9509 24.1133L22.6874 18.3768L22.6885 21.4822C22.6887 22.145 23.226 22.682 23.8889 22.6818C24.5515 22.6815 25.0887 22.1443 25.0885 21.4813L25.0865 15.5101C25.0944 15.1932 24.9774 14.8737 24.7354 14.6317C24.4792 14.3755 24.1359 14.2594 23.8009 14.2833L17.8882 14.2813C17.2254 14.281 16.688 14.8181 16.6879 15.4809C16.6875 16.1437 17.2247 16.6812 17.8874 16.6813L20.9877 16.6823Z" fill="white"/>
-                  <path opacity="0.4" d="M6.23787 18.3592C4.52838 17.3722 3.94267 15.1863 4.92963 13.4768L7.35522 9.27558C8.3424 7.56573 10.5289 6.98019 12.2385 7.96724C13.0217 8.41941 14.0004 7.85413 14.0004 6.95036C14.0004 4.97629 15.6007 3.37598 17.5747 3.37598H22.4265C24.4005 3.37598 26.0004 4.97634 26.0004 6.94999C26.0004 7.85368 26.9785 8.41819 27.7607 7.96664C29.4699 6.97984 31.6554 7.56546 32.642 9.27464L35.0684 13.4769C36.0554 15.1864 35.4697 17.3723 33.7602 18.3592C32.9775 18.811 32.9775 19.9408 33.7602 20.3928C35.4697 21.3797 36.0552 23.5657 35.0684 25.275L32.642 29.4773C31.6554 31.1865 29.4699 31.7722 27.7607 30.7853C26.9785 30.3338 26.0004 30.8983 26.0004 31.802C26.0004 33.7755 24.4005 35.376 22.4265 35.376H17.5747C15.6007 35.376 14.0004 33.7757 14.0004 31.8017C14.0004 30.898 13.0217 30.3327 12.2385 30.7848C10.5289 31.7718 8.34245 31.1863 7.35527 29.4765L4.92967 25.2752C3.94272 23.5657 4.5284 21.3798 6.2379 20.3928C7.02062 19.941 7.02063 18.811 6.23787 18.3592ZM7.0081 14.6768C6.68388 15.2384 6.87628 15.9565 7.43787 16.2807C9.8206 17.6563 9.82065 21.0955 7.4379 22.4712C6.87631 22.7955 6.68392 23.5137 7.00813 24.0752L9.43373 28.2765C9.75805 28.8382 10.4766 29.0307 11.0385 28.7063C13.4212 27.3307 16.4004 29.0498 16.4004 31.8017C16.4004 32.4503 16.9262 32.976 17.5747 32.976H22.4265C23.0747 32.976 23.6004 32.4505 23.6004 31.802C23.6004 29.0513 26.578 27.3313 28.9607 28.7068C29.522 29.0308 30.2395 28.8385 30.5637 28.2773L32.99 24.075C33.3142 23.5135 33.1217 22.7953 32.5602 22.4712C30.1775 21.0955 30.1775 17.6565 32.5602 16.2808C33.1219 15.9565 33.3142 15.2385 32.99 14.6769L30.5637 10.4746C30.2397 9.91336 29.522 9.72104 28.9607 10.0451C26.578 11.4207 23.6004 9.70061 23.6004 6.94999C23.6004 6.30158 23.0747 5.77598 22.4265 5.77598H17.5747C16.9262 5.77598 16.4004 6.30176 16.4004 6.95036C16.4004 9.70221 13.4212 11.4213 11.0385 10.0457C10.4765 9.72126 9.758 9.91384 9.43368 10.4756L7.0081 14.6768Z" fill="white"/>
-                </svg>
-              )}
+            <div class="flex h-10 w-10 items-center justify-center">
+              <img src={card.iconSrc} alt="" class="h-10 w-10 object-contain" loading="lazy" aria-hidden="true" />
             </div>
             <span class="font-montserrat text-[16px] font-bold leading-6 text-white">{card.num}</span>
           </div>
@@ -172,6 +120,40 @@ const row2 = cards.slice(3);
           </div>
         </article>
       ))}
+    </div>
+    </div>
+
+    <!-- Mobile slider -->
+    <div class="practice-mobile-carousel" style="display: none; max-width: 350px; margin: 0 auto 32px;">
+      <div style="position: relative; width: 100%; min-height: 228px;">
+        {cards.map((card, i) => (
+          <article
+            class="practice-mobile-card practice-card flex h-full min-h-[228px] flex-col overflow-hidden rounded-t-[8px] bg-white shadow-[0_6px_12px_-2px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.08)]"
+            data-mobile-card={i}
+            style={`display: ${i === 0 ? 'flex' : 'none'};`}
+          >
+            <div class="flex h-16 items-center justify-between px-4" style={`background-color: ${card.headerColor};`}>
+              <div class="flex h-10 w-10 items-center justify-center">
+                <img src={card.iconSrc} alt="" class="h-10 w-10 object-contain" loading="lazy" aria-hidden="true" />
+              </div>
+              <span class="font-montserrat text-[16px] font-bold leading-6 text-white">{card.num}</span>
+            </div>
+            <div class="flex flex-1 flex-col px-4 pb-4 pt-3">
+              <h4 class="mb-2 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">{card.title}</h4>
+              <p class="font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 16px; margin-top: 20px;">
+        <button id="practice-mobile-prev" aria-label="Previous practice" style="width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer; background: #C4BCAD; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="practice-mobile-next" aria-label="Next practice" style="width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer; background: #968C80; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
 
     <div class="text-center">
@@ -187,4 +169,54 @@ const row2 = cards.slice(3);
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
   gsap.fromTo('.practice-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: '#practices', start: 'top 80%' } });
+
+  const mobileCards = document.querySelectorAll<HTMLElement>('.practice-mobile-card');
+  const prevBtn = document.getElementById('practice-mobile-prev');
+  const nextBtn = document.getElementById('practice-mobile-next');
+  let mobileIndex = 0;
+
+  function showMobileCard(index: number) {
+    if (!mobileCards.length) return;
+    mobileIndex = ((index % mobileCards.length) + mobileCards.length) % mobileCards.length;
+    mobileCards.forEach((card, i) => {
+      card.style.display = i === mobileIndex ? 'flex' : 'none';
+    });
+  }
+
+  prevBtn?.addEventListener('click', () => showMobileCard(mobileIndex - 1));
+  nextBtn?.addEventListener('click', () => showMobileCard(mobileIndex + 1));
+  showMobileCard(0);
 </script>
+
+<style>
+@media (max-width: 768px) {
+  #practices {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+
+  #practices .practice-desktop-content {
+    display: none;
+  }
+
+  #practices .practice-mobile-carousel {
+    display: block !important;
+  }
+
+  #practices h2 {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+
+  #practices h3 {
+    font-size: 18px !important;
+    line-height: 28px !important;
+  }
+
+  #practices p.font-merriweather.text-\[18px\] {
+    font-size: 14px !important;
+    line-height: 27.2px !important;
+    max-width: 350px;
+  }
+}
+</style>
