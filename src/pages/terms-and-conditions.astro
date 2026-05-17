@@ -71,11 +71,11 @@ const sections = [
   description="Terms and Conditions for DNA Digital Consultancy — the rules governing use of our website and professional services."
 >
   <Nav />
-  <main>
+  <main class="legal-page legal-terms-page">
 
     <!-- HERO -->
     <section
-      class="relative w-full overflow-hidden flex items-center justify-center"
+      class="legal-hero relative w-full overflow-hidden flex items-center justify-center"
       style="height: 440px; background-color: #060505;"
     >
       <!-- Background image -->
@@ -88,12 +88,11 @@ const sections = [
         />
         <div
           class="absolute inset-0"
-          style="background: linear-gradient(to bottom, rgba(6,5,5,0.60) 0%, rgba(6,5,5,0.55) 100%);"
         ></div>
       </div>
 
       <!-- Hero Text -->
-      <div class="relative z-10 text-center px-8">
+      <div class="legal-hero-text relative z-10 text-center px-8 pt-24">
         <h1
           class="font-montserrat font-semibold text-white mb-4"
           style="font-size: 72px; line-height: 1.2; letter-spacing: -0.04em;"
@@ -110,7 +109,8 @@ const sections = [
     </section>
 
     <!-- CONTENT BODY -->
-    <section class="w-full bg-white py-[144px]">
+    <section class="legal-content w-full py-[144px]" style="background-color: #FDFCF6;">
+
       <div class="section-container">
         <div class="mx-auto" style="max-width: 900px;">
           <div class="flex flex-col" style="gap: 96px;">
@@ -162,12 +162,12 @@ const sections = [
                 )}
 
                 {section.content.type === 'leftborder' && (
-                  <div class="pl-7" style="border-left: 4px solid #91836C;">
+                  <div>
                     <p
-                      class="font-merriweather text-[18px] leading-[30.6px]"
+                      class="font-merriweather italic text-[18px] leading-[30.6px]"
                       style="color: rgba(42,42,42,0.88);"
                     >
-                      <strong class="font-bold">{section.content.boldLabel}</strong>
+                      <strong class="font-bold not-italic">{section.content.boldLabel}</strong>
                       {section.content.text}
                     </p>
                   </div>
@@ -184,3 +184,42 @@ const sections = [
   </main>
   <Footer />
 </Layout>
+
+<style>
+  @media (max-width: 768px) {
+    .legal-terms-page .legal-hero {
+      height: 400px !important;
+    }
+
+    .legal-terms-page .legal-hero-text {
+      padding: 0 20px !important;
+      transform: translateY(42px);
+    }
+
+    .legal-terms-page .legal-hero-text h1 {
+      font-size: 40px !important;
+      line-height: 48px !important;
+      letter-spacing: -0.06em !important;
+      margin-bottom: 28px !important;
+    }
+
+    .legal-terms-page .legal-hero-text p {
+      font-size: 16px !important;
+      line-height: 27.2px !important;
+    }
+
+    .legal-terms-page .legal-content {
+      padding-top: 80px !important;
+      padding-bottom: 80px !important;
+    }
+
+    .legal-terms-page .legal-content .mx-auto > .flex.flex-col {
+      gap: 40px !important;
+    }
+
+    .legal-terms-page .legal-content [style*='font-size: 28px'] {
+      font-size: 20px !important;
+      line-height: 34px !important;
+    }
+  }
+</style>
