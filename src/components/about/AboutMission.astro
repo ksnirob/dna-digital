@@ -1,78 +1,165 @@
----
-// About Mission section — white background
----
-
-<section id="about-mission" class="w-full py-[100px] bg-white">
-  <div class="section-container">
-    <div class="max-w-[860px] mx-auto">
-
-      <!-- Section Heading -->
-      <div class="text-center mb-12">
-        <h2
-          class="font-montserrat font-semibold text-[28px] mb-6"
-          style="color: #2A2A2A; font-variant: small-caps; letter-spacing: 0.05em;"
-        >
-          THE MISSION
-        </h2>
-        <!-- Diamond Ornament -->
-        <div class="flex items-center justify-center gap-3">
-          <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <rect x="9" y="0" width="9" height="9" transform="rotate(45 9 0)" fill="#766B58" opacity="0.85"/>
-          </svg>
-          <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
-        </div>
-      </div>
-
-      <!-- First paragraph with drop-cap D -->
-      <p
-        class="font-merriweather text-[18px] leading-[32px] mb-8 overflow-hidden"
-        style="color: #2A2A2A;"
-      >
-        <span
-          class="float-left font-bold mr-3 leading-[56px]"
-          style="font-family: Merriweather, serif; font-size: 72px; color: #91836C; line-height: 0.9; margin-top: 8px;"
-        >D</span>na Digital Consultancy is a specialized boutique practice founded on the principle that digital systems must be engineered with the same rigor as the physical structures they support. We do
-        <em class="italic font-semibold"> not "build software"; we engineer outcomes.</em>
-      </p>
-
-      <!-- Pull Quote -->
-      <blockquote
-        class="clear-both font-merriweather font-semibold italic leading-[1.45] mb-10 pl-6"
-        style="font-size: 26px; color: #2A2A2A; border-left: 4px solid #91836C;"
-      >
-        "We do not build software; we engineer outcomes."
-      </blockquote>
-
-      <!-- Body paragraphs -->
-      <div
-        class="space-y-6 font-merriweather text-[17px] leading-[30px]"
-        style="color: #2A2A2A;"
-      >
-        <p>
-          For more than three decades, our work has lived at the intersection of business logic and complex system architecture — the Junction where decisions have consequences, and where structural integrity determines whether a system thrives or collapses under real-world pressure.
-        </p>
-        <p>
-          In an era of rapid AI acceleration and platform sprawl, we serve as the architectural guardrail—building digital systems that endure and transforming legacy complexity into modern competitive advantage.
-        </p>
-        <p class="font-semibold italic">
-          Every consultancy claims principles. We operate by doctrine.
-        </p>
-      </div>
-
-      <!-- CTA Button -->
-      <div class="mt-12 text-center">
-        <a
-          href="#contact"
-          class="inline-flex items-center justify-center font-montserrat font-semibold tracking-[0.12em] uppercase px-10 py-[14px] transition-all duration-300"
-          style="font-size: 13px; background-color: #683547; color: #fff; letter-spacing: 0.12em;"
-          onmouseover="this.style.backgroundColor='#7a3f55'"
-          onmouseout="this.style.backgroundColor='#683547'"
-        >
-          Initiate a Strategic Review
-        </a>
-      </div>
-
+<section id="about-mission" class="about-mission">
+  <div class="section-container mission-inner">
+    <div class="mission-title-row">
+      <h2>THE MISSION</h2>
     </div>
+
+    <div class="mission-intro-group">
+      <div class="mission-intro">
+        <p class="dropcap">D</p>
+        <p>
+          na Digital Consultancy is a specialized boutique practice founded on the principle that digital systems must
+          be engineered with the same rigor as the physical structures they support. We do
+        </p>
+      </div>
+      <p class="mission-intro-end">not “build software”; we engineer outcomes.</p>
+    </div>
+
+    <div class="mission-quote-wrap">
+      <img src="/images/about-figma/quote.svg" alt="" class="mission-quote-mark" loading="lazy" decoding="async" />
+      <div class="mission-quote-box">
+        <p>We do not build software; we engineer outcomes.</p>
+      </div>
+    </div>
+
+    <p>
+      For more than three decades, our work has lived at the intersection of business logic and complex system
+      architecture — the Junction where decisions have consequences, and where structural integrity determines whether a
+      system thrives or collapses under real-world pressure.
+    </p>
+    <p>
+      In an era of rapid AI acceleration and platform sprawl, we serve as the architectural guardrail, building digital
+      systems that endure and transforming legacy complexity into modern competitive advantage.
+    </p>
   </div>
 </section>
+
+<style>
+  .about-mission {
+    background: #fdfcf6;
+  }
+
+  .mission-inner {
+    max-width: 1080px;
+    width: 100%;
+    padding-top: 144px;
+    padding-bottom: 144px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #2a2a2a;
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.88;
+  }
+
+  .mission-title-row {
+    width: 100%;
+    border-bottom: 1px solid #e2ded6;
+  }
+
+  .mission-title-row h2 {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.686;
+    color: #2a2a2a;
+  }
+
+  .mission-intro {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .mission-intro-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mission-intro p {
+    margin: 0;
+  }
+
+  .mission-intro .dropcap {
+    width: 44px;
+    height: 62px;
+    flex-shrink: 0;
+    font-family: 'Merriweather', serif;
+    font-size: 60px;
+    line-height: 49px;
+    color: #91836c;
+  }
+
+  .mission-intro-end {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .mission-quote-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    opacity: 1;
+  }
+
+  .mission-quote-mark {
+    width: 62px;
+    height: 49.8px;
+  }
+
+  .mission-quote-box {
+    width: 100%;
+    border-top: 1px solid #e2ded6;
+    border-bottom: 1px solid #e2ded6;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .mission-quote-box p {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #2a2a2a;
+  }
+
+  .mission-inner > p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .mission-inner {
+      padding-top: 84px;
+      padding-bottom: 84px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .mission-title-row h2 {
+      font-size: 24px;
+    }
+
+    .mission-intro .dropcap {
+      width: 32px;
+      height: 46px;
+      font-size: 46px;
+      line-height: 38px;
+    }
+
+    .mission-quote-box {
+      padding: 20px 12px;
+    }
+
+    .mission-quote-box p {
+      font-size: 20px;
+    }
+  }
+</style>

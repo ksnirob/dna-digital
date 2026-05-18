@@ -1,6 +1,4 @@
 ---
-// About Federal & Enterprise Readiness — bg #E9E4DD
-
 const naicsCategories = [
   {
     label: 'Primary NAICS',
@@ -34,18 +32,11 @@ const naicsCategories = [
   },
   {
     label: 'Training & Enablement',
-    items: [
-      '611420 | Computer Training',
-      '611430 | Professional & Management Development Training',
-    ],
+    items: ['611420 | Computer Training', '611430 | Professional & Management Development Training'],
   },
   {
     label: 'Creative, CX, and Digital Experience',
-    items: [
-      '541430 | Graphic Design Services',
-      '541613 | Marketing Consulting Services',
-      '541810 | Advertising Services',
-    ],
+    items: ['541430 | Graphic Design Services', '541613 | Marketing Consulting Services', '541810 | Advertising Services'],
   },
 ];
 
@@ -56,110 +47,269 @@ const systemData = [
 ];
 ---
 
-<section id="about-federal" class="w-full py-[100px]" style="background-color: #E9E4DD;">
-  <div class="section-container">
-
-    <!-- Section Header -->
-    <div class="text-center mb-14 max-w-[820px] mx-auto">
-      <h2
-        class="font-montserrat font-semibold mb-5"
-        style="font-size: 28px; color: #2A2A2A; font-variant: small-caps; letter-spacing: 0.05em;"
-      >
-        Federal &amp; Enterprise Readiness
-      </h2>
-      <!-- Diamond Ornament -->
-      <div class="flex items-center justify-center gap-3 mb-6">
-        <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <rect x="9" y="0" width="9" height="9" transform="rotate(45 9 0)" fill="#766B58" opacity="0.85"/>
-        </svg>
-        <div class="h-px w-[120px]" style="background-color: #766B58; opacity: 0.7;"></div>
-      </div>
-      <h3
-        class="font-montserrat font-semibold mb-4"
-        style="font-size: 20px; color: #2A2A2A;"
-      >
-        Institutional Data and Compliance Classifications
-      </h3>
-      <p
-        class="font-merriweather text-[16px] leading-[28px]"
-        style="color: #2A2A2A; opacity: 0.85;"
-      >
+<section id="about-federal" class="about-federal">
+  <div class="section-container federal-inner">
+    <header class="federal-header">
+      <h2>Federal &amp; Enterprise Readiness</h2>
+      <img src="/images/about-figma/divider-ornament.svg" alt="" loading="lazy" decoding="async" />
+      <h3>Institutional Data and Compliance Classifications</h3>
+      <p>
         Official registration and system data for public sector, federal, and highly regulated commercial engagements.
       </p>
-    </div>
+    </header>
 
-    <!-- Two-Column Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-12 xl:gap-20 items-start">
+    <div class="federal-content">
+      <article class="federal-card naics-card">
+        <h4>NAICS Classifications</h4>
 
-      <!-- LEFT: NAICS Classifications -->
-      <div>
-        <h3
-          class="font-montserrat font-semibold mb-6"
-          style="font-size: 20px; color: #060505; font-variant: small-caps; letter-spacing: 0.05em;"
-        >
-          NAICS Classifications
-        </h3>
-        <div>
-          {naicsCategories.map((cat, ci) => (
-            <div
-              class="py-3"
-              style={ci < naicsCategories.length - 1 ? 'border-bottom: 1px solid rgba(145,131,108,0.5);' : ''}
-            >
-              <div class="flex gap-5 items-start">
-                <!-- Category label -->
-                <div class="flex-shrink-0" style="width: 160px;">
-                  <span
-                    class="font-merriweather font-bold text-[13px] leading-[22px]"
-                    style="color: #2A2A2A;"
-                  >
-                    {cat.label}
-                  </span>
-                </div>
-                <!-- Code items -->
-                <div class="flex-1">
-                  {cat.items.map((item, ii) => (
-                    <div
-                      class="font-merriweather text-[13px] leading-[22px] py-[3px]"
-                      style={`color: #2A2A2A; opacity: 0.88; ${ii < cat.items.length - 1 ? 'border-bottom: 1px solid rgba(145,131,108,0.3);' : ''}`}
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
+        <div class="naics-list">
+          {naicsCategories.map((category, index) => (
+            <div class={`naics-row ${index < naicsCategories.length - 1 ? 'with-border' : ''}`}>
+              <p class="category-label">{category.label}</p>
+              <div class="category-items">
+                {category.items.map((item, itemIndex) => (
+                  <p class={itemIndex < category.items.length - 1 ? 'with-divider' : ''}>{item}</p>
+                ))}
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </article>
 
-      <!-- RIGHT: System Data -->
-      <div>
-        <h3
-          class="font-montserrat font-semibold mb-6"
-          style="font-size: 20px; color: #060505; font-variant: small-caps; letter-spacing: 0.05em;"
-        >
-          System Data
-        </h3>
-        <div>
-          {systemData.map((item, i) => (
-            <div
-              class="py-3"
-              style={i < systemData.length - 1 ? 'border-bottom: 1px solid rgba(145,131,108,0.5);' : ''}
-            >
-              <p
-                class="font-merriweather text-[13px] leading-[22px]"
-                style="color: #2A2A2A;"
-              >
-                <span class="font-bold">{item.label}:</span>
-                {' '}
-                <span class={item.mono ? 'font-mono tracking-wide' : ''}>{item.value}</span>
-              </p>
-            </div>
+      <article class="federal-card system-card">
+        <h4>System Data</h4>
+        <div class="system-list">
+          {systemData.map((item) => (
+            <p>
+              {item.label}: <span class={item.mono ? 'mono' : ''}>{item.value}</span>
+            </p>
           ))}
         </div>
-      </div>
-
+      </article>
     </div>
   </div>
 </section>
+
+<style>
+  .about-federal {
+    background: #e9e4dd;
+    width: 100%;
+    padding: 144px 0;
+  }
+
+  .federal-inner {
+    max-width: 1080px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .federal-header {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .federal-header h2 {
+    margin: 0;
+    color: #2a2a2a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.18;
+  }
+
+  .federal-header img {
+    width: 208px;
+    height: 28px;
+  }
+
+  .federal-header h3 {
+    margin: 0;
+    color: #2a2a2a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .federal-header p {
+    margin: 0;
+    color: #2a2a2a;
+    opacity: 0.88;
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 630px;
+  }
+
+  .federal-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 252px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .federal-card {
+    border-radius: 8px;
+    background-color: #f4f3f2;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    padding: 32px;
+  }
+
+  .federal-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background-image: url('/images/practices/about-pattern-bg-lg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.02);
+    transform-origin: center;
+    z-index: 0;
+  }
+
+  .federal-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .system-card::before {
+    background-image: url('/images/practices/about-pattern-bg-sm.png');
+  }
+
+  .federal-card h4 {
+    margin: 0 0 16px;
+    color: #060505;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .naics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .naics-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding-bottom: 6px;
+  }
+
+  .naics-row.with-border {
+    border-bottom: 1px solid #91836c;
+  }
+
+  .category-label {
+    margin: 0;
+    width: 108px;
+    flex-shrink: 0;
+    color: #2a2a2a;
+    opacity: 0.88;
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.8;
+  }
+
+  .category-items {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .category-items p {
+    margin: 0;
+    color: #2a2a2a;
+    opacity: 0.88;
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    line-height: 1.8;
+    padding-bottom: 6px;
+  }
+
+  .category-items p.with-divider {
+    border-bottom: 1px solid #91836c;
+  }
+
+  .system-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .system-list p {
+    margin: 0;
+    color: #2a2a2a;
+    opacity: 0.88;
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .system-list .mono {
+    font-family: 'B612 Mono', monospace;
+  }
+
+  @media (max-width: 1024px) {
+    .about-federal {
+      padding: 104px 0;
+    }
+
+    .federal-content {
+      grid-template-columns: 1fr;
+    }
+
+    .system-card {
+      max-width: 420px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-federal {
+      padding: 80px 0;
+    }
+
+    .federal-inner {
+      gap: 52px;
+    }
+
+    .federal-header h2 {
+      font-size: 32px;
+    }
+
+    .federal-header h3 {
+      font-size: 21px;
+    }
+
+    .federal-header p {
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .federal-card {
+      padding: 18px;
+    }
+
+    .naics-row {
+      gap: 12px;
+      flex-direction: column;
+    }
+
+    .category-label {
+      width: auto;
+    }
+  }
+</style>
