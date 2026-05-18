@@ -36,7 +36,7 @@ const badgeItems = ['SDVOSB Certified', 'Professionally Certified', '30+ Years E
   .about-hero {
     position: relative;
     width: 100%;
-    min-height: 670px;
+    min-height: 720px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -69,20 +69,37 @@ const badgeItems = ['SDVOSB Certified', 'Professionally Certified', '30+ Years E
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    padding-top: 111px;
-    padding-bottom: 80px;
+    padding-top: 80px;
+    padding-bottom: 30px;
+  }
+
+  @media (min-width: 768px) {
+    .about-hero {
+      min-height: 670px;
+    }
+
+    .about-hero-content {
+      padding-top: 160px;
+      padding-bottom: 96px;
+    }
   }
 
   .about-hero-content h1 {
     margin: 0;
     color: #fff;
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(42px, 5vw, 72px);
+    font-size: 40px;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.06em;
     max-width: 1280px;
     text-wrap: balance;
+  }
+
+  @media (min-width: 768px) {
+    .about-hero-content h1 {
+      font-size: clamp(42px, 5vw, 72px);
+    }
   }
 
   .hero-subtitle {
@@ -149,29 +166,14 @@ const badgeItems = ['SDVOSB Certified', 'Professionally Certified', '30+ Years E
   }
 
   @media (max-width: 1024px) {
-    .about-hero {
-      min-height: 560px;
-    }
-
-    .about-hero-content {
-      padding-top: 96px;
-      padding-bottom: 64px;
-    }
-
     .hero-subtitle {
       padding-inline: 28px;
     }
   }
 
   @media (max-width: 768px) {
-    .about-hero {
-      min-height: 460px;
-    }
-
     .about-hero-content {
       gap: 16px;
-      padding-top: 84px;
-      padding-bottom: 44px;
     }
 
     .about-hero-content h1 {

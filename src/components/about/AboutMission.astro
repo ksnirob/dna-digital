@@ -4,16 +4,11 @@
       <h2>THE MISSION</h2>
     </div>
 
-    <div class="mission-intro-group">
-      <div class="mission-intro">
-        <p class="dropcap">D</p>
-        <p>
-          na Digital Consultancy is a specialized boutique practice founded on the principle that digital systems must
-          be engineered with the same rigor as the physical structures they support. We do
-        </p>
-      </div>
-      <p class="mission-intro-end">not “build software”; we engineer outcomes.</p>
-    </div>
+    <p class="mission-intro-paragraph">
+      <span class="dropcap">D</span>na Digital Consultancy is a specialized boutique practice founded on the principle
+      that digital systems must be engineered with the same rigor as the physical structures they support. We do not
+      “build software”; we engineer outcomes.
+    </p>
 
     <div class="mission-quote-wrap">
       <img src="/images/about-figma/quote.svg" alt="" class="mission-quote-mark" loading="lazy" decoding="async" />
@@ -68,35 +63,18 @@
     color: #2a2a2a;
   }
 
-  .mission-intro {
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-  }
-
-  .mission-intro-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .mission-intro p {
+  .mission-intro-paragraph {
     margin: 0;
+    overflow: hidden;
   }
 
-  .mission-intro .dropcap {
-    width: 44px;
-    height: 62px;
-    flex-shrink: 0;
+  .mission-intro-paragraph .dropcap {
+    float: left;
+    margin-right: 8px;
     font-family: 'Merriweather', serif;
     font-size: 60px;
     line-height: 49px;
     color: #91836c;
-  }
-
-  .mission-intro-end {
-    margin: 0;
-    line-height: 1.7;
   }
 
   .mission-quote-wrap {
@@ -147,9 +125,7 @@
       font-size: 24px;
     }
 
-    .mission-intro .dropcap {
-      width: 32px;
-      height: 46px;
+    .mission-intro-paragraph .dropcap {
       font-size: 46px;
       line-height: 38px;
     }
