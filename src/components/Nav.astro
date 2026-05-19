@@ -182,104 +182,6 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     </div>
   </div>
 </aside>
-
-<!-- AI Concierge Chat Panel -->
-<aside
-  id="ai-concierge-panel"
-  class="fixed right-0 top-[72px] md:top-[112px] h-[calc(100vh-72px)] md:h-[calc(100vh-112px)] w-full md:w-[420px] max-w-[420px] translate-x-full opacity-0 pointer-events-none transition-all duration-300 ease-out overflow-hidden"
-  style="background: rgba(34,37,42,0.42); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);"
-  aria-hidden="true"
->
-  <div
-    class="absolute inset-0 z-0"
-    style="background: url('/images/hero-bg.jpg') center/cover no-repeat;"
-  >
-  </div>
-
-  <div
-    class="absolute inset-0 z-0"
-    style="background: linear-gradient(180deg, rgba(30,33,38,0.78) 0%, rgba(24,27,32,0.62) 62%, rgba(20,23,28,0.48) 100%);"
-  >
-  </div>
-
-  <div class="ai-panel relative z-10 h-full">
-    <div class="ai-panel-header">
-      <div class="ai-avatar" aria-hidden="true">✦</div>
-
-      <div class="ai-header-text">
-        <p class="ai-title">AI Concierge</p>
-        <p class="ai-subtitle">Get instant help</p>
-      </div>
-
-      <button
-        id="ai-concierge-close"
-        type="button"
-        class="ai-close-btn"
-        aria-label="Close AI concierge chat"
-      >
-        <span class="ai-close-line ai-close-line-a"></span>
-        <span class="ai-close-line ai-close-line-b"></span>
-      </button>
-    </div>
-
-    <div class="ai-chat-main">
-      <div id="ai-chat-thread" class="ai-chat-thread">
-        <div class="ai-row ai-row-assistant">
-          <div class="ai-avatar" aria-hidden="true">✦</div>
-          <div class="ai-bubble ai-bubble-assistant">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-          </div>
-        </div>
-
-        <div class="ai-row ai-row-user">
-          <div class="ai-bubble ai-bubble-user">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-          </div>
-        </div>
-
-        <div class="ai-row ai-row-assistant">
-          <div class="ai-avatar" aria-hidden="true">✦</div>
-          <div class="ai-bubble ai-bubble-assistant">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          </div>
-        </div>
-      </div>
-
-      <form id="ai-chat-form" class="ai-input-wrap" action="#" method="post">
-        <div class="ai-input-box">
-          <input
-            id="ai-chat-input"
-            type="text"
-            placeholder="Write message..."
-            autocomplete="off"
-          />
-
-          <button type="submit" id="ai-send-btn" aria-label="Send message">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3.4 12.6L20.6 4.6C21.4 4.2 22.2 5 21.8 5.8L13.8 23C13.4 23.8 12.2 23.7 11.9 22.8L10.2 16.9L4.2 15.2C3.3 14.9 3.2 13.7 4 13.3L9.8 10.3"
-                fill="#A1B1A2"
-              >
-              </path>
-            </svg>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</aside>
 </nav>
 
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
@@ -319,16 +221,7 @@ function closeConversationPanel() {
   panel.setAttribute('aria-hidden', 'true');
 }
 
-function openAiConciergePanel() {
-  if (!aiPanel) return;
 
-  closeConversationPanel();
-
-  aiPanel.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
-  aiPanel.classList.add('translate-x-0', 'opacity-100');
-  aiPanel.setAttribute('aria-hidden', 'false');
-  aiChatInput?.focus();
-}
 
 function closeAiConciergePanel() {
   if (!aiPanel) return;
@@ -489,13 +382,6 @@ mobileMenu?.querySelectorAll('a').forEach((link) => {
   color: #91836c;
 }
 
-.conversation-form {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-}
-
 .conversation-leadconnector-form {
   width: 100%;
   height: 100%;
@@ -512,237 +398,6 @@ mobileMenu?.querySelectorAll('a').forEach((link) => {
   background: transparent;
 }
 
-.ai-panel {
-  background: rgba(34, 37, 42, 0.42);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-bottom: 0;
-}
-
-.ai-panel-header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 12px 32px;
-  background: linear-gradient(90deg, #839984 0%, #c4c4c4 100%);
-}
-
-.ai-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #2a2a2a;
-  color: #c6b088;
-  font-size: 20px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.ai-header-text {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  flex-direction: column;
-  font-style: normal;
-  color: #060505;
-}
-
-.ai-title {
-  margin: 0;
-  font-family: Merriweather, serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24px;
-}
-
-.ai-subtitle {
-  margin: 0;
-  font-family: Merriweather, serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.ai-close-btn {
-  position: absolute;
-  top: 12px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-}
-
-.ai-close-line {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 16px;
-  height: 1.5px;
-  background: #2a2a2a;
-  transform-origin: center;
-}
-
-.ai-close-line-a {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.ai-close-line-b {
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-.ai-chat-main {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
-
-.ai-chat-thread {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 24px;
-  padding: 5px 32px 0;
-  overflow-y: auto;
-}
-
-.ai-row {
-  display: flex;
-  width: 100%;
-}
-
-.ai-row-assistant {
-  align-items: flex-end;
-  gap: 8px;
-}
-
-.ai-row-user {
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.ai-bubble {
-  width: 260px;
-  max-width: calc(100% - 44px);
-  padding: 12px;
-}
-
-.ai-bubble p {
-  margin: 0;
-  color: #f4f3f2;
-  font-family: Merriweather, serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-.ai-bubble-assistant {
-  border-radius: 8px 8px 8px 0;
-  background: linear-gradient(90deg, #849a85 0%, #91836c 100%);
-}
-
-.ai-bubble-user {
-  border-radius: 8px 8px 0 8px;
-  background: rgba(244, 243, 242, 0.08);
-}
-
-.ai-input-wrap {
-  position: sticky;
-  bottom: 0;
-  padding: 14px 32px 16px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.ai-input-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #91836c;
-  padding: 16px;
-  background: rgba(22, 25, 30, 0.42);
-}
-
-.ai-input-box input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  background: transparent;
-  color: #f4f3f2;
-  font-family: Merriweather, serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-  outline: none;
-}
-
-.ai-input-box input::placeholder {
-  color: #f4f3f2;
-  opacity: 1;
-}
-
-.ai-input-box button {
-  width: 24px;
-  height: 24px;
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-@media (max-width: 1366px) {
-  #ai-concierge-panel {
-    width: 390px !important;
-    max-width: 390px !important;
-  }
-
-  .ai-panel-header {
-    padding: 10px 24px;
-  }
-
-  .ai-chat-thread {
-    gap: 18px;
-    padding: 8px 24px 0;
-  }
-
-  .ai-bubble {
-    width: 236px;
-    max-width: calc(100% - 44px);
-    padding: 10px;
-  }
-
-  .ai-bubble p,
-  .ai-input-box input {
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  .ai-input-wrap {
-    padding: 8px 24px 0;
-  }
-}
-
 @media (max-height: 920px) {
   .conversation-panel-content {
     gap: 24px;
@@ -757,31 +412,6 @@ mobileMenu?.querySelectorAll('a').forEach((link) => {
   .conversation-leadconnector-form,
   .conversation-leadconnector-form iframe {
     min-height: 560px;
-  }
-}
-
-@media (max-height: 900px) {
-  .ai-chat-main {
-    gap: 12px;
-  }
-
-  .ai-chat-thread {
-    gap: 12px;
-    padding-top: 8px;
-  }
-
-  .ai-bubble {
-    padding: 9px;
-  }
-
-  .ai-bubble p,
-  .ai-input-box input {
-    font-size: 16px;
-    line-height: 18px;
-  }
-
-  .ai-input-box {
-    padding: 12px;
   }
 }
 
@@ -802,54 +432,6 @@ mobileMenu?.querySelectorAll('a').forEach((link) => {
     font-size: 20px;
     line-height: 24px;
   }
-
-  #ai-concierge-panel {
-    width: 360px !important;
-    max-width: 360px !important;
-  }
-
-  .ai-panel-header {
-    padding: 10px 18px;
-    gap: 10px;
-  }
-
-  .ai-avatar {
-    width: 32px;
-    height: 32px;
-    font-size: 17px;
-  }
-
-  .ai-title {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .ai-subtitle {
-    font-size: 11px;
-  }
-
-  .ai-chat-thread {
-    padding: 8px 18px 0;
-  }
-
-  .ai-bubble {
-    width: 210px;
-    max-width: calc(100% - 40px);
-  }
-
-  .ai-bubble p,
-  .ai-input-box input {
-    font-size: 15px;
-    line-height: 18px;
-  }
-
-  .ai-input-wrap {
-    padding: 8px 18px 0;
-  }
-
-  .ai-input-box {
-    padding: 11px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -858,81 +440,14 @@ mobileMenu?.querySelectorAll('a').forEach((link) => {
     max-width: none !important;
   }
 
-  .conversation-panel-content {
-    padding: 24px 20px;
-    gap: 18px;
-  }
-
   .conversation-title {
     font-size: 18px;
     line-height: 22px;
   }
 
-  .conversation-form {
-    width: 100%;
-  }
-
   .conversation-leadconnector-form,
   .conversation-leadconnector-form iframe {
     min-height: 620px;
-  }
-
-  #ai-concierge-panel {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  .ai-panel {
-    padding-bottom: 20px;
-  }
-
-  .ai-panel-header {
-    padding: 10px 16px;
-    gap: 10px;
-  }
-
-  .ai-avatar {
-    width: 30px;
-    height: 30px;
-    font-size: 16px;
-  }
-
-  .ai-title {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .ai-subtitle {
-    font-size: 11px;
-  }
-
-  .ai-chat-main {
-    gap: 14px;
-  }
-
-  .ai-chat-thread {
-    gap: 14px;
-    padding: 8px 16px 0;
-  }
-
-  .ai-bubble {
-    width: 220px;
-    max-width: calc(100% - 38px);
-    padding: 10px;
-  }
-
-  .ai-bubble p,
-  .ai-input-box input {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .ai-input-wrap {
-    padding: 0 16px;
-  }
-
-  .ai-input-box {
-    padding: 12px;
   }
 }
 </style>
