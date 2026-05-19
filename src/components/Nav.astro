@@ -194,14 +194,82 @@ const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
 
 const panel = document.getElementById('conversation-panel') as HTMLElement;
 const panelClose = document.getElementById('conversation-close') as HTMLButtonElement;
-const openConversationButtons = document.querySelectorAll('[data-open-conversation]');
 
 const aiPanel = document.getElementById('ai-concierge-panel') as HTMLElement;
 const aiClose = document.getElementById('ai-concierge-close') as HTMLButtonElement;
-const openAiConciergeButtons = document.querySelectorAll('[data-open-ai-concierge]');
 const aiChatForm = document.getElementById('ai-chat-form') as HTMLFormElement;
 const aiChatInput = document.getElementById('ai-chat-input') as HTMLInputElement;
 const aiChatThread = document.getElementById('ai-chat-thread') as HTMLElement;
+const GHL_WIDGET_ID = '6a0c52d6246241882e89827d';
+
+function clickElement(el: HTMLElement) {
+  el.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+  el.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+  el.click();
+}
+
+function findGhlLauncher(): HTMLElement | null {
+  const selectors = [
+    `button[data-widget-id="${GHL_WIDGET_ID}"]`,
+    `[data-widget-id="${GHL_WIDGET_ID}"]:not(script)`,
+    'button[class*="chat-widget"]',
+    'button[id*="chat-widget"]',
+    'button[class*="lc_chat"]',
+    'button[id*="lc_chat"]',
+    'div[class*="chat-widget-launcher"]',
+    'div[id*="chat-widget-launcher"]',
+    'iframe[src*="leadconnectorhq.com"][src*="chat"]',
+  ];
+
+  for (const selector of selectors) {
+    const el = document.querySelector(selector);
+    if (el && el instanceof HTMLElement) return el;
+  }
+
+  return null;
+}
+
+function openGhlAiConciergeWidget(): boolean {
+  const w = window as any;
+
+  // Known direct APIs used by LeadConnector widgets.
+  const apiCandidates: Array<((widgetId?: string) => void) | undefined> = [
+    w?.leadConnector?.chatWidget?.openWidget,
+    w?.LeadConnector?.chatWidget?.open,
+    w?.LeadConnector?.widget?.open,
+    w?.LeadConnectorWidget?.open,
+    w?.LC_API?.open_chat_window,
+    w?.LC_API?.openChat,
+    w?.LC_API?.openChatWidget,
+    w?.GHLChatWidget?.open,
+  ];
+
+  for (const fn of apiCandidates) {
+    if (typeof fn === 'function') {
+      try {
+        fn(GHL_WIDGET_ID);
+        return true;
+      } catch {
+        try {
+          fn();
+          return true;
+        } catch {
+          // try next candidate
+        }
+      }
+    }
+  }
+
+  // Fallback: click launcher elements injected by the widget.
+  const launcher = findGhlLauncher();
+
+  if (launcher) {
+    clickElement(launcher);
+    return true;
+  }
+
+  return false;
+}
 
 function openConversationPanel() {
   if (!panel) return;
@@ -231,6 +299,30 @@ function closeAiConciergePanel() {
   aiPanel.setAttribute('aria-hidden', 'true');
 }
 
+function openAiConciergePanel() {
+  closeConversationPanel();
+
+  if (openGhlAiConciergeWidget()) {
+    return;
+  }
+
+  // Widget may still be initializing; retry briefly before fallback.
+  setTimeout(() => {
+    if (openGhlAiConciergeWidget()) return;
+
+    setTimeout(() => {
+      if (openGhlAiConciergeWidget()) return;
+
+      // Backup behavior if widget is still unavailable.
+      if (!aiPanel) return;
+
+      aiPanel.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+      aiPanel.classList.add('translate-x-0', 'opacity-100');
+      aiPanel.setAttribute('aria-hidden', 'false');
+    }, 500);
+  }, 300);
+}
+
 function updateNav() {
   if (!nav) return;
 
@@ -255,25 +347,33 @@ mobileBtn?.addEventListener('click', () => {
   mobileMenu.classList.toggle('flex');
 });
 
-openConversationButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-    mobileMenu.classList.remove('flex');
-    openConversationPanel();
-  });
+document.addEventListener('click', (event) => {
+  const target = event.target as Element | null;
+  const trigger = target?.closest('[data-open-conversation]');
+
+  if (!trigger) return;
+
+  event.preventDefault();
+
+  mobileMenu.classList.add('hidden');
+  mobileMenu.classList.remove('flex');
+  openConversationPanel();
 });
 
 panelClose?.addEventListener('click', closeConversationPanel);
 aiClose?.addEventListener('click', closeAiConciergePanel);
 
-openAiConciergeButtons.forEach((btn) => {
-  btn.addEventListener('click', (event) => {
-    event.preventDefault();
+document.addEventListener('click', (event) => {
+  const target = event.target as Element | null;
+  const trigger = target?.closest('[data-open-ai-concierge]');
 
-    mobileMenu.classList.add('hidden');
-    mobileMenu.classList.remove('flex');
-    openAiConciergePanel();
-  });
+  if (!trigger) return;
+
+  event.preventDefault();
+
+  mobileMenu.classList.add('hidden');
+  mobileMenu.classList.remove('flex');
+  openAiConciergePanel();
 });
 
 window.addEventListener('keydown', (event) => {
