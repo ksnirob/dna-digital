@@ -362,17 +362,25 @@ showTab(3);
   #expertise .expertise-card-shell {
     width: 100% !important;
     max-width: 350px !important;
-    height: 622px !important;
+    min-height: 622px !important;
+    height: auto !important;
     flex: none !important;
     margin: 0 auto;
     background-image: none !important;
     background-color: #F7F2E8 !important;
+    overflow: hidden !important;
+  }
+
+  #expertise .expertise-panel {
+    position: relative !important;
+    inset: auto !important;
   }
 
   #expertise .expertise-card-shell::before {
     content: '';
     position: absolute;
-    inset: -6px -4px;
+    inset: 0;
+    border-radius: inherit;
     background-image: url('/images/expertise-panel-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -396,8 +404,7 @@ showTab(3);
     flex-direction: column !important;
     padding: 0 16px 16px !important;
     gap: 16px;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+    overflow: visible !important;
   }
 
   #expertise .expertise-panel-left {

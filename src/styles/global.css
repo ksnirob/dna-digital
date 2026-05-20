@@ -7,14 +7,31 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   body {
     @apply font-montserrat text-dna-dark overflow-x-hidden;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   * {
     box-sizing: border-box;
+  }
+}
+
+/* Prevent third-party fixed widgets/panels from creating horizontal scroll on mobile */
+@media (max-width: 768px) {
+  iframe,
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
   }
 }
 
