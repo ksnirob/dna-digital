@@ -60,9 +60,11 @@ const differences = [
       </div>
 
       <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px] text-black mb-6">Where Strategy Meets Technical Precision</h3>
-      <p class="font-merriweather text-[18px] font-normal leading-[30.6px] max-w-[760px] mx-auto" style="color: #2A2A2A;">
-        We align technology, people, and processes so transformation is no longer a gamble but a guaranteed outcome
-      </p>
+      <div class="difference-intro-wrap mt-5">
+        <p class="font-merriweather text-[18px] font-normal leading-[30.6px] text-left" style="color: #2A2A2A; max-width: 535px; margin: 0;">
+          We align technology, people, and processes so transformation is no longer a gamble but a guaranteed outcome
+        </p>
+      </div>
     </div>
 
     <div class="difference-desktop-content">
@@ -86,10 +88,18 @@ const differences = [
               class="font-montserrat text-[24px] font-semibold leading-[28.8px] text-center mb-6"
               style={`color: ${diff.titleColor};`}
             >
-              {diff.title}
+              {diff.id === 'large-firm' ? (
+                <>
+                  Large Firm Failures,
+                  <br />
+                  Real World Rescues
+                </>
+              ) : (
+                diff.title
+              )}
             </h3>
-            <p class="font-merriweather text-[16px] font-normal leading-[27.2px] text-black flex-1">
-              <span class="text-[28px] font-bold float-left mr-1 leading-[24px] mt-1" style={`color: ${diff.titleColor};`}>{diff.dropCap}</span>{diff.intro} {diff.body}
+            <p class="difference-card-copy font-merriweather text-[16px] font-normal leading-[27.2px] text-black flex-1">
+              <span class="difference-card-dropcap">{diff.dropCap}</span>{diff.intro} {diff.body}
             </p>
           </div>
         </article>
@@ -114,10 +124,18 @@ const differences = [
 
             <div class="px-6 pb-6 pt-3 flex-1 flex flex-col">
               <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px] text-center mb-4" style={`color: ${diff.titleColor};`}>
-                {diff.title}
+                {diff.id === 'large-firm' ? (
+                  <>
+                    Large Firm Failures,
+                    <br />
+                    Real World Rescues
+                  </>
+                ) : (
+                  diff.title
+                )}
               </h3>
-              <p class="font-merriweather text-[14px] font-normal leading-[22px] text-black flex-1">
-                <span class="text-[40px] font-normal float-left mr-1 leading-[46px]" style={`color: ${diff.titleColor}; font-family: 'Merriweather', serif;`}>{diff.dropCap}</span>{diff.intro} {diff.body}
+              <p class="difference-card-copy font-merriweather text-[14px] font-normal leading-[22px] text-black flex-1">
+                <span class="difference-card-dropcap">{diff.dropCap}</span>{diff.intro} {diff.body}
               </p>
             </div>
           </article>
@@ -185,6 +203,27 @@ const differences = [
 </script>
 
 <style>
+.difference-card-copy {
+  display: flow-root;
+}
+
+.difference-card-dropcap {
+  float: left;
+  margin-right: 6px;
+  margin-top: 2px;
+  color: #6A747D;
+  font-family: 'Merriweather', serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 49px;
+}
+
+.difference-intro-wrap {
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   #our-difference {
     padding-top: 80px !important;
@@ -213,6 +252,13 @@ const differences = [
     font-size: 14px !important;
     line-height: 27.2px !important;
     max-width: 350px;
+  }
+
+  #our-difference .difference-card-dropcap {
+    font-size: 34px;
+    line-height: 0.66;
+    margin-right: 5px;
+    margin-top: 8px;
   }
 
   #our-difference a[href="#contact"] {

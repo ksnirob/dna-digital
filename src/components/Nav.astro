@@ -4,6 +4,22 @@
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === '/';
 const isAbout = currentPath === '/about';
+
+const practiceLinks = [
+  { label: 'Overview', href: '#practices', tabId: null },
+  { label: 'AI Strategy & Transformation', href: '#expertise', tabId: 'ai-strategy' },
+  { label: 'Technology Leadership & Governance', href: '#expertise', tabId: 'tech-leadership' },
+  { label: 'AI Opportunity Review & ROI Analysis', href: '#expertise', tabId: 'ai-strategy' },
+  { label: 'Solution & Product Engineering', href: '#expertise', tabId: 'solution-engineering' },
+  { label: 'Enterprise Digital & Technology Transformation', href: '#expertise', tabId: 'enterprise-digital' },
+  { label: 'AI Micro-Agents & CRM Intelligence', href: '#expertise', tabId: 'ai-micro-agents' },
+  { label: 'Digital Execution & Delivery Enablement', href: '#expertise', tabId: 'digital-execution' },
+];
+
+const productLinks = [
+  { label: 'Sifter CRM', href: '#products' },
+  { label: 'Mobile Apps', href: '#products' },
+];
 ---
 
 <nav
@@ -31,25 +47,56 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
       Home
     </a>
 
-    <a
-      href="#practices"
-      class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
-    >
-      Practices
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" style="width: 12px; height: 7.4px; aspect-ratio: 60 / 37;">
-        <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="white" />
-      </svg>
-    </a>
+    <div class="relative group nav-menu-group">
+      <a
+        href="/#practices"
+        class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
+      >
+        Practices
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" style="width: 12px; height: 7.4px; aspect-ratio: 60 / 37;">
+          <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="white" />
+        </svg>
+      </a>
+      <div class="nav-menu-panel absolute left-0 top-full pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-200">
+        <div class="nav-dropdown min-w-[320px] rounded-[8px] p-3 border" style="background: rgba(6,5,5,0.96); border-color: rgba(145,131,108,0.5);">
+          {practiceLinks.map((link) => (
+            <a
+              href={link.href}
+              data-expertise-tab={link.tabId || null}
+              class="nav-practice-link nav-submenu-link block px-3 py-2 font-merriweather text-[13px] leading-[18px] transition-colors duration-200 hover:text-dna-gold-light"
+              style="color: rgba(244,243,242,0.88);"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
 
-    <a
-      href="#products"
-      class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
-    >
-      Products
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" style="width: 12px; height: 7.4px; aspect-ratio: 60 / 37;">
-        <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="white" />
-      </svg>
-    </a>
+    <div class="relative group nav-menu-group">
+      <a
+        href="/#products"
+        class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
+      >
+        Products
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" style="width: 12px; height: 7.4px; aspect-ratio: 60 / 37;">
+          <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="white" />
+        </svg>
+      </a>
+      <div class="nav-menu-panel absolute left-0 top-full pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-200">
+        <div class="nav-dropdown min-w-[220px] rounded-[8px] p-3 border" style="background: rgba(6,5,5,0.96); border-color: rgba(145,131,108,0.5);">
+          {productLinks.map((link) => (
+            <a
+              href={link.href}
+              class="nav-submenu-link block px-3 py-2 font-merriweather text-[13px] leading-[18px] transition-colors duration-200 hover:text-dna-gold-light"
+              style="color: rgba(244,243,242,0.88);"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
 
     <a
       href="/about"
@@ -96,19 +143,74 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     Home
   </a>
 
-  <a
-    href="#practices"
-    class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
-  >
-    Practices
-  </a>
+  <div class="mobile-nav-group border-t border-[#D5CFC5] pt-4">
+    <div class="w-full flex items-center justify-between gap-3">
+      <a
+        href="/#practices"
+        class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
+      >
+        Practices
+      </a>
+      <button
+        type="button"
+        class="mobile-nav-toggle h-8 w-8 inline-flex items-center justify-center"
+        data-mobile-toggle="mobile-practices-submenu"
+        aria-expanded="false"
+        aria-controls="mobile-practices-submenu"
+        aria-label="Toggle practices submenu"
+      >
+        <svg class="mobile-nav-caret" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none">
+          <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="#5D5749"></path>
+        </svg>
+      </button>
+    </div>
 
-  <a
-    href="#products"
-    class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
-  >
-    Products
-  </a>
+    <div id="mobile-practices-submenu" class="mobile-submenu hidden mt-3 pl-2">
+      {practiceLinks.map((link) => (
+        <a
+          href={link.href}
+          data-expertise-tab={link.tabId || null}
+          class="nav-practice-link nav-submenu-link block py-2 font-merriweather text-[15px] leading-[22px] text-[#5D5749] hover:text-[#91836C] transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="mobile-nav-group border-t border-[#D5CFC5] pt-4">
+    <div class="w-full flex items-center justify-between gap-3">
+      <a
+        href="/#products"
+        class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
+      >
+        Products
+      </a>
+      <button
+        type="button"
+        class="mobile-nav-toggle h-8 w-8 inline-flex items-center justify-center"
+        data-mobile-toggle="mobile-products-submenu"
+        aria-expanded="false"
+        aria-controls="mobile-products-submenu"
+        aria-label="Toggle products submenu"
+      >
+        <svg class="mobile-nav-caret" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none">
+          <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="#5D5749"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-products-submenu" class="mobile-submenu hidden mt-3 pl-2">
+      {productLinks.map((link) => (
+        <a
+          href={link.href}
+          class="nav-submenu-link block py-2 font-merriweather text-[15px] leading-[22px] text-[#5D5749] hover:text-[#91836C] transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
 
   <a
     href="/about"
@@ -343,8 +445,39 @@ window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
 
 mobileBtn?.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-  mobileMenu.classList.toggle('flex');
+  const isHidden = mobileMenu.classList.contains('hidden');
+
+  if (isHidden) {
+    mobileMenu.classList.remove('hidden');
+    mobileMenu.classList.add('flex');
+    mobileBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('mobile-menu-open');
+  } else {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+    mobileBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('mobile-menu-open');
+  }
+});
+
+function closeMobileMenu() {
+  mobileMenu.classList.add('hidden');
+  mobileMenu.classList.remove('flex');
+  mobileBtn?.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('mobile-menu-open');
+}
+
+document.querySelectorAll<HTMLButtonElement>('[data-mobile-toggle]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.dataset.mobileToggle;
+    const panel = targetId ? document.getElementById(targetId) : null;
+
+    if (!panel) return;
+
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    panel.classList.toggle('hidden', expanded);
+  });
 });
 
 document.addEventListener('click', (event) => {
@@ -355,8 +488,7 @@ document.addEventListener('click', (event) => {
 
   event.preventDefault();
 
-  mobileMenu.classList.add('hidden');
-  mobileMenu.classList.remove('flex');
+  closeMobileMenu();
   openConversationPanel();
 });
 
@@ -371,8 +503,7 @@ document.addEventListener('click', (event) => {
 
   event.preventDefault();
 
-  mobileMenu.classList.add('hidden');
-  mobileMenu.classList.remove('flex');
+  closeMobileMenu();
   openAiConciergePanel();
 });
 
@@ -416,13 +547,79 @@ aiChatForm?.addEventListener('submit', (event) => {
 // Close mobile menu on link click
 mobileMenu?.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-    mobileMenu.classList.remove('flex');
+    closeMobileMenu();
+  });
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 1024) {
+    closeMobileMenu();
+  }
+});
+
+document.querySelectorAll<HTMLAnchorElement>('.nav-practice-link[data-expertise-tab]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const tabId = link.dataset.expertiseTab;
+
+    if (!tabId) return;
+
+    const section = document.getElementById('expertise');
+
+    if (!section || window.location.pathname !== '/') {
+      return;
+    }
+
+    event.preventDefault();
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    setTimeout(() => {
+      const fn = (window as any).showExpertiseTab;
+      if (fn) fn(tabId);
+    }, 700);
+  });
+});
+
+document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link) => {
+  link.addEventListener('click', () => {
+    const group = link.closest('.nav-menu-group');
+
+    if (!group) return;
+
+    group.classList.add('is-locked');
+
+    const unlock = () => {
+      group.classList.remove('is-locked');
+      group.removeEventListener('mouseleave', unlock);
+    };
+
+    group.addEventListener('mouseleave', unlock, { once: true });
+
+    // Prevent sticky focus keeping the dropdown interactive after click.
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
   });
 });
 </script>
 
 <style>
+.nav-menu-group.is-locked .nav-menu-panel {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+.mobile-nav-toggle[aria-expanded='true'] .mobile-nav-caret {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-caret {
+  transition: transform 0.2s ease;
+}
+
 .conversation-panel-content {
   background: rgba(34, 37, 42, 0.42);
   display: flex;

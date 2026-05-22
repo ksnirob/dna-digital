@@ -57,14 +57,14 @@ const clients = [
       <div class="clients-overlay-left pointer-events-none absolute bottom-0 left-0 top-0 z-[3] w-[180px]" style="background: linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0) 100%);"></div>
       <div class="clients-overlay-right pointer-events-none absolute bottom-0 right-0 top-0 z-[3] w-[180px]" style="background: linear-gradient(270deg, #FFFFFF 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0) 100%);"></div>
 
-      <div class="marquee-track px-6 md:px-10">
+      <div class="marquee-track gap-12">
         {clients.map((client) => (
-          <div class="mx-6 flex h-[72px] w-[176px] flex-shrink-0 items-center justify-center">
+          <div class="flex h-[24px] w-auto flex-shrink-0 items-center justify-center">
             <span class="client-logo-mark" role="img" aria-label={client.name} style={`--logo-url: url('${client.logo}')`}></span>
           </div>
         ))}
         {clients.map((client) => (
-          <div class="mx-6 flex h-[72px] w-[176px] flex-shrink-0 items-center justify-center">
+          <div class="flex h-[24px] w-auto flex-shrink-0 items-center justify-center">
             <span class="client-logo-mark" role="img" aria-label={client.name} style={`--logo-url: url('${client.logo}')`}></span>
           </div>
         ))}
@@ -119,13 +119,12 @@ const clients = [
 
   #clients .marquee-track {
     animation-duration: 38s;
+    gap: 16px !important;
   }
 
   #clients .marquee-track > div {
     width: 112px !important;
     height: 40px !important;
-    margin-left: 8px !important;
-    margin-right: 8px !important;
   }
 
   #clients .client-logo-mark {

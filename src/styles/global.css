@@ -103,8 +103,9 @@
 
 .client-logo-mark {
   display: block;
-  width: 156px;
-  height: 52px;
+  width: 66.499px;
+  height: 24px;
+  aspect-ratio: 133 / 48;
   background-color: #C1B7A9;
   -webkit-mask-image: var(--logo-url);
   mask-image: var(--logo-url);
