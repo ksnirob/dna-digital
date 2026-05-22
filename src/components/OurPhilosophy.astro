@@ -114,7 +114,8 @@
   philosophyCta?.addEventListener('click', (event) => {
     event.preventDefault();
 
-    const targetSection = document.getElementById('expertise');
+    const currentSection = document.getElementById('philosophy');
+    const targetSection = document.getElementById('expertise') || (currentSection?.nextElementSibling as HTMLElement | null);
 
     if (!targetSection) return;
 
@@ -122,6 +123,7 @@
     const navHeight = nav ? nav.getBoundingClientRect().height : 0;
     const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - navHeight;
 
+    window.history.replaceState(null, '', '#expertise');
     window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
   });
 </script>
