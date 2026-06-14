@@ -600,7 +600,7 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
 }
 
 #main-nav {
-  border-bottom: 1px solid transparent;
+  border-bottom: 0;
 }
 
 #main-nav .nav-logo-img {
@@ -674,7 +674,7 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   box-shadow: none;
-  border-bottom-color: rgba(255, 255, 255, 0.24);
+  border-bottom: 0;
 }
 
 #main-nav.nav-scrolled .nav-link {
@@ -696,7 +696,7 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
 }
 
 #main-nav.nav-scrolled .nav-link.nav-link-active {
-  border-bottom-color: transparent;
+  border-bottom: 0;
 }
 
 #main-nav.nav-scrolled .nav-link.nav-link-active::after {
@@ -733,7 +733,7 @@ body.mobile-menu-open {
 }
 
 .conversation-panel-content {
-  background: rgba(34, 37, 42, 0.42);
+  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   gap: 24px;

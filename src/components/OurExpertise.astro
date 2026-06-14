@@ -104,6 +104,83 @@ const tabs = [
 },
 ];
 
+const capabilityDescriptions: Record<string, string> = {
+  'AI Strategy & Execution Roadmaps':
+    'We develop clear, actionable AI strategies and roadmaps that align business priorities, technical feasibility, and organizational readiness. This eliminates execution paralysis, giving leaders a prioritized plan that converts AI hype into a measurable roadmap with realistic timelines and cross-functional alignment.',
+  'AI Maturity & Readiness Audits':
+    'We assess your data, systems, talent, governance, and operating model to identify where AI can be adopted responsibly. The result is a clear readiness scorecard that shows what to fix first and where momentum can begin.',
+  'AI Governance, Risk & Compliance':
+    'We design governance models that help teams use AI safely, consistently, and in line with business policy. This includes practical guardrails for privacy, security, model oversight, vendor use, and accountable decision making.',
+  'AI Opportunity Review & ROI Analysis':
+    'We evaluate AI use cases against value, cost, feasibility, risk, and speed to impact. Leaders get a ranked opportunity portfolio that separates worthwhile investments from distractions before budget and time are committed.',
+  'AI CoE & Delivery Framework Development':
+    'We help establish the operating structure for an AI Center of Excellence, including intake, prioritization, delivery standards, reusable patterns, and executive reporting. This gives AI work a repeatable path from idea to adoption.',
+  'AI Technical Feasibility & Pilot Validation':
+    'We validate whether an AI concept can work in your real technical environment before scaling it. By testing data quality, integrations, model behavior, and user workflows early, we reduce uncertainty and surface risks quickly.',
+  'AI Program Leadership & Delivery Oversight':
+    'We provide senior delivery leadership for complex AI programs, keeping teams aligned across product, engineering, operations, security, and business stakeholders. The focus is steady execution, visible progress, and controlled risk.',
+  'Fractional CTO / Technology Leadership':
+    'We provide senior-level technology oversight and leadership on a fractional basis, bringing enterprise-grade guidance to organizations that need CTO-level thinking without a full-time commitment.',
+  'Technology Governance & Oversight':
+    'We establish decision structures, standards, and review rhythms that keep technology investments aligned to business outcomes while reducing architectural drift and unmanaged delivery risk.',
+  'IT Strategy & Portfolio Alignment':
+    'We connect business priorities to the technology roadmap, rationalizing initiatives and spend so teams can focus on the work that moves the organization forward.',
+  'Vendor Management & Technology Evaluation':
+    'We help evaluate platforms, partners, and vendors with a practical lens on fit, risk, cost, integration complexity, and long-term maintainability.',
+  'Technology Risk & Compliance Frameworks':
+    'We build technology risk frameworks that make security, compliance, continuity, and accountability easier to manage across teams and systems.',
+  'AI-Driven Content & Creative Strategy':
+    'We help brands scale content, engagement, and growth using intelligent systems that amplify creativity and accelerate performance across all customer touchpoints.',
+  'Personalization & Recommendation Engines':
+    'We design personalization approaches that use customer behavior and business rules to deliver more relevant experiences across digital channels.',
+  'Intelligent Customer Experience Design':
+    'We map customer journeys and identify where AI can reduce friction, improve relevance, and support better decisions at key moments.',
+  'Growth Automation & AI Marketing':
+    'We create automation strategies that connect content, campaigns, CRM data, and performance signals so marketing teams can move faster with better targeting.',
+  'Analytics & Performance Intelligence':
+    'We turn fragmented performance data into practical intelligence, helping teams understand what is working, what is not, and where to optimize next.',
+  'System Architecture & Design':
+    'End-to-end engineering excellence from concept to deployment. We build mission-critical systems with architectural integrity and performance that scales to meet enterprise demands.',
+  'Cloud-Native Development':
+    'We design and build cloud-native applications that are resilient, maintainable, and ready to scale across modern infrastructure.',
+  'API & Integration Engineering':
+    'We connect systems with clean APIs and integration patterns that reduce duplication, improve reliability, and support future expansion.',
+  'Performance Engineering':
+    'We identify bottlenecks across applications, data flows, and infrastructure, then tune systems for speed, stability, and predictable user experience.',
+  'DevSecOps & Automation':
+    'We improve delivery pipelines with automation, security checks, environment consistency, and deployment practices that help teams ship with confidence.',
+  'Legacy System Modernization':
+    'Modernizing complex enterprise landscapes with precision. We eliminate legacy debt, enable digital-first capabilities, and ensure business continuity throughout every transformation initiative.',
+  'Digital Core Transformation':
+    'We modernize the core platforms, data flows, and operational systems that digital growth depends on, while protecting continuity during the transition.',
+  'Enterprise Architecture Governance':
+    'We define architecture principles, review practices, and decision rights that help enterprise systems evolve without becoming fragmented or fragile.',
+  'Technology Portfolio Rationalization':
+    'We review applications, platforms, vendors, and cost centers to identify overlap, risk, waste, and modernization priorities.',
+  'Cloud Migration & Optimization':
+    'We plan and guide cloud migration with attention to architecture, cost, security, performance, and operational readiness.',
+  'AI Agent Design & Deployment':
+    'We deploy intelligent agents and CRM-powered automation that enhance customer engagement, streamline operations, and scale personalized experiences across your organization.',
+  'CRM Intelligence & Automation':
+    'We improve CRM workflows with automation, cleaner data, smarter routing, and intelligence that helps teams act on the right signals.',
+  'Customer Journey Orchestration':
+    'We coordinate touchpoints across systems so customers receive timely, relevant, and consistent experiences throughout their journey.',
+  'Sales Enablement Automation':
+    'We automate repetitive sales tasks, improve lead context, and surface next-best actions so teams spend more time selling and less time searching.',
+  'CRM Data Health & Governance':
+    'We strengthen CRM data quality, ownership, and governance so reporting, automation, and customer intelligence become more trustworthy.',
+  'Program & Project Delivery Leadership':
+    'We provide the architecture, engineering capacity, and delivery leadership needed to execute digital and AI initiatives with speed and quality. To ensure that happens, we help.',
+  'Agile Transformation & Coaching':
+    'We help teams adopt practical agile routines that improve planning, collaboration, delivery visibility, and accountability.',
+  'Engineering Team Augmentation':
+    'We add experienced engineering capacity where teams need momentum, specialized expertise, or support delivering critical initiatives.',
+  'Delivery Health & Risk Management':
+    'We assess delivery health, identify blockers, and create recovery plans that protect timelines, scope, quality, and stakeholder trust.',
+  'QA & Release Management':
+    'We strengthen testing, release planning, and deployment controls so teams can ship changes with fewer surprises and cleaner handoffs.',
+};
+
 // Card height
 const CARD_HEIGHT = 360;
 ---
@@ -156,16 +233,26 @@ const CARD_HEIGHT = 360;
               <h4 class="font-montserrat" style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #36342F; margin-bottom: 16px;">Core Capabilities</h4>
               <ul style="list-style: none; padding: 0; margin: 0;">
                 {tab.capabilities.map((cap, ci) => (
-                  <li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px;">
-                    <span style={`margin-top: 6px; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background-color: ${ci === 0 ? '#8C7860' : '#A79682'};`}></span>
-                    <span style={`text-align: left; font-family: 'Merriweather', serif; font-size: 12px; line-height: 1.45; color: ${ci === 0 ? '#6B5E4A' : '#564A3D'}; font-weight: ${ci === 0 ? '700' : '400'};`}>{cap}</span>
+                  <li style="margin-bottom: 7px;">
+                    <button
+                      type="button"
+                      class={`expertise-capability-btn ${ci === 0 ? 'is-active' : ''}`}
+                      data-capability-title={cap}
+                      data-capability-desc={capabilityDescriptions[cap]}
+                      aria-pressed={ci === 0 ? 'true' : 'false'}
+                    >
+                      <span class="expertise-capability-dot"></span>
+                      <span class="expertise-capability-label">{cap}</span>
+                    </button>
                   </li>
                 ))}
               </ul>
             </div>
             <div class="expertise-panel-right" style="flex: 1; padding: 8px 0 0 28px; overflow: hidden;">
-              <h5 class="font-montserrat" style="font-size: 14px; font-weight: 700; line-height: 20px; color: #36342F; margin-bottom: 10px;">{tab.featuredCap}</h5>
-              <p class="font-merriweather expertise-drop-cap" style="font-size: 12px; font-weight: 400; line-height: 1.5; color: #4C453E;">{tab.featuredDesc}</p>
+              <div class="expertise-feature-copy">
+                <h5 class="font-montserrat expertise-feature-title" style="font-size: 14px; font-weight: 700; line-height: 20px; color: #36342F; margin-bottom: 10px;">{tab.featuredCap}</h5>
+                <p class="font-merriweather expertise-drop-cap expertise-feature-desc" style="font-size: 12px; font-weight: 400; line-height: 1.5; color: #4C453E;">{tab.featuredDesc}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -303,11 +390,49 @@ function showTab(index: number) {
     if (isActive) {
       panel.style.display = 'flex';
       gsap.fromTo(panel, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.out' });
+      resetPanelCapability(panel);
     } else {
       panel.style.display = 'none';
     }
   });
 }
+
+function updateCapability(button: HTMLButtonElement) {
+  const panel = button.closest<HTMLElement>('.expertise-panel');
+  if (!panel) return;
+
+  const title = button.dataset.capabilityTitle || '';
+  const desc = button.dataset.capabilityDesc || '';
+  const titleEl = panel.querySelector<HTMLElement>('.expertise-feature-title');
+  const descEl = panel.querySelector<HTMLElement>('.expertise-feature-desc');
+  const copyEl = panel.querySelector<HTMLElement>('.expertise-feature-copy');
+
+  if (!titleEl || !descEl || !copyEl || !title || !desc) return;
+
+  panel.querySelectorAll<HTMLButtonElement>('.expertise-capability-btn').forEach(capButton => {
+    const isActive = capButton === button;
+    capButton.classList.toggle('is-active', isActive);
+    capButton.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+
+  titleEl.textContent = title;
+  descEl.textContent = desc;
+
+  gsap.fromTo(
+    copyEl,
+    { x: 34, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.42, ease: 'power2.out' },
+  );
+}
+
+function resetPanelCapability(panel: HTMLElement) {
+  const firstButton = panel.querySelector<HTMLButtonElement>('.expertise-capability-btn');
+  if (firstButton) updateCapability(firstButton);
+}
+
+document.querySelectorAll<HTMLButtonElement>('.expertise-capability-btn').forEach(button => {
+  button.addEventListener('click', () => updateCapability(button));
+});
 
 document.getElementById('expertise-prev')?.addEventListener('click', () => showTab(currentIndex - 1));
 document.getElementById('expertise-next')?.addEventListener('click', () => showTab(currentIndex + 1));
@@ -322,6 +447,60 @@ showTab(3);
 </script>
 
 <style>
+.expertise-capability-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.expertise-capability-btn:focus-visible {
+  outline: 2px solid rgba(140, 120, 96, 0.45);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.expertise-capability-dot {
+  margin-top: 6px;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #A79682;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.expertise-capability-label {
+  text-align: left;
+  font-family: 'Merriweather', serif;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #564A3D;
+  font-weight: 400;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.expertise-capability-btn:hover .expertise-capability-dot,
+.expertise-capability-btn.is-active .expertise-capability-dot {
+  background-color: #8C7860;
+  transform: scale(1.12);
+}
+
+.expertise-capability-btn:hover .expertise-capability-label,
+.expertise-capability-btn.is-active .expertise-capability-label {
+  color: #6B5E4A;
+  font-weight: 700;
+}
+
+.expertise-feature-copy {
+  will-change: transform, opacity;
+}
+
 .expertise-drop-cap::first-letter {
   float: left;
   font-size: 3.4em;
@@ -428,16 +607,21 @@ showTab(3);
     margin-bottom: 6px !important;
   }
 
-  #expertise .expertise-panel-left ul li > span:first-child {
+  #expertise .expertise-capability-dot {
     margin-top: 9px !important;
   }
 
-  #expertise .expertise-panel-left ul li > span:last-child {
+  #expertise .expertise-capability-label {
     font-size: 14px !important;
     line-height: 24px !important;
-    font-weight: 500 !important;
     color: #2A2A2A !important;
     opacity: 0.88;
+  }
+
+  #expertise .expertise-capability-btn.is-active .expertise-capability-label,
+  #expertise .expertise-capability-btn:hover .expertise-capability-label {
+    color: #6B5E4A !important;
+    font-weight: 700 !important;
   }
 
   #expertise .expertise-panel-right {
