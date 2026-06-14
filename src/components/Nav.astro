@@ -33,7 +33,7 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     <img
       src="/images/logo.svg"
       alt="DNA Digital Consultancy"
-      class="h-[44px] md:h-[80px] w-auto"
+      class="nav-logo-img h-[44px] md:h-[80px] w-auto"
     />
   </a>
 
@@ -41,8 +41,7 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
   <div class="hidden lg:flex items-center gap-8">
     <a
       href="/"
-      class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300"
-      style={isHome ? 'border-bottom: 2px solid rgba(255,255,255,0.7); padding-bottom: 2px;' : ''}
+      class={`nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 ${isHome ? 'nav-link-active' : ''}`}
     >
       Home
     </a>
@@ -100,8 +99,7 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
 
     <a
       href="/about"
-      class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300"
-      style={isAbout ? 'border-bottom: 2px solid rgba(255,255,255,0.7); padding-bottom: 2px;' : ''}
+      class={`nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 ${isAbout ? 'nav-link-active' : ''}`}
     >
       About
     </a>
@@ -111,8 +109,7 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
   <button
     type="button"
     data-open-conversation
-    class="hidden lg:inline-flex items-center justify-center px-5 py-[11px] font-montserrat text-[14px] font-bold uppercase transition-all duration-300 hover:bg-white/20 flex-shrink-0"
-    style="background: rgba(245,245,245,0.10); color: #E0C9A3; letter-spacing: 0.005em; border-radius: 6px;"
+    class="nav-conversation-btn hidden lg:inline-flex items-center justify-center px-5 py-[11px] font-montserrat text-[14px] font-bold uppercase transition-all duration-300 flex-shrink-0"
   >
     Start a Conversation
   </button>
@@ -429,15 +426,9 @@ function updateNav() {
   if (!nav) return;
 
   if (window.scrollY > 80) {
-    nav.style.background = 'rgba(6,5,5,0.96)';
-    nav.style.backdropFilter = 'blur(12px)';
-    (nav.style as any)['-webkit-backdrop-filter'] = 'blur(12px)';
-    nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.4)';
+    nav.classList.add('nav-scrolled');
   } else {
-    nav.style.background = 'rgba(255,255,255,0.10)';
-    nav.style.backdropFilter = 'blur(12px)';
-    (nav.style as any)['-webkit-backdrop-filter'] = 'blur(12px)';
-    nav.style.boxShadow = 'none';
+    nav.classList.remove('nav-scrolled');
   }
 }
 
@@ -607,6 +598,127 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+#main-nav {
+  border-bottom: 1px solid transparent;
+}
+
+#main-nav .nav-logo-img {
+  transition: height 0.35s ease;
+}
+
+#main-nav .nav-link {
+  color: #ffffff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  line-height: 1;
+}
+
+#main-nav .nav-link:hover,
+#main-nav .nav-menu-group:hover > .nav-link,
+#main-nav .nav-menu-group:focus-within > .nav-link {
+  color: #f5e9d4;
+}
+
+#main-nav .nav-link svg path {
+  fill: #ffffff;
+  transition: fill 0.3s ease;
+}
+
+#main-nav .nav-link:hover svg path,
+#main-nav .nav-menu-group:hover > .nav-link svg path,
+#main-nav .nav-menu-group:focus-within > .nav-link svg path {
+  fill: #f5e9d4;
+}
+
+#main-nav .nav-link.nav-link-active {
+  border-bottom: 0;
+}
+
+#main-nav .nav-link.nav-link-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+#main-nav .nav-dropdown .nav-submenu-link:hover,
+#main-nav .nav-dropdown .nav-submenu-link:focus {
+  color: #f5e9d4 !important;
+  background: rgba(145, 131, 108, 0.2);
+  outline: none;
+}
+
+#main-nav .nav-conversation-btn {
+  background: rgba(245, 245, 245, 0.1);
+  color: #e0c9a3;
+  letter-spacing: 0.005em;
+  border-radius: 6px;
+  transform: translateY(0);
+}
+
+#main-nav .nav-conversation-btn:hover,
+#main-nav .nav-conversation-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+#main-nav.nav-scrolled {
+  background: rgba(145, 131, 108, 0.62) !important;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: none;
+  border-bottom-color: rgba(255, 255, 255, 0.24);
+}
+
+#main-nav.nav-scrolled .nav-link {
+  color: #ffffff;
+}
+
+#main-nav.nav-scrolled .nav-link:hover {
+  color: #f5e9d4;
+}
+
+#main-nav.nav-scrolled .nav-link svg path {
+  fill: #ffffff;
+}
+
+#main-nav.nav-scrolled .nav-link:hover svg path,
+#main-nav.nav-scrolled .nav-menu-group:hover > .nav-link svg path,
+#main-nav.nav-scrolled .nav-menu-group:focus-within > .nav-link svg path {
+  fill: #f5e9d4;
+}
+
+#main-nav.nav-scrolled .nav-link.nav-link-active {
+  border-bottom-color: transparent;
+}
+
+#main-nav.nav-scrolled .nav-link.nav-link-active::after {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+#main-nav.nav-scrolled #mobile-menu-btn {
+  color: #ffffff;
+}
+
+#main-nav.nav-scrolled .nav-conversation-btn {
+  background: #f5f5f5;
+  color: #756a57;
+}
+
+#main-nav.nav-scrolled .nav-conversation-btn:hover,
+#main-nav.nav-scrolled .nav-conversation-btn:focus-visible {
+  background: #ffffff;
+  transform: translateY(-3px);
+  outline: none;
+}
+
 
 body.mobile-menu-open {
   overflow: hidden;

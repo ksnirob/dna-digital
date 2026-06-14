@@ -1,0 +1,154 @@
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const sectionSelector = 'main section:not(#hero)';
+  const stackSelector = 'main section';
+
+  function initScrollPlates() {
+    const sections = gsap.utils.toArray<HTMLElement>(sectionSelector);
+    const stackSections = gsap.utils.toArray<HTMLElement>(stackSelector);
+
+    if (sections.length < 2) return;
+
+    gsap.set(sections, {
+      position: 'relative',
+      zIndex: (index) => index + 1,
+      transformOrigin: 'center top',
+      willChange: 'transform',
+    });
+
+    sections.forEach((section, index) => {
+      section.classList.add('scroll-plate');
+      const isTallSection = section.scrollHeight > window.innerHeight;
+
+      gsap.fromTo(
+        section,
+        { y: 88, opacity: 0.92 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 88%',
+            once: true,
+          },
+        }
+      );
+
+      if (index === sections.length - 1) return;
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: () => isTallSection ? 'bottom bottom' : 'top top',
+        endTrigger: sections[index + 1],
+        end: 'top top',
+        pin: true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      });
+
+      gsap.to(section, {
+        scale: 0.965,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sections[index + 1],
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    });
+
+    const hero = document.getElementById('hero');
+
+    if (hero && stackSections[1] === sections[0]) {
+      const firstSectionIsTall = sections[0].scrollHeight > window.innerHeight;
+
+      gsap.set(hero, {
+        position: 'relative',
+        zIndex: 0,
+        transformOrigin: 'center top',
+        willChange: 'transform',
+      });
+
+      ScrollTrigger.create({
+        trigger: hero,
+        start: 'top top',
+        endTrigger: sections[0],
+        end: () => firstSectionIsTall ? 'bottom bottom' : 'top top',
+        pin: true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      });
+
+      gsap.to(hero, {
+        scale: 0.965,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sections[0],
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+  }
+
+  const mm = gsap.matchMedia();
+
+  mm.add('(min-width: 769px)', () => {
+    if (reduceMotionQuery.matches) return;
+
+    initScrollPlates();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (
+          trigger.trigger instanceof HTMLElement &&
+          (trigger.trigger.classList.contains('scroll-plate') || trigger.trigger.id === 'hero')
+        ) {
+          trigger.kill();
+        }
+      });
+
+      gsap.set(sectionSelector, {
+        clearProps: 'position,zIndex,transform,willChange',
+      });
+
+      gsap.set('#hero', {
+        clearProps: 'position,zIndex,transform,willChange',
+      });
+    };
+  });
+</script>
+
+<style is:global>
+  @media (min-width: 769px) {
+    .scroll-plate {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      overflow: visible;
+    }
+
+    .scroll-plate > .section-container {
+      width: 100%;
+    }
+
+    #clients.scroll-plate {
+      align-items: stretch;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+</style>
