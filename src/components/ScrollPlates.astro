@@ -8,6 +8,34 @@
   const sectionSelector = 'main section:not(#hero)';
   const stackSelector = 'main section';
 
+  function getPlateScrollTop(section: HTMLElement) {
+    const pinTrigger = ScrollTrigger.getAll().find((trigger) => (
+      trigger.trigger === section && Boolean((trigger.vars as any).pin)
+    ));
+
+    if (pinTrigger) {
+      return pinTrigger.start + 1;
+    }
+
+    return section.getBoundingClientRect().top + window.scrollY;
+  }
+
+  function scrollToPlateSection(targetId: string) {
+    const section = document.getElementById(targetId);
+
+    if (!section) return false;
+
+    ScrollTrigger.refresh();
+
+    window.scrollTo({
+      top: Math.max(0, getPlateScrollTop(section)),
+      behavior: 'smooth',
+    });
+
+    window.history.replaceState(null, '', `#${targetId}`);
+    return true;
+  }
+
   function initScrollPlates() {
     const sections = gsap.utils.toArray<HTMLElement>(sectionSelector);
     const stackSections = gsap.utils.toArray<HTMLElement>(stackSelector);
@@ -110,6 +138,15 @@
     if (reduceMotionQuery.matches) return;
 
     initScrollPlates();
+    (window as any).scrollToPlateSection = scrollToPlateSection;
+
+    const initialHash = window.location.hash.replace('#', '');
+
+    if (initialHash) {
+      window.setTimeout(() => {
+        scrollToPlateSection(initialHash);
+      }, 150);
+    }
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
@@ -128,6 +165,8 @@
       gsap.set('#hero', {
         clearProps: 'position,zIndex,transform,willChange',
       });
+
+      delete (window as any).scrollToPlateSection;
     };
   });
 </script>

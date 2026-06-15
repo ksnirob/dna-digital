@@ -561,7 +561,14 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-practice-link[data-expertise-
     }
 
     event.preventDefault();
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const scrollToPlateSection = (window as any).scrollToPlateSection;
+
+    if (typeof scrollToPlateSection === 'function') {
+      scrollToPlateSection('expertise');
+    } else {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     setTimeout(() => {
       const fn = (window as any).showExpertiseTab;

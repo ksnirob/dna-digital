@@ -2,19 +2,19 @@
 // Footer section — bg #5D5749
 
 const practiceLinks = [
-  { label: 'Overview', href: '#practices', tabId: null },
-  { label: 'AI Strategy & Transformation', href: '#expertise', tabId: 'ai-strategy' },
-  { label: 'Technology Leadership & Governance', href: '#expertise', tabId: 'tech-leadership' },
-  { label: 'AI Opportunity Review & ROI Analysis', href: '#expertise', tabId: 'ai-strategy' },
-  { label: 'Solution & Product Engineering', href: '#expertise', tabId: 'solution-engineering' },
-  { label: 'Enterprise Digital & Technology Transformation', href: '#expertise', tabId: 'enterprise-digital' },
-  { label: 'AI Micro-Agents & CRM Intelligence', href: '#expertise', tabId: 'ai-micro-agents' },
-  { label: 'Digital Execution & Delivery Enablement', href: '#expertise', tabId: 'digital-execution' },
+  { label: 'Overview', href: '/#practices', tabId: null },
+  { label: 'AI Strategy & Transformation', href: '/#expertise', tabId: 'ai-strategy' },
+  { label: 'Technology Leadership & Governance', href: '/#expertise', tabId: 'tech-leadership' },
+  { label: 'AI Opportunity Review & ROI Analysis', href: '/#expertise', tabId: 'ai-strategy' },
+  { label: 'Solution & Product Engineering', href: '/#expertise', tabId: 'solution-engineering' },
+  { label: 'Enterprise Digital & Technology Transformation', href: '/#expertise', tabId: 'enterprise-digital' },
+  { label: 'AI Micro-Agents & CRM Intelligence', href: '/#expertise', tabId: 'ai-micro-agents' },
+  { label: 'Digital Execution & Delivery Enablement', href: '/#expertise', tabId: 'digital-execution' },
 ];
 
 const productLinks = [
-  { label: 'Sifter CRM', href: '#products' },
-  { label: 'Mobile Apps', href: '#products' },
+  { label: 'Sifter CRM', href: '/#products' },
+  { label: 'Mobile Apps', href: '/#products' },
 ];
 
 const socialIcons = [
@@ -176,15 +176,39 @@ const socialIcons = [
 </footer>
 
 <script>
+  function scrollFooterLink(link: HTMLAnchorElement) {
+    if (window.location.pathname !== '/') return false;
+
+    const targetId = link.hash.replace('#', '');
+    const scrollToPlateSection = (window as any).scrollToPlateSection;
+
+    if (!targetId || typeof scrollToPlateSection !== 'function') {
+      return false;
+    }
+
+    return scrollToPlateSection(targetId);
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>('#footer a[href^="/#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (scrollFooterLink(link)) {
+        e.preventDefault();
+      }
+    });
+  });
+
   document.querySelectorAll<HTMLAnchorElement>('.footer-practice-link[data-expertise-tab]').forEach(link => {
     link.addEventListener('click', (e) => {
       const tabId = link.dataset.expertiseTab;
       if (!tabId) return;
-      e.preventDefault();
-      const section = document.getElementById('expertise');
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.location.pathname !== '/') {
+        return;
       }
+
+      if (scrollFooterLink(link)) {
+        e.preventDefault();
+      }
+
       // Wait for scroll to complete, then show correct tab
       setTimeout(() => {
         const fn = (window as any).showExpertiseTab;
