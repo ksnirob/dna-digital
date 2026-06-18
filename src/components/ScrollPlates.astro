@@ -8,6 +8,14 @@
   const sectionSelector = 'main section:not(#hero)';
   const stackSelector = 'main section';
 
+  function getNavOffset() {
+    return document.getElementById('main-nav')?.offsetHeight || 0;
+  }
+
+  function getNavStopPosition() {
+    return `top ${getNavOffset()}px`;
+  }
+
   function getPlateScrollTop(section: HTMLElement) {
     const pinTrigger = ScrollTrigger.getAll().find((trigger) => (
       trigger.trigger === section && Boolean((trigger.vars as any).pin)
@@ -73,25 +81,13 @@
 
       ScrollTrigger.create({
         trigger: section,
-        start: () => isTallSection ? 'bottom bottom' : 'top top',
+        start: () => isTallSection ? 'bottom bottom' : getNavStopPosition(),
         endTrigger: sections[index + 1],
-        end: 'top top',
+        end: getNavStopPosition,
         pin: true,
         pinSpacing: false,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-      });
-
-      gsap.to(section, {
-        scale: 0.965,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sections[index + 1],
-          start: 'top bottom',
-          end: 'top top',
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
       });
     });
 
@@ -111,23 +107,11 @@
         trigger: hero,
         start: 'top top',
         endTrigger: sections[0],
-        end: () => firstSectionIsTall ? 'bottom bottom' : 'top top',
+        end: () => firstSectionIsTall ? 'bottom bottom' : getNavStopPosition(),
         pin: true,
         pinSpacing: false,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-      });
-
-      gsap.to(hero, {
-        scale: 0.965,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sections[0],
-          start: 'top bottom',
-          end: 'top top',
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
       });
     }
   }
@@ -187,7 +171,6 @@
     #clients.scroll-plate {
       align-items: stretch;
       flex-direction: column;
-      justify-content: center;
     }
   }
 </style>

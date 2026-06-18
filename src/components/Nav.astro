@@ -41,6 +41,8 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
   <div class="hidden lg:flex items-center gap-8">
     <a
       href="/"
+      data-nav-link
+      data-nav-section="home"
       class={`nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 ${isHome ? 'nav-link-active' : ''}`}
     >
       Home
@@ -49,6 +51,9 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     <div class="relative group nav-menu-group">
       <a
         href="/#practices"
+        data-nav-link
+        data-nav-section="practices"
+        data-scroll-target="practices"
         class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
       >
         Practices
@@ -75,6 +80,9 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     <div class="relative group nav-menu-group">
       <a
         href="/#products"
+        data-nav-link
+        data-nav-section="products"
+        data-scroll-target="products"
         class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
       >
         Products
@@ -99,6 +107,8 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
 
     <a
       href="/about"
+      data-nav-link
+      data-nav-section="about"
       class={`nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 ${isAbout ? 'nav-link-active' : ''}`}
     >
       About
@@ -290,6 +300,7 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
 const nav = document.getElementById('main-nav') as HTMLElement;
 const mobileBtn = document.getElementById('mobile-menu-btn') as HTMLButtonElement;
 const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
+const navLinks = document.querySelectorAll<HTMLElement>('#main-nav [data-nav-link]');
 
 const panel = document.getElementById('conversation-panel') as HTMLElement;
 const panelClose = document.getElementById('conversation-close') as HTMLButtonElement;
@@ -430,10 +441,92 @@ function updateNav() {
   } else {
     nav.classList.remove('nav-scrolled');
   }
+
+  updateActiveNavLink();
 }
 
 window.addEventListener('scroll', updateNav, { passive: true });
+window.addEventListener('hashchange', updateNav);
 updateNav();
+
+function getNavOffset() {
+  return nav?.offsetHeight || 0;
+}
+
+function setActiveNavLink(sectionName: string) {
+  navLinks.forEach((link) => {
+    const isActive = link.dataset.navSection === sectionName;
+    link.classList.toggle('nav-link-active', isActive);
+
+    if (isActive) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+}
+
+function getActiveNavSection() {
+  if (window.location.pathname !== '/') {
+    return window.location.pathname.startsWith('/about') ? 'about' : '';
+  }
+
+  const sectionMap = [
+    { id: 'hero', nav: 'home' },
+    { id: 'practices', nav: 'practices' },
+    { id: 'products', nav: 'products' },
+    { id: 'clients', nav: 'products' },
+    { id: 'expertise', nav: 'practices' },
+  ];
+
+  const triggerLine = getNavOffset() + 24;
+  let active = 'home';
+
+  sectionMap.forEach(({ id, nav: navSection }) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    if (section.getBoundingClientRect().top <= triggerLine) {
+      active = navSection;
+    }
+  });
+
+  return active;
+}
+
+function updateActiveNavLink() {
+  setActiveNavLink(getActiveNavSection());
+}
+
+function scrollToNavTarget(targetId: string) {
+  const target = document.getElementById(targetId);
+
+  if (!target) return false;
+
+  const scrollToPlateSection = (window as any).scrollToPlateSection;
+
+  if (target.matches('section') && typeof scrollToPlateSection === 'function') {
+    return scrollToPlateSection(targetId);
+  }
+
+  const targetTop = target.getBoundingClientRect().top + window.scrollY - getNavOffset();
+
+  window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+  window.history.replaceState(null, '', `#${targetId}`);
+  return true;
+}
+
+document.querySelectorAll<HTMLAnchorElement>('#main-nav .nav-link[data-scroll-target]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const targetId = link.dataset.scrollTarget;
+
+    if (!targetId || window.location.pathname !== '/') return;
+
+    event.preventDefault();
+    setActiveNavLink(link.dataset.navSection || '');
+    scrollToNavTarget(targetId);
+  });
+});
 
 mobileBtn?.addEventListener('click', () => {
   const isHidden = mobileMenu.classList.contains('hidden');

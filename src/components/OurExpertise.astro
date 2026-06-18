@@ -456,8 +456,8 @@ function updateCapability(button: HTMLButtonElement) {
 
   gsap.fromTo(
     copyEl,
-    { x: 34, opacity: 0 },
-    { x: 0, opacity: 1, duration: 0.42, ease: 'power2.out' },
+    { x: 18, opacity: 0 },
+    { x: 0, opacity: 1, duration: 1.35, ease: 'power2.out' },
   );
 }
 
@@ -493,6 +493,8 @@ showTab(3);
   background: transparent;
   cursor: pointer;
   text-align: left;
+  transform: none;
+  transition: color 0.2s ease;
 }
 
 .expertise-capability-btn:focus-visible {
@@ -508,7 +510,7 @@ showTab(3);
   height: 6px;
   border-radius: 50%;
   background-color: #A79682;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .expertise-capability-label {
@@ -518,18 +520,20 @@ showTab(3);
   line-height: 1.45;
   color: #564A3D;
   font-weight: 400;
-  transition: color 0.2s ease, font-weight 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .expertise-capability-btn:hover .expertise-capability-dot,
 .expertise-capability-btn.is-active .expertise-capability-dot {
   background-color: #8C7860;
-  transform: scale(1.12);
 }
 
 .expertise-capability-btn:hover .expertise-capability-label,
 .expertise-capability-btn.is-active .expertise-capability-label {
   color: #6B5E4A;
+}
+
+.expertise-capability-btn.is-active .expertise-capability-label {
   font-weight: 700;
 }
 
@@ -657,6 +661,9 @@ showTab(3);
   #expertise .expertise-capability-btn.is-active .expertise-capability-label,
   #expertise .expertise-capability-btn:hover .expertise-capability-label {
     color: #6B5E4A !important;
+  }
+
+  #expertise .expertise-capability-btn.is-active .expertise-capability-label {
     font-weight: 700 !important;
   }
 

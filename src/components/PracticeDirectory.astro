@@ -159,7 +159,7 @@ const row2 = cards.slice(3);
     <!-- Row 1: 3 cards -->
     <div class="mx-auto grid max-w-[904px] grid-cols-1 items-start gap-8 mb-8 md:grid-cols-3">
       {row1.map((card) => (
-        <article class={`practice-card practice-card-desktop ${card.expandOnHover ? 'practice-card-expandable' : ''} self-start flex min-h-[296px] flex-col overflow-hidden rounded-t-[8px] bg-white shadow-[0_6px_12px_-2px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.15)]`}>
+        <article class={`practice-card practice-card-desktop ${card.expandOnHover ? 'practice-card-expandable' : ''} self-start flex min-h-[296px] flex-col overflow-hidden rounded-t-[8px] bg-white shadow-[0_6px_12px_-2px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.08)] transition-all duration-700 hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.15)]`}>
           <div class="flex h-16 items-center justify-between px-4" style={`background-color: ${card.headerColor};`}>
             <div class="flex h-10 w-10 items-center justify-center">
               <img src={card.iconSrc} alt="" class="h-10 w-10 object-contain" loading="lazy" aria-hidden="true" />
@@ -168,16 +168,18 @@ const row2 = cards.slice(3);
           </div>
           <div class="flex flex-1 flex-col px-4 pb-4 pt-3">
             <h4 class="mb-3 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">{card.title}</h4>
-            {card.description && (
-              <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
-            )}
-            {card.capabilities && (
-              <ul class="practice-hover-capabilities">
-                {card.capabilities.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            )}
+            <div class="practice-card-body-stack">
+              {card.description && (
+                <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
+              )}
+              {card.capabilities && (
+                <ul class="practice-hover-capabilities">
+                  {card.capabilities.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </article>
       ))}
@@ -186,7 +188,7 @@ const row2 = cards.slice(3);
     <!-- Row 2: 4 cards -->
     <div class="mx-auto grid max-w-[1216px] grid-cols-1 items-start gap-8 mb-14 sm:grid-cols-2 lg:grid-cols-4">
       {row2.map((card) => (
-        <article class={`practice-card practice-card-desktop ${card.expandOnHover ? 'practice-card-expandable' : ''} self-start flex min-h-[296px] flex-col overflow-hidden rounded-t-[8px] bg-white shadow-[0_6px_12px_-2px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.15)]`}>
+        <article class={`practice-card practice-card-desktop ${card.expandOnHover ? 'practice-card-expandable' : ''} self-start flex min-h-[296px] flex-col overflow-hidden rounded-t-[8px] bg-white shadow-[0_6px_12px_-2px_rgba(0,0,0,0.09),0_1px_3px_rgba(0,0,0,0.08)] transition-all duration-700 hover:shadow-[0_12px_28px_-4px_rgba(0,0,0,0.15)]`}>
           <div class="flex h-16 items-center justify-between px-4" style={`background-color: ${card.headerColor};`}>
             <div class="flex h-10 w-10 items-center justify-center">
               <img src={card.iconSrc} alt="" class="h-10 w-10 object-contain" loading="lazy" aria-hidden="true" />
@@ -195,16 +197,18 @@ const row2 = cards.slice(3);
           </div>
           <div class="flex flex-1 flex-col px-4 pb-4 pt-3">
             <h4 class="mb-3 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">{card.title}</h4>
-            {card.description && (
-              <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
-            )}
-            {card.capabilities && (
-              <ul class="practice-hover-capabilities">
-                {card.capabilities.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            )}
+            <div class="practice-card-body-stack">
+              {card.description && (
+                <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
+              )}
+              {card.capabilities && (
+                <ul class="practice-hover-capabilities">
+                  {card.capabilities.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </article>
       ))}
@@ -228,16 +232,18 @@ const row2 = cards.slice(3);
             </div>
             <div class="flex flex-1 flex-col px-4 pb-4 pt-3">
               <h4 class="mb-2 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">{card.title}</h4>
-              {card.description && (
-                <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
-              )}
-              {card.capabilities && (
-                <ul class="practice-hover-capabilities">
-                  {card.capabilities.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              )}
+              <div class="practice-card-body-stack">
+                {card.description && (
+                  <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
+                )}
+                {card.capabilities && (
+                  <ul class="practice-hover-capabilities">
+                    {card.capabilities.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           </article>
         ))}
@@ -265,7 +271,18 @@ const row2 = cards.slice(3);
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
-  gsap.fromTo('.practice-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: '#practices', start: 'top 80%' } });
+  gsap.fromTo(
+    '.practice-card-desktop',
+    { opacity: 0, y: 24 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '#practices', start: 'top 80%', once: true },
+    },
+  );
 
   const mobileCards = document.querySelectorAll<HTMLElement>('.practice-mobile-card');
   const prevBtn = document.getElementById('practice-mobile-prev');
@@ -283,9 +300,65 @@ const row2 = cards.slice(3);
   prevBtn?.addEventListener('click', () => showMobileCard(mobileIndex - 1));
   nextBtn?.addEventListener('click', () => showMobileCard(mobileIndex + 1));
   showMobileCard(0);
+
+  const expandablePracticeCards = document.querySelectorAll<HTMLElement>('#practices .practice-card-expandable');
+
+  function updatePracticeCardScrollMetrics(card: HTMLElement) {
+    const capabilities = card.querySelector<HTMLElement>('.practice-hover-capabilities');
+    if (!capabilities) return;
+
+    const capabilityHeight = Math.ceil(capabilities.scrollHeight);
+    const hoverBodyHeight = capabilityHeight + 10;
+    card.style.setProperty('--practice-capabilities-height', `${capabilityHeight}px`);
+    card.style.setProperty('--practice-hover-body-height', `${hoverBodyHeight}px`);
+  }
+
+  function scrollPracticeCardToCapabilities(card: HTMLElement) {
+    const body = card.querySelector<HTMLElement>('.practice-card-body-stack');
+    const description = card.querySelector<HTMLElement>('.practice-card-description');
+    const capabilities = card.querySelector<HTMLElement>('.practice-hover-capabilities');
+    if (!body || !description || !capabilities) return;
+
+    const capabilityGap = parseFloat(window.getComputedStyle(capabilities).marginTop) || 0;
+    body.scrollTop = Math.ceil(description.offsetHeight + capabilityGap);
+  }
+
+  expandablePracticeCards.forEach((card) => {
+    updatePracticeCardScrollMetrics(card);
+
+    card.addEventListener('pointerenter', () => {
+      updatePracticeCardScrollMetrics(card);
+
+      [120, 320, 720, 1120].forEach((delay) => {
+        window.setTimeout(() => {
+          if (card.matches(':hover')) {
+            scrollPracticeCardToCapabilities(card);
+          }
+        }, delay);
+      });
+    });
+
+    card.addEventListener('pointerleave', () => {
+      const body = card.querySelector<HTMLElement>('.practice-card-body-stack');
+      window.setTimeout(() => {
+        if (!card.matches(':hover') && body) {
+          body.scrollTop = 0;
+        }
+      }, 160);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    expandablePracticeCards.forEach(updatePracticeCardScrollMetrics);
+  });
+
 </script>
 
 <style>
+.practice-card-body-stack {
+  min-height: 0;
+}
+
 .practice-hover-capabilities {
   list-style: none;
   margin: 0;
@@ -294,7 +367,7 @@ const row2 = cards.slice(3);
   opacity: 0;
   overflow: hidden;
   transform: translateY(6px);
-  transition: max-height 0.32s ease, opacity 0.24s ease, margin-top 0.24s ease, transform 0.24s ease;
+  transition: max-height 0.8s ease, opacity 0.64s ease, margin-top 0.64s ease, transform 0.64s ease;
 }
 
 .practice-hover-capabilities li {
@@ -322,7 +395,8 @@ const row2 = cards.slice(3);
   max-height: 220px;
   opacity: 1;
   overflow: hidden;
-  transition: opacity 0.22s ease, max-height 0.22s ease, margin-bottom 0.22s ease;
+  visibility: visible;
+  transition: opacity 0.56s ease, max-height 0.56s ease, margin-bottom 0.56s ease;
 }
 
 @media (min-width: 769px) {
@@ -333,30 +407,61 @@ const row2 = cards.slice(3);
   #practices .practice-card-desktop {
     min-height: 340px;
     height: auto;
-    transition: transform 0.48s ease, box-shadow 0.48s ease;
+    transition: transform 0.85s ease, box-shadow 0.85s ease;
+  }
+
+  #practices .practice-card-expandable:hover {
+    min-height: 0;
+  }
+
+  #practices .practice-card-expandable:hover .practice-card-body-stack {
+    height: var(--practice-hover-body-height, 300px);
+    max-height: var(--practice-hover-body-height, 300px);
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    padding-right: 6px;
+    scrollbar-color: #B9AD9E #EFEAE3;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    transition: height 0.85s ease, max-height 0.85s ease;
+  }
+
+  #practices .practice-card-expandable:hover .practice-card-body-stack::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #practices .practice-card-expandable:hover .practice-card-body-stack::-webkit-scrollbar-track {
+    background: #EFEAE3;
+    border-radius: 999px;
+  }
+
+  #practices .practice-card-expandable:hover .practice-card-body-stack::-webkit-scrollbar-thumb {
+    background: #B9AD9E;
+    border-radius: 999px;
   }
 
   #practices .practice-card-expandable .practice-hover-capabilities {
-    transition: max-height 0.48s ease, opacity 0.36s ease, margin-top 0.36s ease, transform 0.36s ease;
+    transition: max-height 1.05s ease, opacity 0.82s ease, margin-top 0.82s ease, transform 0.82s ease;
   }
 
   #practices .practice-card-expandable .practice-card-description {
-    transition: opacity 0.36s ease, max-height 0.36s ease, margin-bottom 0.36s ease;
+    transition: opacity 0.64s ease, max-height 0.82s ease, margin-bottom 0.82s ease;
   }
 }
 
 .practice-card-expandable:hover .practice-hover-capabilities {
-  max-height: 520px;
+  max-height: var(--practice-capabilities-height, 720px);
   opacity: 1;
-  margin-top: 0;
+  margin-top: 10px;
   transform: translateY(0);
 }
 
 .practice-card-expandable:hover .practice-card-description {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
+  opacity: 1;
+  max-height: 260px;
+  visibility: visible;
   margin-bottom: 0;
+  pointer-events: auto;
 }
 
 @media (max-width: 768px) {

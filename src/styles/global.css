@@ -76,7 +76,7 @@
   #philosophy-expertise-cta,
   [data-open-conversation],
   [data-open-ai-concierge],
-  button:not(#mobile-menu-btn):not(.mobile-nav-toggle):not(.conversation-close-btn)
+  button:not(#mobile-menu-btn):not(.mobile-nav-toggle):not(.conversation-close-btn):not(.expertise-capability-btn)
 ) {
   transform: translateY(0);
   transition-property: transform, background-color, border-color, color, opacity, filter, box-shadow;
@@ -93,7 +93,7 @@
   #philosophy-expertise-cta,
   [data-open-conversation],
   [data-open-ai-concierge],
-  button:not(#mobile-menu-btn):not(.mobile-nav-toggle):not(.conversation-close-btn)
+  button:not(#mobile-menu-btn):not(.mobile-nav-toggle):not(.conversation-close-btn):not(.expertise-capability-btn)
 ):hover,
 :where(
   .btn-primary,
@@ -104,7 +104,7 @@
   #philosophy-expertise-cta,
   [data-open-conversation],
   [data-open-ai-concierge],
-  button:not(#mobile-menu-btn):not(.mobile-nav-toggle):not(.conversation-close-btn)
+  button:not(#mobile-menu-btn):not(.mobile-nav-toggle):not(.conversation-close-btn):not(.expertise-capability-btn)
 ):focus-visible {
   transform: translateY(-3px);
 }
