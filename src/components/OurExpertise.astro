@@ -303,12 +303,12 @@ const CARD_HEIGHT = 400;
     </div>
 
     <!-- Navigation Arrow Left -->
-    <button id="expertise-prev" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
+    <button id="expertise-prev" type="button" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E5854" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
 
     <!-- Navigation Arrow Right -->
-    <button id="expertise-next" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
+    <button id="expertise-next" type="button" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E5854" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
   </div>
@@ -344,7 +344,9 @@ const tabsMeta: TabMeta[] = [
 //   right (inner→outer): enterprise-digital, ai-micro-agents, digital-execution
 
 const panels = document.querySelectorAll<HTMLElement>('.expertise-panel');
+const expertiseShell = document.querySelector<HTMLElement>('.expertise-card-shell');
 let currentIndex = 3; // ai-strategy
+let expertiseShellHeightFrame: number | undefined;
 
 // Heights: innermost (slot 2 on left, slot 0 on right) = card height, then progressively shorter outward
 const HEIGHTS = {
@@ -414,6 +416,33 @@ function renderStacks(activeIdx: number) {
   });
 }
 
+function isExpertiseMobile() {
+  return window.matchMedia('(max-width: 768px)').matches;
+}
+
+function setExpertiseMobileShellHeight(panel: HTMLElement, immediate = false) {
+  if (!expertiseShell || !isExpertiseMobile()) {
+    expertiseShell?.style.removeProperty('--expertise-mobile-shell-height');
+    return;
+  }
+
+  const targetHeight = Math.ceil(Math.max(622, panel.scrollHeight + 28));
+
+  window.cancelAnimationFrame(expertiseShellHeightFrame);
+
+  if (immediate) {
+    expertiseShell.style.setProperty('--expertise-mobile-shell-height', `${targetHeight}px`);
+    return;
+  }
+
+  const currentHeight = Math.ceil(expertiseShell.getBoundingClientRect().height);
+  expertiseShell.style.setProperty('--expertise-mobile-shell-height', `${currentHeight}px`);
+
+  expertiseShellHeightFrame = window.requestAnimationFrame(() => {
+    expertiseShell.style.setProperty('--expertise-mobile-shell-height', `${targetHeight}px`);
+  });
+}
+
 function showTab(index: number) {
   const n = tabsMeta.length;
   currentIndex = ((index % n) + n) % n;
@@ -421,14 +450,38 @@ function showTab(index: number) {
 
   renderStacks(currentIndex);
 
+  const isMobile = isExpertiseMobile();
+
   panels.forEach(panel => {
     const isActive = panel.dataset.panel === id;
     if (isActive) {
       panel.style.display = 'flex';
-      gsap.fromTo(panel, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.out' });
       resetPanelCapability(panel);
+
+      if (isMobile) {
+        expertiseShell?.classList.add('is-mobile-switching');
+        setExpertiseMobileShellHeight(panel);
+        gsap.killTweensOf(panel);
+        gsap.fromTo(
+          panel,
+          { opacity: 0, y: 10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.58,
+            ease: 'power2.out',
+            onComplete: () => {
+              expertiseShell?.classList.remove('is-mobile-switching');
+            },
+          },
+        );
+      } else {
+        gsap.fromTo(panel, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.out' });
+      }
+
     } else {
       panel.style.display = 'none';
+      panel.style.opacity = '0';
     }
   });
 }
@@ -454,6 +507,8 @@ function updateCapability(button: HTMLButtonElement) {
   titleEl.textContent = title;
   descEl.textContent = desc;
 
+  setExpertiseMobileShellHeight(panel);
+
   gsap.fromTo(
     copyEl,
     { x: 18, opacity: 0 },
@@ -472,6 +527,13 @@ document.querySelectorAll<HTMLButtonElement>('.expertise-capability-btn').forEac
 
 document.getElementById('expertise-prev')?.addEventListener('click', () => showTab(currentIndex - 1));
 document.getElementById('expertise-next')?.addEventListener('click', () => showTab(currentIndex + 1));
+
+window.addEventListener('resize', () => {
+  const activePanel = document.querySelector<HTMLElement>('.expertise-panel[style*="display: flex"]');
+  if (activePanel) {
+    setExpertiseMobileShellHeight(activePanel, true);
+  }
+});
 
 (window as any).showExpertiseTab = (tabId: string) => {
   const idx = tabsMeta.findIndex(t => t.id === tabId);
@@ -569,9 +631,15 @@ showTab(3);
   }
 
   #expertise .expertise-carousel {
+    align-items: center !important;
+    column-gap: 18px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    margin-bottom: 110px !important;
+    margin-bottom: 44px !important;
+    row-gap: 20px !important;
   }
 
   #expertise .expertise-side-stack {
@@ -579,20 +647,24 @@ showTab(3);
   }
 
   #expertise .expertise-card-shell {
+    order: 1;
     width: 100% !important;
     max-width: 350px !important;
     min-height: 622px !important;
-    height: auto !important;
+    height: var(--expertise-mobile-shell-height, auto) !important;
     flex: none !important;
     margin: 0 auto;
     background-image: none !important;
     background-color: #F7F2E8 !important;
     overflow: hidden !important;
+    transition: height 0.58s ease-in-out;
+    will-change: height;
   }
 
   #expertise .expertise-panel {
     position: relative !important;
     inset: auto !important;
+    width: 100%;
   }
 
   #expertise .expertise-card-shell::before {
@@ -601,9 +673,9 @@ showTab(3);
     inset: 0;
     border-radius: inherit;
     background-image: url('/images/expertise-panel-bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-repeat: repeat-y;
+    background-size: 1080px 622px;
+    background-position: center top;
     z-index: 1;
     pointer-events: none;
   }
@@ -696,28 +768,49 @@ showTab(3);
 
   #expertise #expertise-prev,
   #expertise #expertise-next {
+    align-items: center !important;
+    appearance: none;
+    bottom: auto !important;
+    display: inline-flex !important;
+    flex: 0 0 64px !important;
+    justify-content: center !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    max-height: 64px !important;
+    max-width: 64px !important;
+    min-height: 64px !important;
+    min-width: 64px !important;
+    order: 2;
+    padding: 0 !important;
+    position: static !important;
+    transform: translateZ(0) !important;
+    vertical-align: middle;
     width: 64px !important;
     height: 64px !important;
-    top: auto !important;
-    bottom: -84px !important;
-    transform: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    -webkit-tap-highlight-color: transparent;
   }
 
   #expertise #expertise-prev {
-    left: calc(50% - 76px) !important;
     background: #C4BCAD !important;
   }
 
   #expertise #expertise-next {
-    right: calc(50% - 76px) !important;
     background: #968C80 !important;
+  }
+
+  #expertise #expertise-prev:active,
+  #expertise #expertise-next:active {
+    transform: translateZ(0) !important;
   }
 
   #expertise #expertise-prev svg,
   #expertise #expertise-next svg {
+    display: block;
+    flex: 0 0 18px;
     width: 18px !important;
     height: 18px !important;
+    pointer-events: none;
     stroke: #FFFFFF !important;
   }
 
