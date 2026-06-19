@@ -106,8 +106,36 @@
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
-  gsap.fromTo('.philosophy-quote', { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.philosophy-quote', start: 'top 80%' } });
-  gsap.fromTo('.philosophy-pillars', { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.philosophy-pillars', start: 'top 80%' } });
+  gsap.fromTo(
+    '.philosophy-quote',
+    { opacity: 0, x: -50 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.philosophy-quote',
+        start: 'top 80%',
+        toggleActions: 'restart none none reset',
+      },
+    }
+  );
+  gsap.fromTo(
+    '.philosophy-pillars',
+    { opacity: 0, x: 50 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.philosophy-pillars',
+        start: 'top 80%',
+        toggleActions: 'restart none none reset',
+      },
+    }
+  );
 
   const philosophyCta = document.getElementById('philosophy-expertise-cta') as HTMLAnchorElement | null;
 
