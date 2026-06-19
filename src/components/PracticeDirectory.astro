@@ -153,6 +153,14 @@ const row2 = cards.slice(3);
       </div>
       <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px] mb-5" style="color: #2A2A2A;">Our Expertise at a Glance</h3>
       <p class="font-merriweather text-[18px] font-normal leading-[30.6px] max-w-[860px] mx-auto" style="color: #2A2A2A;">Our practice areas form a complete end-to-end capability system that give our clients a comprehensive partner equipped to guide the entire lifecycle of modern digital work.</p>
+      <div class="practice-mobile-controls">
+        <button id="practice-mobile-prev" class="practice-mobile-control practice-mobile-control-prev" type="button" aria-label="Previous practice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="practice-mobile-next" class="practice-mobile-control practice-mobile-control-next" type="button" aria-label="Next practice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
 
     <div class="practice-desktop-content">
@@ -247,15 +255,6 @@ const row2 = cards.slice(3);
             </div>
           </article>
         ))}
-      </div>
-
-      <div class="practice-mobile-controls">
-        <button id="practice-mobile-prev" class="practice-mobile-control practice-mobile-control-prev" type="button" aria-label="Previous practice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button id="practice-mobile-next" class="practice-mobile-control practice-mobile-control-next" type="button" aria-label="Next practice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
       </div>
     </div>
 
@@ -429,7 +428,7 @@ const row2 = cards.slice(3);
   opacity: 0;
   overflow: hidden;
   transform: none;
-  transition: opacity 0.7s ease-in-out;
+  transition: opacity 1.0s ease-in-out;
 }
 
 .practice-hover-capabilities li {
@@ -459,6 +458,10 @@ const row2 = cards.slice(3);
   overflow: hidden;
   visibility: visible;
   transition: opacity 0.56s ease, max-height 0.56s ease, margin-bottom 0.56s ease;
+}
+
+.practice-mobile-controls {
+  display: none;
 }
 
 @media (min-width: 769px) {
@@ -567,7 +570,7 @@ const row2 = cards.slice(3);
     display: flex;
     gap: 18px;
     justify-content: center;
-    margin: 20px auto 0;
+    margin: 22px auto -22px;
     min-height: 64px;
     width: 100%;
   }

@@ -17,8 +17,8 @@ const practiceLinks = [
 ];
 
 const productLinks = [
-  { label: 'Sifter CRM', href: '#' },
-  { label: 'Mobile Apps', href: '#' },
+  { label: 'Sifter CRM', href: '#clients' },
+  { label: 'Mobile Apps', href: '#clients' },
 ];
 ---
 
@@ -79,10 +79,10 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
 
     <div class="relative group nav-menu-group">
       <a
-        href="/#"
+        href="/#clients"
         data-nav-link
-        data-nav-section=""
-        data-scroll-target=""
+        data-nav-section="products"
+        data-scroll-target="clients"
         class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
       >
         Products
@@ -190,7 +190,9 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
   <div class="mobile-nav-group border-t border-[#D5CFC5] pt-4">
     <div class="w-full flex items-center justify-between gap-3">
       <a
-        href="/#products"
+        href="/#clients"
+        data-scroll-target="clients"
+        data-nav-section="products"
         class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
       >
         Products

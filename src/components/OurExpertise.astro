@@ -245,6 +245,14 @@ const CARD_HEIGHT = 400;
     <p class="font-merriweather text-[17px] font-normal leading-[29px] max-w-[700px] mx-auto mt-5 text-left" style="color: #2A2A2A;">
       Our tailored methodologies accelerate your digital and strategic transformation. Explore our areas of expertise below.
     </p>
+    <div class="expertise-mobile-controls">
+      <button class="expertise-mobile-control expertise-mobile-control-prev" type="button" data-expertise-prev aria-label="Previous expertise">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="expertise-mobile-control expertise-mobile-control-next" type="button" data-expertise-next aria-label="Next expertise">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- Carousel Layout -->
@@ -303,12 +311,12 @@ const CARD_HEIGHT = 400;
     </div>
 
     <!-- Navigation Arrow Left -->
-    <button id="expertise-prev" type="button" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
+    <button id="expertise-prev" type="button" data-expertise-prev style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E5854" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
 
     <!-- Navigation Arrow Right -->
-    <button id="expertise-next" type="button" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
+    <button id="expertise-next" type="button" data-expertise-next style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; border: none; cursor: pointer; transition: box-shadow 0.2s;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E5854" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
     </button>
   </div>
@@ -525,8 +533,13 @@ document.querySelectorAll<HTMLButtonElement>('.expertise-capability-btn').forEac
   button.addEventListener('click', () => updateCapability(button));
 });
 
-document.getElementById('expertise-prev')?.addEventListener('click', () => showTab(currentIndex - 1));
-document.getElementById('expertise-next')?.addEventListener('click', () => showTab(currentIndex + 1));
+document.querySelectorAll<HTMLElement>('[data-expertise-prev]').forEach((button) => {
+  button.addEventListener('click', () => showTab(currentIndex - 1));
+});
+
+document.querySelectorAll<HTMLElement>('[data-expertise-next]').forEach((button) => {
+  button.addEventListener('click', () => showTab(currentIndex + 1));
+});
 
 window.addEventListener('resize', () => {
   const activePanel = document.querySelector<HTMLElement>('.expertise-panel[style*="display: flex"]');
@@ -614,6 +627,10 @@ showTab(3);
   font-weight: 700;
 }
 
+.expertise-mobile-controls {
+  display: none;
+}
+
 @media (max-width: 768px) {
   #expertise {
     padding-top: 80px !important;
@@ -632,14 +649,14 @@ showTab(3);
 
   #expertise .expertise-carousel {
     align-items: center !important;
-    column-gap: 18px !important;
+    column-gap: 0 !important;
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     justify-content: center !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin-bottom: 44px !important;
-    row-gap: 20px !important;
+    row-gap: 0 !important;
   }
 
   #expertise .expertise-side-stack {
@@ -766,52 +783,66 @@ showTab(3);
     color: #756A57 !important;
   }
 
-  #expertise #expertise-prev,
-  #expertise #expertise-next {
+  #expertise .expertise-mobile-controls {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin: 22px auto -15px;
+    min-height: 64px;
+    width: 100%;
+  }
+
+  #expertise .expertise-mobile-control {
     align-items: center !important;
     appearance: none;
-    bottom: auto !important;
     display: inline-flex !important;
-    flex: 0 0 64px !important;
+    flex: 0 0 56px !important;
     justify-content: center !important;
     line-height: 0 !important;
     margin: 0 !important;
-    max-height: 64px !important;
-    max-width: 64px !important;
-    min-height: 64px !important;
-    min-width: 64px !important;
+    max-height: 56px !important;
+    max-width: 56px !important;
+    min-height: 56px !important;
+    min-width: 56px !important;
     order: 2;
     padding: 0 !important;
     position: static !important;
     transform: translateZ(0) !important;
     vertical-align: middle;
-    width: 64px !important;
-    height: 64px !important;
+    width: 56px !important;
+    height: 56px !important;
+    border: 0 !important;
+    border-radius: 50%;
+    cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     -webkit-tap-highlight-color: transparent;
   }
 
-  #expertise #expertise-prev {
+  #expertise .expertise-mobile-control-prev {
     background: #C4BCAD !important;
   }
 
-  #expertise #expertise-next {
+  #expertise .expertise-mobile-control-next {
     background: #968C80 !important;
   }
 
-  #expertise #expertise-prev:active,
-  #expertise #expertise-next:active {
+  #expertise .expertise-mobile-control:active {
     transform: translateZ(0) !important;
   }
 
-  #expertise #expertise-prev svg,
-  #expertise #expertise-next svg {
+  #expertise .expertise-mobile-control svg {
     display: block;
     flex: 0 0 18px;
     width: 18px !important;
     height: 18px !important;
     pointer-events: none;
     stroke: #FFFFFF !important;
+  }
+
+  #expertise #expertise-prev,
+  #expertise #expertise-next {
+    display: none !important;
   }
 
   #expertise .flex.flex-col.items-center.gap-5 > p {
