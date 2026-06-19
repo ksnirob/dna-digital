@@ -97,6 +97,39 @@ const clients = [
 </section>
 
 <style>
+@media (min-width: 769px) {
+  #clients.scroll-plate {
+    background: #FFFFFF;
+    isolation: isolate;
+  }
+
+  #clients.scroll-plate::before {
+    content: '';
+    position: absolute;
+    inset: -140px 0;
+    background: #FFFFFF;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  #clients > .section-container:first-of-type {
+    margin-bottom: 78px !important;
+  }
+
+  #clients > .relative.py-8 {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  #clients > .section-container.mt-12 {
+    margin-top: 80px !important;
+  }
+
+  #clients .client-stats-row {
+    margin-bottom: 64px !important;
+  }
+}
+
 @media (max-width: 768px) {
   #clients {
     background-color: #F4F3F2 !important;

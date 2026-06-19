@@ -20,12 +20,15 @@
     const pinTrigger = ScrollTrigger.getAll().find((trigger) => (
       trigger.trigger === section && Boolean((trigger.vars as any).pin)
     ));
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    const navAdjustedTop = sectionTop - getNavOffset();
+    const isTallSection = section.scrollHeight > window.innerHeight;
 
-    if (pinTrigger) {
+    if (pinTrigger && !isTallSection) {
       return pinTrigger.start + 1;
     }
 
-    return section.getBoundingClientRect().top + window.scrollY;
+    return navAdjustedTop;
   }
 
   function scrollToPlateSection(targetId: string) {
@@ -61,21 +64,25 @@
       section.classList.add('scroll-plate');
       const isTallSection = section.scrollHeight > window.innerHeight;
 
-      gsap.fromTo(
-        section,
-        { y: 88, opacity: 0.92 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 88%',
-            once: true,
-          },
-        }
-      );
+      if (section.id === 'clients') {
+        gsap.set(section, { y: 0, opacity: 1 });
+      } else {
+        gsap.fromTo(
+          section,
+          { y: 88, opacity: 0.92 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
 
       if (index === sections.length - 1) return;
 

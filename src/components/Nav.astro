@@ -154,6 +154,8 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     <div class="w-full flex items-center justify-between gap-3">
       <a
         href="/#practices"
+        data-scroll-target="practices"
+        data-nav-section="practices"
         class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
       >
         Practices
@@ -510,7 +512,7 @@ function scrollToNavTarget(targetId: string) {
   return true;
 }
 
-document.querySelectorAll<HTMLAnchorElement>('#main-nav .nav-link[data-scroll-target]').forEach((link) => {
+document.querySelectorAll<HTMLAnchorElement>('#main-nav [data-scroll-target]').forEach((link) => {
   link.addEventListener('click', (event) => {
     const targetId = link.dataset.scrollTarget;
 
@@ -635,27 +637,21 @@ window.addEventListener('resize', () => {
   }
 });
 
-document.querySelectorAll<HTMLAnchorElement>('.nav-practice-link[data-expertise-tab]').forEach((link) => {
+document.querySelectorAll<HTMLAnchorElement>('.nav-practice-link').forEach((link) => {
   link.addEventListener('click', (event) => {
+    const targetId = link.hash.replace('#', '');
     const tabId = link.dataset.expertiseTab;
 
-    if (!tabId) return;
+    if (!targetId) return;
 
-    const section = document.getElementById('expertise');
-
-    if (!section || window.location.pathname !== '/') {
+    if (!document.getElementById(targetId) || window.location.pathname !== '/') {
       return;
     }
 
     event.preventDefault();
+    scrollToNavTarget(targetId);
 
-    const scrollToPlateSection = (window as any).scrollToPlateSection;
-
-    if (typeof scrollToPlateSection === 'function') {
-      scrollToPlateSection('expertise');
-    } else {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (!tabId) return;
 
     setTimeout(() => {
       const fn = (window as any).showExpertiseTab;
@@ -764,7 +760,7 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
 }
 
 #main-nav.nav-scrolled {
-  background: rgba(145, 131, 108, 0.62) !important;
+  background: rgb(38 35 30 / 62%) !important;
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   box-shadow: none;
