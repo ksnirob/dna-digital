@@ -239,20 +239,15 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     Start a Conversation
   </button>
 </div>
+</nav>
 
 <!-- Conversation Form Panel -->
 <aside
   id="conversation-panel"
-  class="fixed right-0 top-[72px] md:top-[112px] h-[calc(100vh-72px)] md:h-[calc(100vh-112px)] w-full md:w-[420px] max-w-[420px] translate-x-full opacity-0 pointer-events-none transition-all duration-300 ease-out overflow-hidden"
-  style="background: linear-gradient(160deg, rgba(66,58,50,0.78) 0%, rgba(38,36,34,0.9) 36%, rgba(22,25,27,0.94) 100%); backdrop-filter: blur(22px) saturate(120%); -webkit-backdrop-filter: blur(22px) saturate(120%); box-shadow: -24px 0 60px rgba(0,0,0,0.42), inset 1px 0 0 rgba(255,255,255,0.08); isolation: isolate;"
+  class="fixed right-0 top-[72px] md:top-[112px] z-[60] h-[calc(100vh-72px)] md:h-[calc(100vh-112px)] w-full md:w-[420px] max-w-[420px] translate-x-full opacity-0 pointer-events-none transition-all duration-300 ease-out overflow-hidden"
+  style="box-shadow: -24px 0 60px rgba(0,0,0,0.42), inset 1px 0 0 rgba(255,255,255,0.08);"
   aria-hidden="true"
 >
-  <div
-    class="absolute inset-0 z-0"
-    style="background: radial-gradient(95% 58% at 8% 100%, rgba(177,166,141,0.26) 0%, rgba(112,108,92,0.14) 34%, rgba(22,25,27,0) 72%), radial-gradient(76% 52% at 100% 0%, rgba(145,131,108,0.16) 0%, rgba(22,25,27,0) 68%), linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.018) 36%, rgba(0,0,0,0.12) 100%);"
-  >
-  </div>
-
   <div class="conversation-panel-content relative z-10 h-full">
     <button
       id="conversation-close"
@@ -289,7 +284,6 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
     </div>
   </div>
 </aside>
-</nav>
 
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
@@ -811,6 +805,11 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
   outline: none;
 }
 
+#conversation-panel {
+  background: rgb(38 35 30 / 72%);
+  backdrop-filter: blur(30px) saturate(140%);
+  -webkit-backdrop-filter: blur(30px) saturate(140%);
+}
 
 body.mobile-menu-open {
   overflow: hidden;
@@ -826,8 +825,6 @@ body.mobile-menu-open {
 
 .conversation-panel-content {
   background: transparent;
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
   display: flex;
   flex-direction: column;
   gap: 24px;
