@@ -24,6 +24,10 @@
     const navAdjustedTop = sectionTop - getNavOffset();
     const isTallSection = section.scrollHeight > window.innerHeight;
 
+    if (section.id === 'clients') {
+      return navAdjustedTop;
+    }
+
     if (pinTrigger && !isTallSection) {
       return pinTrigger.start + 1;
     }
