@@ -2,19 +2,19 @@
 // Footer section — bg #5D5749
 
 const practiceLinks = [
-  { label: 'Overview', href: '/#practices', tabId: null },
-  { label: 'AI Strategy & Transformation', href: '/#expertise', tabId: 'ai-strategy' },
-  { label: 'Technology Leadership & Governance', href: '/#expertise', tabId: 'tech-leadership' },
-  { label: 'AI-Powered Growth & Experience', href: '/#expertise', tabId: 'ai-growth' },
-  { label: 'Solution & Product Engineering', href: '/#expertise', tabId: 'solution-engineering' },
-  { label: 'Enterprise Digital & Technology Transformation', href: '/#expertise', tabId: 'enterprise-digital' },
-  { label: 'AI Micro-Agents & CRM Intelligence', href: '/#expertise', tabId: 'ai-micro-agents' },
-  { label: 'Digital Execution & Delivery Enablement', href: '/#expertise', tabId: 'digital-execution' },
+  { label: 'Overview', href: '#' },
+  { label: 'AI Strategy & Transformation', href: '#' },
+  { label: 'Technology Leadership & Governance', href: '#' },
+  { label: 'AI-Powered Growth & Experience', href: '#' },
+  { label: 'Solution & Product Engineering', href: '#' },
+  { label: 'Enterprise Digital & Technology Transformation', href: '#' },
+  { label: 'AI Micro-Agents & CRM Intelligence', href: '#' },
+  { label: 'Digital Execution & Delivery Enablement', href: '#' },
 ];
 
 const productLinks = [
-  { label: 'Sifter CRM', href: '/#clients' },
-  { label: 'Mobile Apps', href: '/#clients' },
+  { label: 'Sifter CRM', href: '#' },
+  { label: 'Mobile Apps', href: '#' },
 ];
 
 const socialIcons = [
@@ -102,8 +102,7 @@ const socialIcons = [
             <li>
               <a
                 href={link.href}
-                data-expertise-tab={link.tabId || null}
-                class="footer-practice-link font-merriweather text-[14px] md:text-[12px] font-normal leading-[24px] md:leading-[18px] transition-colors duration-300 hover:text-dna-gold-light"
+                class="footer-placeholder-link font-merriweather text-[14px] md:text-[12px] font-normal leading-[24px] md:leading-[18px] transition-colors duration-300 hover:text-dna-gold-light"
                 style="color: rgba(244,243,242,0.84);"
               >
                 {link.label}
@@ -119,7 +118,7 @@ const socialIcons = [
         <ul class="space-y-3">
           {productLinks.map(link => (
             <li>
-              <a href={link.href} class="font-merriweather text-[14px] md:text-[12px] font-normal leading-[24px] md:leading-[18px] transition-colors duration-300 hover:text-dna-gold-light" style="color: rgba(244,243,242,0.84);">
+              <a href={link.href} class="footer-placeholder-link font-merriweather text-[14px] md:text-[12px] font-normal leading-[24px] md:leading-[18px] transition-colors duration-300 hover:text-dna-gold-light" style="color: rgba(244,243,242,0.84);">
                 {link.label}
               </a>
             </li>
@@ -176,44 +175,9 @@ const socialIcons = [
 </footer>
 
 <script>
-  function scrollFooterLink(link: HTMLAnchorElement) {
-    if (window.location.pathname !== '/') return false;
-
-    const targetId = link.hash.replace('#', '');
-    const scrollToPlateSection = (window as any).scrollToPlateSection;
-
-    if (!targetId || typeof scrollToPlateSection !== 'function') {
-      return false;
-    }
-
-    return scrollToPlateSection(targetId);
-  }
-
-  document.querySelectorAll<HTMLAnchorElement>('#footer a[href^="/#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      if (scrollFooterLink(link)) {
-        e.preventDefault();
-      }
-    });
-  });
-
-  document.querySelectorAll<HTMLAnchorElement>('.footer-practice-link[data-expertise-tab]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const tabId = link.dataset.expertiseTab;
-      if (!tabId) return;
-      if (window.location.pathname !== '/') {
-        return;
-      }
-
-      if (scrollFooterLink(link)) {
-        e.preventDefault();
-      }
-
-      // Wait for scroll to complete, then show correct tab
-      setTimeout(() => {
-        const fn = (window as any).showExpertiseTab;
-        if (fn) fn(tabId);
-      }, 700);
+  document.querySelectorAll<HTMLAnchorElement>('.footer-placeholder-link').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
     });
   });
 </script>

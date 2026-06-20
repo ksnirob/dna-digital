@@ -32,6 +32,49 @@ const badgeItems = ['SDVOSB Certified', 'Professionally Certified', '30+ Years E
   </div>
 </section>
 
+<script>
+  import gsap from 'gsap';
+
+  const aboutHero = document.getElementById('about-hero');
+
+  if (aboutHero) {
+    const heading = aboutHero.querySelector('h1');
+    const subtitle = aboutHero.querySelector('.hero-subtitle');
+    const badges = aboutHero.querySelector('.hero-badges');
+    const cta = aboutHero.querySelector('.hero-cta');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduceMotion) {
+      const timeline = gsap.timeline({ delay: 0.3 });
+
+      timeline
+        .fromTo(
+          heading,
+          { opacity: 0, y: 60 },
+          { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }
+        )
+        .fromTo(
+          subtitle,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 1, ease: 'power2.out' },
+          '-=0.7'
+        )
+        .fromTo(
+          badges,
+          { opacity: 0, y: 35 },
+          { opacity: 0.5, y: 0, duration: 0.9, ease: 'power2.out' },
+          '-=0.6'
+        )
+        .fromTo(
+          cta,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+          '-=0.5'
+        );
+    }
+  }
+</script>
+
 <style>
   .about-hero {
     position: relative;
@@ -158,7 +201,7 @@ const badgeItems = ['SDVOSB Certified', 'Professionally Certified', '30+ Years E
     line-height: 1.4;
     letter-spacing: 0.005em;
     text-transform: uppercase;
-    transition: transform 0.3s ease, background-color 0.25s ease;
+    transition: transform 1s ease, background-color 1s ease;
   }
 
   .hero-cta:hover {

@@ -5,7 +5,7 @@
   gsap.registerPlugin(ScrollTrigger);
 
   const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const sectionSelector = 'main section:not(#hero)';
+  const sectionSelector = 'main section:not(#hero):not(#about-hero)';
   const stackSelector = 'main section';
 
   function getNavOffset() {
@@ -106,7 +106,7 @@
       });
     });
 
-    const hero = document.getElementById('hero');
+    const hero = document.getElementById('hero') || document.getElementById('about-hero');
 
     if (hero && stackSections[1] === sections[0]) {
       const firstSectionIsTall = sections[0].scrollHeight > window.innerHeight;
@@ -151,7 +151,11 @@
       ScrollTrigger.getAll().forEach((trigger) => {
         if (
           trigger.trigger instanceof HTMLElement &&
-          (trigger.trigger.classList.contains('scroll-plate') || trigger.trigger.id === 'hero')
+          (
+            trigger.trigger.classList.contains('scroll-plate') ||
+            trigger.trigger.id === 'hero' ||
+            trigger.trigger.id === 'about-hero'
+          )
         ) {
           trigger.kill();
         }
@@ -161,7 +165,7 @@
         clearProps: 'position,zIndex,transform,willChange',
       });
 
-      gsap.set('#hero', {
+      gsap.set('#hero, #about-hero', {
         clearProps: 'position,zIndex,transform,willChange',
       });
 
