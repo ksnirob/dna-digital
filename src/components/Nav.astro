@@ -6,14 +6,14 @@ const isHome = currentPath === '/';
 const isAbout = currentPath === '/about';
 
 const practiceLinks = [
-  { label: 'Overview', href: '#practices', tabId: null },
-  { label: 'AI Strategy & Transformation', href: '#expertise', tabId: 'ai-strategy' },
-  { label: 'Technology Leadership & Governance', href: '#expertise', tabId: 'tech-leadership' },
-  { label: 'AI-Powered Growth & Experience', href: '#expertise', tabId: 'ai-growth' },
-  { label: 'Solution & Product Engineering', href: '#expertise', tabId: 'solution-engineering' },
-  { label: 'Enterprise Digital & Technology Transformation', href: '#expertise', tabId: 'enterprise-digital' },
-  { label: 'AI Micro-Agents & CRM Intelligence', href: '#expertise', tabId: 'ai-micro-agents' },
-  { label: 'Digital Execution & Delivery Enablement', href: '#expertise', tabId: 'digital-execution' },
+  { label: 'Overview', href: '#', tabId: null },
+  { label: 'AI Strategy & Transformation', href: '#', tabId: null },
+  { label: 'Technology Leadership & Governance', href: '#', tabId: null },
+  { label: 'AI-Powered Growth & Experience', href: '#', tabId: null },
+  { label: 'Solution & Product Engineering', href: '#', tabId: null },
+  { label: 'Enterprise Digital & Technology Transformation', href: '#', tabId: null },
+  { label: 'AI Micro-Agents & CRM Intelligence', href: '#', tabId: null },
+  { label: 'Digital Execution & Delivery Enablement', href: '#', tabId: null },
 ];
 
 const productLinks = [
@@ -38,7 +38,7 @@ style="background: rgba(255,255,255,0.10); backdrop-filter: blur(12px); -webkit-
   </a>
 
   <!-- Desktop Nav Links -->
-  <div class="hidden lg:flex items-center gap-8">
+  <div class="desktop-nav-links hidden lg:flex items-center gap-8">
     <a
       href="/"
       data-nav-link
@@ -638,7 +638,10 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-practice-link').forEach((link
     const targetId = link.hash.replace('#', '');
     const tabId = link.dataset.expertiseTab;
 
-    if (!targetId) return;
+    if (!targetId) {
+      event.preventDefault();
+      return;
+    }
 
     if (!document.getElementById(targetId) || window.location.pathname !== '/') {
       return;
@@ -685,6 +688,13 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
   pointer-events: none !important;
 }
 
+#main-nav .desktop-nav-links:has(.nav-menu-group:hover)
+  .nav-menu-group:not(:hover) > .nav-menu-panel {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: none;
+}
+
 #main-nav {
   border-bottom: 0;
 }
@@ -723,7 +733,11 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
   border-bottom: 0;
 }
 
-#main-nav .nav-link.nav-link-active::after {
+#main-nav .nav-link.nav-link-active::after,
+#main-nav .nav-link:hover::after,
+#main-nav .nav-link:focus-visible::after,
+#main-nav .nav-menu-group:hover > .nav-link::after,
+#main-nav .nav-menu-group:focus-within > .nav-link::after {
   content: '';
   position: absolute;
   left: 0;

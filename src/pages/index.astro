@@ -13,6 +13,29 @@ import '../styles/global.css';
 ---
 
 <Layout title="DNA Digital Consultancy | Strategy. Execution. Transformation.">
+  <script is:inline>
+    (() => {
+      const navigationEntry = performance.getEntriesByType('navigation')[0];
+      const isReload = navigationEntry
+        ? navigationEntry.type === 'reload'
+        : performance.navigation?.type === 1;
+
+      if (!isReload) return;
+
+      history.scrollRestoration = 'manual';
+
+      if (window.location.hash) {
+        history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+      }
+
+      const returnToHero = () => window.scrollTo(0, 0);
+
+      returnToHero();
+      window.addEventListener('pageshow', () => {
+        window.requestAnimationFrame(returnToHero);
+      }, { once: true });
+    })();
+  </script>
   <Nav />
   <main>
     <Hero />
