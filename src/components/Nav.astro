@@ -24,7 +24,7 @@ const productLinks = [
 
 <nav
 id="main-nav"
-class="fixed top-0 left-0 right-0 z-50 h-[72px] md:h-[112px] flex items-center transition-all duration-500"
+class="fixed top-0 left-0 right-0 z-[200] h-[72px] md:h-[112px] flex items-center transition-all duration-500"
 >
 <div class="section-container w-full flex items-center justify-between">
   <!-- Logo Block -->
@@ -48,18 +48,16 @@ class="fixed top-0 left-0 right-0 z-50 h-[72px] md:h-[112px] flex items-center t
     </a>
 
     <div class="relative group nav-menu-group">
-      <a
-        href="/#practices"
-        data-nav-link
+      <button
+        type="button"
         data-nav-section="practices"
-        data-scroll-target="practices"
         class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
       >
         Practices
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" style="width: 12px; height: 7.4px; aspect-ratio: 60 / 37;">
           <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="white" />
         </svg>
-      </a>
+      </button>
       <div class="nav-menu-panel absolute left-0 top-full pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-200">
         <div class="nav-dropdown min-w-[320px] rounded-[8px] p-3 border" style="background: rgba(6,5,5,0.96); border-color: rgba(145,131,108,0.5);">
           {practiceLinks.map((link) => (
@@ -77,18 +75,16 @@ class="fixed top-0 left-0 right-0 z-50 h-[72px] md:h-[112px] flex items-center t
     </div>
 
     <div class="relative group nav-menu-group">
-      <a
-        href="/#"
-        data-nav-link
+      <button
+        type="button"
         data-nav-section="products"
-        data-scroll-target="clients"
         class="nav-link font-montserrat text-[14px] font-semibold uppercase text-white hover:text-dna-gold-light transition-colors duration-300 flex items-center gap-[8px]"
       >
         Products
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none" style="width: 12px; height: 7.4px; aspect-ratio: 60 / 37;">
           <path d="M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z" fill="white" />
         </svg>
-      </a>
+      </button>
       <div class="nav-menu-panel absolute left-0 top-full pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-opacity duration-200">
         <div class="nav-dropdown min-w-[220px] rounded-[8px] p-3 border" style="background: rgba(6,5,5,0.96); border-color: rgba(145,131,108,0.5);">
           {productLinks.map((link) => (
@@ -151,14 +147,16 @@ class="fixed top-0 left-0 right-0 z-50 h-[72px] md:h-[112px] flex items-center t
 
   <div class="mobile-nav-group border-t border-[#D5CFC5] pt-4">
     <div class="w-full flex items-center justify-between gap-3">
-      <a
-        href="/#practices"
-        data-scroll-target="practices"
+      <button
+        type="button"
+        data-mobile-toggle="mobile-practices-submenu"
         data-nav-section="practices"
-        class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
+        aria-expanded="false"
+        aria-controls="mobile-practices-submenu"
+        class="mobile-nav-label font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
       >
         Practices
-      </a>
+      </button>
       <button
         type="button"
         class="mobile-nav-toggle h-8 w-8 inline-flex items-center justify-center"
@@ -188,14 +186,16 @@ class="fixed top-0 left-0 right-0 z-50 h-[72px] md:h-[112px] flex items-center t
 
   <div class="mobile-nav-group border-t border-[#D5CFC5] pt-4">
     <div class="w-full flex items-center justify-between gap-3">
-      <a
-        href="/#clients"
-        data-scroll-target="clients"
+      <button
+        type="button"
+        data-mobile-toggle="mobile-products-submenu"
         data-nav-section="products"
-        class="font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
+        aria-expanded="false"
+        aria-controls="mobile-products-submenu"
+        class="mobile-nav-label font-montserrat text-[16px] font-bold text-[#5D5749] uppercase tracking-[0.02em] hover:text-[#91836C] transition-colors"
       >
         Products
-      </a>
+      </button>
       <button
         type="button"
         class="mobile-nav-toggle h-8 w-8 inline-flex items-center justify-center"
@@ -462,27 +462,7 @@ function getActiveNavSection() {
     return window.location.pathname.startsWith('/about') ? 'about' : '';
   }
 
-  const sectionMap = [
-    { id: 'hero', nav: 'home' },
-    { id: 'practices', nav: 'practices' },
-    { id: 'products', nav: 'products' },
-    { id: 'clients', nav: 'products' },
-    { id: 'expertise', nav: 'practices' },
-  ];
-
-  const triggerLine = getNavOffset() + 24;
-  let active = 'home';
-
-  sectionMap.forEach(({ id, nav: navSection }) => {
-    const section = document.getElementById(id);
-    if (!section) return;
-
-    if (section.getBoundingClientRect().top <= triggerLine) {
-      active = navSection;
-    }
-  });
-
-  return active;
+  return 'home';
 }
 
 function updateActiveNavLink() {
@@ -549,8 +529,13 @@ document.querySelectorAll<HTMLButtonElement>('[data-mobile-toggle]').forEach((bt
 
     if (!panel) return;
 
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    const expanded = !panel.classList.contains('hidden');
+    const nextExpanded = !expanded;
+
+    document.querySelectorAll<HTMLButtonElement>(`[data-mobile-toggle="${targetId}"]`).forEach((toggle) => {
+      toggle.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
+    });
+
     panel.classList.toggle('hidden', expanded);
   });
 });
@@ -714,6 +699,27 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
   line-height: 1;
 }
 
+#main-nav button.nav-link,
+#main-nav .mobile-nav-label {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  transform: none;
+}
+
+#main-nav button.nav-link:hover,
+#main-nav button.nav-link:focus-visible,
+#main-nav .mobile-nav-label:hover,
+#main-nav .mobile-nav-label:focus-visible {
+  transform: none;
+}
+
+#main-nav .mobile-nav-label {
+  text-align: left;
+}
+
 #main-nav .nav-link:hover,
 #main-nav .nav-menu-group:hover > .nav-link,
 #main-nav .nav-menu-group:focus-within > .nav-link {
@@ -757,8 +763,8 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
 }
 
 #main-nav .nav-conversation-btn {
-  background: rgba(245, 245, 245, 0.1);
-  color: #e0c9a3;
+  background: #f5f5f5;
+  color: #756a57;
   letter-spacing: 0.005em;
   border-radius: 6px;
   transform: translateY(0);
@@ -766,7 +772,7 @@ document.querySelectorAll<HTMLAnchorElement>('.nav-submenu-link').forEach((link)
 
 #main-nav .nav-conversation-btn:hover,
 #main-nav .nav-conversation-btn:focus-visible {
-  background: rgba(255, 255, 255, 0.2);
+  background: #ffffff;
   transform: translateY(-3px);
   outline: none;
 }
@@ -895,7 +901,7 @@ body.mobile-menu-open {
   font-size: 24px;
   font-weight: 600;
   line-height: 28.8px;
-  color: #91836c;
+  color: #f5e9d4;
 }
 
 .conversation-leadconnector-form {

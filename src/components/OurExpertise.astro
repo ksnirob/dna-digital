@@ -242,8 +242,8 @@ const CARD_HEIGHT = 415;
       </svg>
     </div>
     <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px]" style="color: #2A2A2A;">From Foresight to Execution</h3>
-    <p class="font-merriweather text-[17px] font-normal leading-[29px] max-w-[700px] mx-auto mt-5 text-left" style="color: #2A2A2A;">
-      Our tailored methodologies accelerate your digital and strategic transformation. Explore our areas of expertise below.
+    <p class="font-merriweather text-[17px] font-normal leading-[29px] max-w-fit mx-auto mt-5 text-left" style="color: #2A2A2A;">
+      Our tailored methodologies accelerate your digital and strategic<br />transformation. Explore our areas of expertise below.
     </p>
     <div class="expertise-mobile-controls">
       <button class="expertise-mobile-control expertise-mobile-control-prev" type="button" data-expertise-prev aria-label="Previous expertise">
@@ -519,8 +519,14 @@ function updateCapability(button: HTMLButtonElement) {
 
   gsap.fromTo(
     copyEl,
-    { x: 30, opacity: 0 },
-    { x: 0, opacity: 1, duration: 1.5, ease: 'power2.out' },
+    { autoAlpha: 0 },
+    {
+      autoAlpha: 1,
+      duration: 1.85,
+      ease: 'sine.out',
+      overwrite: 'auto',
+      clearProps: 'opacity,visibility',
+    },
   );
 }
 
@@ -599,11 +605,16 @@ showTab(3);
 }
 
 .expertise-capability-btn:hover .expertise-capability-dot,
+.expertise-capability-btn:focus-visible .expertise-capability-dot,
 .expertise-capability-btn.is-active .expertise-capability-dot {
   background-color: #8C7860;
 }
 
 .expertise-capability-btn:hover .expertise-capability-label,
+.expertise-capability-btn:focus-visible .expertise-capability-label {
+  color: #2A2118;
+}
+
 .expertise-capability-btn.is-active .expertise-capability-label {
   color: #6B5E4A;
 }
@@ -749,6 +760,10 @@ showTab(3);
 
   #expertise .expertise-capability-btn.is-active .expertise-capability-label,
   #expertise .expertise-capability-btn:hover .expertise-capability-label {
+    color: #2A2118 !important;
+  }
+
+  #expertise .expertise-capability-btn.is-active .expertise-capability-label {
     color: #6B5E4A !important;
   }
 
