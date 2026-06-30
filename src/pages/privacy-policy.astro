@@ -142,11 +142,11 @@ const sections = [
               <div>
                 <!-- Section Heading Row -->
                 <div
-                  class="flex items-center gap-1 pb-3 mb-4"
+                  class="legal-section-heading flex items-center gap-1 pb-3 mb-4"
                   style="border-bottom: 1px solid #E2DED6;"
                 >
                   <span
-                    class="font-montserrat font-semibold"
+                    class="legal-section-number font-montserrat font-semibold"
                     style="font-size: 28px; line-height: 47.2px; color: #2A2A2A; font-variant: small-caps;"
                   >
                     {section.num}
@@ -272,6 +272,15 @@ const sections = [
     .legal-privacy-page .legal-content [style*='font-size: 28px'] {
       font-size: 20px !important;
       line-height: 34px !important;
+    }
+
+    .legal-privacy-page .legal-section-heading {
+      align-items: flex-start;
+    }
+
+    .legal-privacy-page .legal-section-number {
+      flex: 0 0 26px;
+      text-align: left;
     }
   }
 </style>
