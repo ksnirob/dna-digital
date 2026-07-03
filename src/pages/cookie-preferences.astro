@@ -161,7 +161,7 @@ import '../styles/global.css';
                       </span>
                       <!-- Toggle -->
                       <label class="toggle-switch flex-shrink-0" for="analytics-toggle">
-                        <input type="checkbox" id="analytics-toggle" checked />
+                        <input type="checkbox" id="analytics-toggle" aria-label="Allow analytics and performance cookies" />
                         <span class="slider"></span>
                       </label>
                     </div>
@@ -191,7 +191,7 @@ import '../styles/global.css';
                       </span>
                       <!-- Toggle -->
                       <label class="toggle-switch flex-shrink-0" for="marketing-toggle">
-                        <input type="checkbox" id="marketing-toggle" checked />
+                        <input type="checkbox" id="marketing-toggle" aria-label="Allow marketing and personalization cookies" />
                         <span class="slider"></span>
                       </label>
                     </div>
@@ -266,7 +266,7 @@ import '../styles/global.css';
                     class="font-montserrat"
                     style="font-size: 14px; line-height: 19.6px; color: rgba(42,42,42,0.88);"
                   >
-                    <strong class="font-semibold" style="color: #2A2A2A;">Do Not Sell or Share My Personal Information:</strong>
+                    <button id="ccpa-opt-out" type="button" class="font-semibold cookie-rights-link">Do Not Sell or Share My Personal Information</button>:
                     {' '}Clicking this link will automatically disable all Marketing and Personalization cookies.
                   </p>
                 </div>
@@ -282,7 +282,7 @@ import '../styles/global.css';
                     style="font-size: 14px; line-height: 19.6px; color: rgba(42,42,42,0.88);"
                   >
                     <strong class="font-semibold" style="color: #2A2A2A;">California Privacy Rights:</strong>
-                    {' '}If you are a California resident, you have the right under the CCPA/CPRA to request a report of the data we have collected or to request its deletion. Please use the &ldquo;Contact Us&rdquo; button in the navigation bar to submit a &ldquo;Privacy Data Request.&rdquo;
+                    {' '}If you are a California resident, you have the right under the CCPA/CPRA to request a report of the data we have collected or to request its deletion. Please use the <button type="button" data-open-conversation class="font-semibold cookie-rights-link">Contact Us</button> form to submit a &ldquo;Privacy Data Request.&rdquo;
                   </p>
                 </div>
               </div>
@@ -307,7 +307,7 @@ import '../styles/global.css';
                 <div class="flex items-stretch gap-0">
                   <!-- Last Action -->
                   <div class="flex flex-col gap-2" style="min-width: 180px;">
-                    <span
+                    <span id="consent-last-action"
                       class="font-montserrat"
                       style="font-size: 14px; line-height: 19.6px; color: rgba(42,42,42,0.88);"
                     >
@@ -317,7 +317,7 @@ import '../styles/global.css';
                       class="font-montserrat font-semibold"
                       style="font-size: 14px; line-height: 19.6px; color: #2A2A2A;"
                     >
-                      January 24, 2026
+                      No preference saved
                     </span>
                   </div>
 
@@ -326,7 +326,7 @@ import '../styles/global.css';
 
                   <!-- Consent ID -->
                   <div class="flex flex-col gap-2">
-                    <span
+                    <span id="consent-id"
                       class="font-montserrat"
                       style="font-size: 14px; line-height: 19.6px; color: rgba(42,42,42,0.88);"
                     >
@@ -336,7 +336,7 @@ import '../styles/global.css';
                       class="font-montserrat font-semibold"
                       style="font-size: 14px; line-height: 19.6px; color: #2A2A2A;"
                     >
-                      #CIDJ2426
+                      Not generated
                     </span>
                   </div>
                 </div>
@@ -403,6 +403,16 @@ import '../styles/global.css';
   .toggle-switch:focus-within .slider {
     outline: 2px solid #91836C;
     outline-offset: 2px;
+  }
+  .cookie-rights-link {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #2A2A2A;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
   }
 
   @media (max-width: 768px) {
@@ -533,24 +543,38 @@ import '../styles/global.css';
 
 <script>
   // ── Load saved preferences ──
-  (function () {
-    try {
-      const saved = localStorage.getItem('dna-cookie-prefs');
-      if (saved) {
-        const prefs = JSON.parse(saved);
-        const analyticsEl = document.getElementById('analytics-toggle') as HTMLInputElement;
-        const marketingEl = document.getElementById('marketing-toggle') as HTMLInputElement;
-        if (analyticsEl) analyticsEl.checked = prefs.analytics ?? true;
-        if (marketingEl) marketingEl.checked = prefs.marketing ?? true;
-      }
-    } catch (_) {}
-  })();
-
   function getToggles() {
     return {
-      analytics: document.getElementById('analytics-toggle') as HTMLInputElement,
-      marketing: document.getElementById('marketing-toggle') as HTMLInputElement,
+      analytics: document.getElementById('analytics-toggle') as HTMLInputElement | null,
+      marketing: document.getElementById('marketing-toggle') as HTMLInputElement | null,
     };
+  }
+
+  function getConsentApi() {
+    return (window as any).DNAConsent as {
+      read: () => any;
+      save: (analytics: boolean, marketing: boolean, source?: string) => any;
+    } | undefined;
+  }
+
+  function renderConsent(consent: any) {
+    const { analytics, marketing } = getToggles();
+    if (analytics) analytics.checked = consent?.analytics ?? false;
+    if (marketing) marketing.checked = consent?.marketing ?? false;
+
+    const lastAction = document.getElementById('consent-last-action');
+    const consentId = document.getElementById('consent-id');
+    if (lastAction) {
+      lastAction.textContent = consent?.timestamp
+        ? new Intl.DateTimeFormat(undefined, { dateStyle: 'long', timeStyle: 'short' }).format(new Date(consent.timestamp))
+        : 'No preference saved';
+    }
+    if (consentId) consentId.textContent = consent?.consentID || 'Not generated';
+  }
+
+  function saveCurrent(source: string) {
+    const { analytics, marketing } = getToggles();
+    return getConsentApi()?.save(!!analytics?.checked, !!marketing?.checked, source);
   }
 
   function showFeedback(btn: HTMLButtonElement, msg: string) {
@@ -568,6 +592,7 @@ import '../styles/global.css';
     const { analytics, marketing } = getToggles();
     if (analytics) analytics.checked = false;
     if (marketing) marketing.checked = false;
+    saveCurrent('decline-all');
   });
 
   // Accept All
@@ -575,17 +600,28 @@ import '../styles/global.css';
     const { analytics, marketing } = getToggles();
     if (analytics) analytics.checked = true;
     if (marketing) marketing.checked = true;
+    saveCurrent('accept-all');
   });
 
   // Save Preferences
   document.getElementById('save-btn')?.addEventListener('click', (e) => {
-    const { analytics, marketing } = getToggles();
-    try {
-      localStorage.setItem('dna-cookie-prefs', JSON.stringify({
-        analytics: analytics?.checked ?? true,
-        marketing: marketing?.checked ?? true,
-      }));
-    } catch (_) {}
-    showFeedback(e.currentTarget as HTMLButtonElement, 'PREFERENCES SAVED ✓');
+    saveCurrent('preferences-page');
+    showFeedback(e.currentTarget as HTMLButtonElement, 'PREFERENCES SAVED');
   });
+
+  document.getElementById('ccpa-opt-out')?.addEventListener('click', () => {
+    const { analytics, marketing } = getToggles();
+    if (marketing) marketing.checked = false;
+    getConsentApi()?.save(!!analytics?.checked, false, 'ccpa-opt-out');
+  });
+
+  window.addEventListener('dna:consent-changed', (event) => {
+    renderConsent((event as CustomEvent).detail);
+  });
+
+  window.addEventListener('dna:consent-ready', () => {
+    renderConsent(getConsentApi()?.read());
+  }, { once: true });
+
+  renderConsent(getConsentApi()?.read());
 </script>
