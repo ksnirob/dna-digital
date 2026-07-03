@@ -243,7 +243,7 @@ class="fixed top-0 left-0 right-0 z-[200] h-[72px] md:h-[112px] flex items-cente
 <!-- Conversation Form Panel -->
 <aside
   id="conversation-panel"
-  class="fixed right-0 top-[72px] md:top-[112px] z-[60] h-[calc(100vh-72px)] md:h-[calc(100vh-112px)] w-full md:w-[420px] max-w-[420px] translate-x-full opacity-0 pointer-events-none transition-all duration-300 ease-out overflow-hidden"
+  class="fixed right-0 top-[72px] md:top-[112px] z-[110] h-[calc(100vh-72px)] md:h-[calc(100vh-112px)] w-full md:w-[420px] max-w-[420px] translate-x-full opacity-0 pointer-events-none transition-all duration-300 ease-out overflow-hidden"
   style="box-shadow: -24px 0 60px rgba(0,0,0,0.42), inset 1px 0 0 rgba(255,255,255,0.08);"
   aria-hidden="true"
 >
@@ -265,7 +265,7 @@ class="fixed top-0 left-0 right-0 z-[200] h-[72px] md:h-[112px] flex items-cente
     <!-- LeadConnector Embedded Form -->
     <div class="conversation-form conversation-leadconnector-form">
       <iframe
-        src="https://api.leadconnectorhq.com/widget/form/FSDKwUyo2o3zxMkTewfP"
+        src="https://api.leadconnectorhq.com/widget/form/FSDKwUyo2o3zxMkTewfP?radio_1z5n=Email"
         style="width:100%;height:100%;border:none;border-radius:4px;"
         id="inline-FSDKwUyo2o3zxMkTewfP"
         data-layout='{"id":"INLINE"}'
@@ -372,10 +372,42 @@ function openGhlAiConciergeWidget(): boolean {
   return false;
 }
 
+function closeGhlAiConciergeWidget() {
+  const w = window as any;
+  const chatWidget = w?.leadConnector?.chatWidget;
+
+  if (typeof chatWidget?.closeWidget === 'function') {
+    chatWidget.closeWidget();
+    return;
+  }
+
+  const closeCandidates: Array<(() => void) | undefined> = [
+    w?.LeadConnector?.chatWidget?.close,
+    w?.LeadConnector?.widget?.close,
+    w?.LeadConnectorWidget?.close,
+    w?.LC_API?.close_chat_window,
+    w?.LC_API?.closeChat,
+    w?.LC_API?.closeChatWidget,
+    w?.GHLChatWidget?.close,
+  ];
+
+  for (const closeWidget of closeCandidates) {
+    if (typeof closeWidget !== 'function') continue;
+
+    try {
+      closeWidget();
+      return;
+    } catch {
+      // Try the next supported widget API.
+    }
+  }
+}
+
 function openConversationPanel() {
   if (!panel) return;
 
   closeAiConciergePanel();
+  closeGhlAiConciergeWidget();
 
   panel.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
   panel.classList.add('translate-x-0', 'opacity-100');
@@ -423,6 +455,35 @@ function openAiConciergePanel() {
     }, 500);
   }, 300);
 }
+
+function isGhlChatFrame(element: Element | null): element is HTMLIFrameElement {
+  if (!(element instanceof HTMLIFrameElement)) return false;
+
+  const source = element.getAttribute('src') || '';
+  return (
+    source.includes('leadconnectorhq.com') &&
+    !source.includes('/widget/form/')
+  );
+}
+
+// GHL renders the launcher inside the <chat-widget> custom element. Composed
+// pointer events cross its shadow-DOM boundary and are retargeted to that host.
+document.addEventListener('pointerdown', (event) => {
+  const target = event.target as Element | null;
+
+  if (target?.closest('chat-widget')) {
+    closeConversationPanel();
+  }
+}, true);
+
+// Fallback for widget versions that render the launcher in an iframe.
+window.addEventListener('blur', () => {
+  setTimeout(() => {
+    if (isGhlChatFrame(document.activeElement)) {
+      closeConversationPanel();
+    }
+  }, 0);
+});
 
 function updateNav() {
   if (!nav) return;
