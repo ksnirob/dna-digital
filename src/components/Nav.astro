@@ -422,7 +422,21 @@ function closeConversationPanel() {
   panel.setAttribute('aria-hidden', 'true');
 }
 
+window.addEventListener('message', (event) => {
+  if (!panel || !Array.isArray(event.data)) return;
 
+  const formFrame = document.getElementById('inline-FSDKwUyo2o3zxMkTewfP') as HTMLIFrameElement | null;
+  const [action, userDataKey] = event.data;
+
+  if (
+    event.source === formFrame?.contentWindow &&
+    action === 'set-sticky-contacts' &&
+    typeof userDataKey === 'string' &&
+    userDataKey.includes(formFrame.id)
+  ) {
+    panel.classList.add('conversation-panel-submitted');
+  }
+});
 
 function closeAiConciergePanel() {
   if (!aiPanel) return;
@@ -963,6 +977,10 @@ body.mobile-menu-open {
   font-weight: 600;
   line-height: 28.8px;
   color: #f5e9d4;
+}
+
+.conversation-panel-submitted .conversation-title-wrap {
+  display: none;
 }
 
 .conversation-leadconnector-form {
