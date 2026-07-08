@@ -6,6 +6,7 @@ const cards = [
     description:
       'We help organizations understand where AI fits, what is possible, and how to move forward with clarity, governance, and measurable value. To make that possible, we help:',
     expandOnHover: true,
+    tabId: 'ai-strategy',
     capabilities: [
       'AI Strategy & Execution Roadmaps',
       'AI Maturity & Readiness Audits',
@@ -24,6 +25,7 @@ const cards = [
     description:
       'We provide senior-level technology leadership, organizational design, and delivery governance for complex engineering environments. That means we help:',
     expandOnHover: true,
+    tabId: 'tech-leadership',
     capabilities: [
       'Fractional Executive Engineering Leadership',
       'Engineering Org Design & Team Scaling',
@@ -42,6 +44,7 @@ const cards = [
     description:
       'We apply AI to discoverability, content, engagement, personalization, and conversion so brands can grow with sharper intelligence and greater speed. To deliver on that, we help:',
     expandOnHover: true,
+    tabId: 'ai-growth',
     capabilities: [
       'AI-Driven Discoverability & Growth Engineering',
       'AI-Assisted Content & Media Orchestration',
@@ -60,6 +63,7 @@ const cards = [
     description:
       'We design, build, modernize, and stabilize digital products and AI-enabled applications for real-world scale, security, and performance. To make that possible, we help:',
     expandOnHover: true,
+    tabId: 'solution-engineering',
     capabilities: [
       'Full-Stack Web & Mobile Product Development',
       'Legacy Product AI Augmentation',
@@ -78,6 +82,7 @@ const cards = [
     description:
       'We guide platform decisions, enterprise implementations, modernization, rescue work, and architecture alignment across complex technology environments. To support that evolution, we help:',
     expandOnHover: true,
+    tabId: 'enterprise-digital',
     capabilities: [
       'Enterprise Platform Evaluation & RFP Governance',
       'Core Enterprise Platform Implementation',
@@ -96,6 +101,7 @@ const cards = [
     description:
       'We deploy AI agents, CRM automation, funnel intelligence, and customer engagement systems that help teams act faster and with more precision. To deliver on that, we help:',
     expandOnHover: true,
+    tabId: 'ai-micro-agents',
     capabilities: [
       'AI Voice, Chat & Interaction Agents',
       'Intelligent CRM Workflow Automation',
@@ -114,6 +120,7 @@ const cards = [
     description:
       'We strengthen delivery with certified engineering talent, technical leadership, cloud, data, AI/ML, and QA support for high-stakes initiatives. To ensure that happens, we help:',
     expandOnHover: true,
+    tabId: 'digital-execution',
     capabilities: [
       'Engineering Talent Augmentation',
       'Architecture & Technical Leadership',
@@ -153,14 +160,6 @@ const row2 = cards.slice(3);
       </div>
       <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px] mb-5" style="color: #2A2A2A;">Our Expertise at a Glance</h3>
       <p class="font-merriweather text-[18px] font-normal leading-[30.6px] max-w-[860px] mx-auto" style="color: #2A2A2A;">Our practice areas form a complete end-to-end capability system that give our clients a comprehensive partner equipped to guide the entire lifecycle of modern digital work.</p>
-      <div class="practice-mobile-controls">
-        <button id="practice-mobile-prev" class="practice-mobile-control practice-mobile-control-prev" type="button" aria-label="Previous practice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button id="practice-mobile-next" class="practice-mobile-control practice-mobile-control-next" type="button" aria-label="Next practice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
     </div>
 
     <div class="practice-desktop-content">
@@ -183,7 +182,9 @@ const row2 = cards.slice(3);
               {card.capabilities && (
                 <ul class="practice-hover-capabilities">
                   {card.capabilities.map((item) => (
-                    <li>{item}</li>
+                    <li>
+                      <a href="#expertise" class="practice-capability-link" data-expertise-tab={card.tabId} data-expertise-capability={item}>{item}</a>
+                    </li>
                   ))}
                 </ul>
               )}
@@ -212,7 +213,9 @@ const row2 = cards.slice(3);
               {card.capabilities && (
                 <ul class="practice-hover-capabilities">
                   {card.capabilities.map((item) => (
-                    <li>{item}</li>
+                    <li>
+                      <a href="#expertise" class="practice-capability-link" data-expertise-tab={card.tabId} data-expertise-capability={item}>{item}</a>
+                    </li>
                   ))}
                 </ul>
               )}
@@ -225,6 +228,14 @@ const row2 = cards.slice(3);
 
     <!-- Mobile slider -->
     <div class="practice-mobile-carousel" style="display: none; max-width: 350px; margin: 0 auto 32px;">
+      <div class="practice-mobile-controls">
+        <button id="practice-mobile-prev" class="practice-mobile-control practice-mobile-control-prev" type="button" aria-label="Previous practice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button id="practice-mobile-next" class="practice-mobile-control practice-mobile-control-next" type="button" aria-label="Next practice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
       <div style="position: relative; width: 100%; min-height: 228px;">
         {cards.map((card, i) => (
           <article
@@ -247,7 +258,9 @@ const row2 = cards.slice(3);
                 {card.capabilities && (
                   <ul class="practice-hover-capabilities">
                     {card.capabilities.map((item) => (
-                      <li>{item}</li>
+                      <li>
+                        <a href="#expertise" class="practice-capability-link" data-expertise-tab={card.tabId} data-expertise-capability={item}>{item}</a>
+                      </li>
                     ))}
                   </ul>
                 )}
@@ -301,6 +314,47 @@ const row2 = cards.slice(3);
   prevBtn?.addEventListener('click', () => showMobileCard(mobileIndex - 1));
   nextBtn?.addEventListener('click', () => showMobileCard(mobileIndex + 1));
   showMobileCard(0);
+
+  function scrollToExpertiseCard() {
+    const carousel = document.querySelector<HTMLElement>('#expertise .expertise-carousel');
+    const expertiseSection = document.getElementById('expertise');
+    const target = carousel || expertiseSection;
+
+    if (!target) return;
+
+    const navHeight = document.getElementById('main-nav')?.getBoundingClientRect().height || 0;
+    const rect = target.getBoundingClientRect();
+    const availableHeight = window.innerHeight - navHeight;
+    const centeredTop = navHeight + Math.max(16, (availableHeight - rect.height) / 2);
+    const top = window.scrollY + rect.top - centeredTop;
+
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>('.practice-capability-link').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const expertiseSection = document.getElementById('expertise');
+      const tabId = link.dataset.expertiseTab;
+      const capability = link.dataset.expertiseCapability;
+
+      if (!expertiseSection || !tabId) return;
+
+      event.preventDefault();
+
+      const showExpertise = (window as any).showExpertiseTab;
+      if (showExpertise) {
+        showExpertise(tabId, capability);
+      } else {
+        window.setTimeout(() => {
+          const delayedShowExpertise = (window as any).showExpertiseTab;
+          if (delayedShowExpertise) delayedShowExpertise(tabId, capability);
+        }, 120);
+      }
+
+      window.requestAnimationFrame(scrollToExpertiseCard);
+      window.history.replaceState(null, '', '#expertise');
+    });
+  });
 
   const practicesSection = document.getElementById('practices');
   const expandablePracticeCards = document.querySelectorAll<HTMLElement>('#practices .practice-card-expandable');
@@ -454,6 +508,27 @@ const row2 = cards.slice(3);
   background: #8C7860;
 }
 
+.practice-capability-link {
+  color: inherit;
+  display: inline;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.practice-capability-link:hover,
+.practice-capability-link:focus-visible {
+  color: #683547;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.practice-capability-link:focus-visible {
+  outline: 2px solid rgba(104, 53, 71, 0.35);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 .practice-card-description {
   max-height: 220px;
   opacity: 1;
@@ -574,16 +649,19 @@ const row2 = cards.slice(3);
 
   #practices .practice-mobile-carousel {
     display: block !important;
+    overflow: visible;
+    position: relative;
   }
 
   #practices .practice-mobile-controls {
-    align-items: center;
-    display: flex;
-    gap: 18px;
-    justify-content: center;
-    margin: 22px auto -22px;
-    min-height: 64px;
-    width: 100%;
+    display: block;
+    inset: 0;
+    margin: 0;
+    min-height: 0;
+    pointer-events: none;
+    position: absolute;
+    width: auto;
+    z-index: 12;
   }
 
   #practices .practice-mobile-control {
@@ -594,32 +672,37 @@ const row2 = cards.slice(3);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     display: inline-flex;
-    flex: 0 0 56px;
-    height: 56px;
+    flex: 0 0 42px;
+    height: 42px;
     justify-content: center;
     line-height: 0;
     margin: 0;
-    max-height: 56px;
-    max-width: 56px;
-    min-height: 56px;
-    min-width: 56px;
+    max-height: 42px;
+    max-width: 42px;
+    min-height: 42px;
+    min-width: 42px;
     padding: 0;
-    transform: translateZ(0);
+    pointer-events: auto;
+    position: absolute;
+    top: 246px;
+    transform: translateY(-50%);
     vertical-align: middle;
-    width: 56px;
+    width: 42px;
     -webkit-tap-highlight-color: transparent;
   }
 
   #practices .practice-mobile-control-prev {
     background: #C4BCAD;
+    left: -21px;
   }
 
   #practices .practice-mobile-control-next {
     background: #968C80;
+    right: -21px;
   }
 
   #practices .practice-mobile-control:active {
-    transform: translateZ(0);
+    transform: translateY(-50%);
   }
 
   #practices .practice-mobile-control:focus-visible {
@@ -629,10 +712,10 @@ const row2 = cards.slice(3);
 
   #practices .practice-mobile-control svg {
     display: block;
-    flex: 0 0 18px;
-    height: 18px;
+    flex: 0 0 15px;
+    height: 15px;
     pointer-events: none;
-    width: 18px;
+    width: 15px;
   }
 
   #practices h2 {

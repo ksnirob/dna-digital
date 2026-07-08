@@ -240,16 +240,19 @@ const differences = [
 
   #our-difference .difference-mobile-carousel {
     display: block !important;
+    overflow: visible;
+    position: relative;
   }
 
   #our-difference .difference-mobile-controls {
-    align-items: center;
-    display: flex;
-    gap: 18px;
-    justify-content: center;
-    margin: 20px auto 0;
-    min-height: 72px;
-    width: 100%;
+    display: block;
+    inset: 0;
+    margin: 0;
+    min-height: 0;
+    pointer-events: none;
+    position: absolute;
+    width: auto;
+    z-index: 12;
   }
 
   #our-difference .difference-mobile-control {
@@ -260,32 +263,37 @@ const differences = [
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     display: inline-flex;
-    flex: 0 0 64px;
-    height: 64px;
+    flex: 0 0 42px;
+    height: 42px;
     justify-content: center;
     line-height: 0;
     margin: 0;
-    max-height: 64px;
-    max-width: 64px;
-    min-height: 64px;
-    min-width: 64px;
+    max-height: 42px;
+    max-width: 42px;
+    min-height: 42px;
+    min-width: 42px;
     padding: 0;
-    transform: translateZ(0);
+    pointer-events: auto;
+    position: absolute;
+    top: 248px;
+    transform: translateY(-50%);
     vertical-align: middle;
-    width: 64px;
+    width: 42px;
     -webkit-tap-highlight-color: transparent;
   }
 
   #our-difference .difference-mobile-control-prev {
     background: #C4BCAD;
+    left: -21px;
   }
 
   #our-difference .difference-mobile-control-next {
     background: #968C80;
+    right: -21px;
   }
 
   #our-difference .difference-mobile-control:active {
-    transform: translateZ(0);
+    transform: translateY(-50%);
   }
 
   #our-difference .difference-mobile-control:focus-visible {
@@ -295,10 +303,10 @@ const differences = [
 
   #our-difference .difference-mobile-control svg {
     display: block;
-    flex: 0 0 18px;
-    height: 18px;
+    flex: 0 0 15px;
+    height: 15px;
     pointer-events: none;
-    width: 18px;
+    width: 15px;
   }
 
   #our-difference h2 {

@@ -554,9 +554,31 @@ window.addEventListener('resize', () => {
   }
 });
 
-(window as any).showExpertiseTab = (tabId: string) => {
+(window as any).showExpertiseTab = (tabId: string, capabilityTitle?: string) => {
   const idx = tabsMeta.findIndex(t => t.id === tabId);
-  if (idx >= 0) showTab(idx);
+  if (idx < 0) return;
+
+  showTab(idx);
+
+  if (!capabilityTitle) return;
+
+  window.requestAnimationFrame(() => {
+    const panel = document.querySelector<HTMLElement>(`.expertise-panel[data-panel="${tabId}"]`);
+    const capabilityButton = Array.from(panel?.querySelectorAll<HTMLButtonElement>('.expertise-capability-btn') || [])
+      .find(button => button.dataset.capabilityTitle === capabilityTitle);
+
+    if (!capabilityButton) return;
+
+    updateCapability(capabilityButton);
+
+    const capabilityList = capabilityButton.closest<HTMLElement>('.expertise-panel-left');
+    if (capabilityList && capabilityList.scrollHeight > capabilityList.clientHeight) {
+      capabilityList.scrollTo({
+        top: Math.max(0, capabilityButton.offsetTop - capabilityList.offsetTop - 12),
+        behavior: 'smooth',
+      });
+    }
+  });
 };
 
 // Init — start at ai-strategy
@@ -664,9 +686,12 @@ showTab(3);
     display: flex !important;
     flex-wrap: nowrap !important;
     justify-content: center !important;
+    max-width: 350px !important;
+    margin-bottom: 44px !important;
+    overflow: visible !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    margin-bottom: 44px !important;
+    position: relative !important;
     row-gap: 0 !important;
   }
 
@@ -799,13 +824,7 @@ showTab(3);
   }
 
   #expertise .expertise-mobile-controls {
-    align-items: center;
-    display: flex;
-    gap: 18px;
-    justify-content: center;
-    margin: 22px auto -15px;
-    min-height: 64px;
-    width: 100%;
+    display: none !important;
   }
 
   #expertise .expertise-mobile-control {
@@ -857,7 +876,40 @@ showTab(3);
 
   #expertise #expertise-prev,
   #expertise #expertise-next {
-    display: none !important;
+    align-items: center !important;
+    background: #C4BCAD !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    display: flex !important;
+    height: 42px !important;
+    justify-content: center !important;
+    max-height: 42px !important;
+    max-width: 42px !important;
+    min-height: 42px !important;
+    min-width: 42px !important;
+    padding: 0 !important;
+    position: absolute !important;
+    top: 311px !important;
+    transform: translateY(-50%) !important;
+    width: 42px !important;
+    z-index: 12 !important;
+  }
+
+  #expertise #expertise-prev {
+    left: -21px !important;
+  }
+
+  #expertise #expertise-next {
+    right: -21px !important;
+    background: #968C80 !important;
+  }
+
+  #expertise #expertise-prev svg,
+  #expertise #expertise-next svg {
+    height: 15px !important;
+    stroke: #FFFFFF !important;
+    width: 15px !important;
   }
 
   #expertise .flex.flex-col.items-center.gap-5 > p {
